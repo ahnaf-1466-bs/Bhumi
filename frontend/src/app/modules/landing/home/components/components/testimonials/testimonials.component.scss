@@ -1,0 +1,43 @@
+@media only screen and (max-width: 600px) {
+    .phn {
+        width: 100%;
+    }
+}
+
+.btnSwiper {
+    @media screen and (min-width: 1300px) {
+        font-size: 30px;
+    }
+    @media screen and (min-width: 1440px) {
+        font-size: 30px;
+    }
+    @media screen and (min-width: 1920px) {
+        font-size: 42px;
+        width: 60px;
+        height: 60px;
+    }
+
+    color: #e55037;
+    background: white;
+    font-size: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}
+
+button {
+    z-index: 1000;
+}
+
+.swiper_phone {
+    position: relative;
+    .swiper_text_phone {
+        position: absolute;
+        left: 4px;
+        top: 7px;
+    }
+}
+
+.swiper-slide img{
+    object-fit: fill;
+}

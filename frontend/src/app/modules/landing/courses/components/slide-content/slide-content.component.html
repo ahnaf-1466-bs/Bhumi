@@ -1,0 +1,42 @@
+<div
+    class="infxs:text-4xl xs:text-7xl font-bold text-vumi-white infxs:font-extrabold"
+>
+    <div [innerHTML]="title | sanitizeHtml"></div>
+</div>
+
+<div
+    class="md:font-medium sm:font-medium infxs:font-light text-lg lg:mt-2 xl:mt-4 md:w-120 text-vumi-white"
+>
+    <div [innerHTML]="para | sanitizeHtml"></div>
+</div>
+<div class="md:text-left infxs:text-center flex infxs:justify-center md:justify-start">
+    <button
+        *ngIf="enrolled"
+        class="button-vumi-orange infxs:mt-8 xl:mt-10"
+        (click)="goToFirstActivity()"
+    >
+        {{ "GET_STARTED" | translate }}
+    </button>
+    <button
+        *ngIf="!enrolled && endIn > 0"
+        class="button-vumi-orange infxs:mt-8 xl:mt-10"
+        (click)="goToEnrollment()"
+    >
+    {{ "APPLY NOW" | translate }}
+    </button>
+
+    <p *ngIf="!enrolled && endIn < 0 && !nextbatch" class="mt-8 text-red-600">
+        *{{"You can't apply in this course right now!"|translate}}
+    </p>
+
+    <button
+        *ngIf="!enrolled && endIn < 0 && nextbatch"
+        style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+        class="rounded-[1px]
+        bg-vumi-orange text-white infxs:text-base sm:text-lg infxs:mt-8 xl:mt-10
+        font-semibold tracking-wider px-8 py-1"
+        (click)="goToPreRegistration()"
+    >
+        PRE-REGISTRATION
+    </button>
+</div>

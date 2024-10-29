@@ -1,0 +1,39 @@
+<div class="min-h-screen">
+    <div *ngIf="visibility==true && cntDataSet < 5" class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12">
+        <div class="loader"></div>
+    </div>
+    
+    <div *ngIf="visibility==true && cntDataSet == 5">
+        <app-welcome-banner></app-welcome-banner>
+    
+        <div >
+            <app-enrolled-course  [enrolledCourseList]="enrolledCourseList"></app-enrolled-course>
+        </div>
+        
+        <div    class=" bg-vumi-white">
+            <app-upcoming-course  
+                      [upcomingCourseList]="upcomingCourseList" 
+                      (courseStateChange)="resetCourseState($event)"
+                     
+            ></app-upcoming-course>
+        </div>
+        
+        
+        <div  class=" bg-vumi-white">
+            <app-recommended-course [recommendedCourseList]="recommendedCourseList"
+                (recCourseStateEvent)="resetCourseState($event)"
+            ></app-recommended-course>
+        </div>
+       
+        <div>
+            <app-past-certificate
+               [pastCertificateList]="pastCertificateList"
+            ></app-past-certificate>
+        </div>    
+        
+    </div>
+</div>
+
+
+
+

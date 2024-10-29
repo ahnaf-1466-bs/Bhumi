@@ -1,0 +1,62 @@
+<div
+    class="text-center lg:w-[200px] xl:w-[280px] text-vumi-orange flex flex-col gap-3"
+>
+    <div>
+        <p class="lg:text-md xl:text-lg lg:mb-5">Program Dates and Time</p>
+        <p
+            *ngFor="let date_next_batch of program_dates_next_batch"
+            class="lg:text-sm xl:text-lg font-semibold mb-3"
+        >
+            {{ date_next_batch?.programdate }}
+        </p>
+    </div>
+
+    <div>
+        <p class="lg:text-md xl:text-lg">Application Deadline</p>
+        <p class="lg:text-sm xl:text-lg font-semibold">
+            {{ application_deadline_next_batch }}
+        </p>
+    </div>
+
+    <div>
+        <p class="lg:text-md xl:text-lg">Course Length</p>
+        <p class="lg:text-md xl:text-lg font-semibold">
+            {{ course_length_next_batch }}
+        </p>
+    </div>
+
+    <div>
+        <p class="lg:text-md xl:text-lg">Fee</p>
+        <p
+            class="lg:text-sm xl:text-xl font-semibold infxs:text-vumi-blue md:text-vumi-orange"
+        >
+            {{ fee_next_batch }}
+        </p>
+    </div>
+
+    <div class="flex flex-col items-center gap-y-5 mt-5">
+        <a [href]="program_pdf_next_batch" target="_blank">
+            <button 
+                class="px-4 py-2 infxs:border-vumi-orange lg:border-vumi-blue lg:px-3 lg:py-2 xl:px-7 xl:py-3 text-vumi-blue font-bold border-white border-2 border-solid button-vumi bg-white"
+            >
+                {{"Detailed Calendar PDF"|translate}}
+            </button>
+        </a>
+
+        <!-- <img
+            src="assets\images\pages\courses\program-structure\1.webp"
+            alt="Certificate"
+            class="infxs:w-24 lg:w-24 xl:w-32 infxs:h-14 lg:h-12 xl:h-18 border-2 border-vumi-orange mt-3 mb-3"
+        /> -->
+
+        <button
+            *ngIf="!enrolled"
+            style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+            class="rounded-[1px]
+            px-4 py-2 infxs:bg-vumi-orange lg:bg-vumi-blue text-white infxs:text-base sm:text-lg lg:py-1 xl:py-2 lg:px-3 font-semibold uppercase"
+            (click)="goToPreRegistration()"
+        >
+            {{"Pre-Registration"|translate}}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div
+    class="story w-full bg-opacity-100 sm:h-100 lg:h-140 pt-12 sm:flex min-h-fit bg-gray-800 bg-cover bg-no-repeat sm:justify-center sm:items-center"
+>
+    <div
+        class="bg-vumi-orange bcground-banner -ml-12 mt-8 p-4 lg:h-26 lg:-ml-18 flex justify-center items-center"
+    >
+        <p
+            class="heading-text text-vumi-white text-2xl font-bold sm:text-3xl lg:text-4xl lg:-mt-1 xl:text-4xl"
+        >
+            {{ "OUR STORY" | translate }}
+        </p>
+    </div>
+
+    <div class="content mt-10 flex items-center justify-center">
+        <p
+            *ngIf="!isBengali"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ story }}
+        </p>
+        <p
+            *ngIf="isBengali && story_bn === ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ story }}
+        </p>
+        <p
+            *ngIf="isBengali && story_bn != ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ story_bn }}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_feedback/feedbackmanage
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+{{#messages}}
+    <div class="localmessage{{messagetype}} card mt-2 mb-2">
+        <div class="card-body">
+            <img src="{{picurl}}" alt="" width="250" height="200" class="dcms_img"/>
+            <h4>{{feedbackname}}</h4>
+            <h4>{{feedbackname_bn}}</h4>
+            <h6>{{position}} | {{company}}</h6>
+            <h6>{{position_bn}} | {{company_bn}}</h6>
+            <p class="feedback"><b>{{#str}} subject_desc, local_dcms {{/str}}</b>{{subject}}</p>
+            <p class="feedback"><b>{{#str}} subject_desc_bn, local_dcms {{/str}}</b>{{subject_bn}}</p>
+            <p>{{feedbacktext}}</p> <br><br>
+            <p>{{feedbacktext_bn}}</p>
+            <a href="{{feedbackurl}}?messageid={{id}}">
+                {{#pix}} t/edit, core, Edit this section {{/pix}}
+            </a>
+            <a href="{{feedbackurl}}?messageid={{id}}&del=1">
+                {{#pix}} t/delete, core, Edit this section {{/pix}}
+            </a>
+
+        </div>
+    </div>
+{{/messages}}
+
+<hr>
+<input type="button" class="btn btn-secondary" value="{{back}}" onclick="location.href='{{backurl}}'">

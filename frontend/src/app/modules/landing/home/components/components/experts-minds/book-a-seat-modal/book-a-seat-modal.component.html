@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div mat-dialog-content>
+    <div class="flex justify-between mb-3">
+      <h1 class="w-72 text-3xl text-vumi-blue">PLAN YOUR <b>PROGRESS</b>
+        WITH <b>US</b>!</h1>
+        <!-- close icon -->
+      <button class="p-0 h-[18px] w-[18px] bg-vumi-orange text-white" (click)="onNoClick()">
+        <mat-icon class="text-white icon-size-4.5" aria-hidden="false" aria-label="close dialog"
+          [svgIcon]="'mat_outline:close'"></mat-icon>
+      </button>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <input placeholder="Name" class="bg-[#F4F4F4] px-2 py-3 rounded-[4px]"
+        formControlName="name">
+
+      <input placeholder="Email" class="bg-[#F4F4F4] px-2 py-3 rounded-[4px]"
+        formControlName="email">
+
+      <input placeholder="Phone Number" class="bg-[#F4F4F4] px-2 py-3 rounded-[4px]"
+        formControlName="phone">
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button class="mt-1 p-2 w-full bg-vumi-orange text-white button-vumi" type="submit"
+      [ngClass]="{'bg-gray-300 filter-none':form.invalid}"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

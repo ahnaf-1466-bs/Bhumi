@@ -1,0 +1,129 @@
+<div class="min-h-screen">
+    <div *ngIf="loading" class="h-screen flex justify-center items-center">
+        <div class="loader"></div>
+    </div>
+    
+    <div *ngIf="!enrolled && !loading" class="min-h-screen flex justify-center items-center">
+        <div>
+            <h1 class="text-center text-vumi-orange text-2xl font-bold lg:text-4xl">
+                {{"YOU ARE NOT ENROLLED IN THIS COURSE"|translate}}
+            </h1>
+    
+           
+            <div class="flex justify-center mt-7">
+                <button type="button" (click)="goToCourse()" class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-white text-lg
+                                                                 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-center 
+                                                                  mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Course Details</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div *ngIf="!loading && enrolled"
+        class="min-h-screen px-2 sm:px-0 lg:px-0 lg:max-w-4xl xl:max-w-7xl py-5 mx-auto"
+    >
+        <div>
+                <div class=" lg:max-w-4xl xl:max-w-7xl mx-auto">
+                        <div *ngFor="let feedback of feedbacks; let id = index" class="md:flex md:justify-between">
+                            <div *ngIf="id != 1" class="mt-5 md:mt-0 md:flex md:justify-center md:items-center">
+                                <div class="text-base sm:text-lg md:text-3xl font-bold text-vumi-blue">{{ feedback.question }}<span class="text-vumi-orange font-bold mt-4 ml-1">*</span></div>
+                            </div>
+                            <div *ngIf="id != 1"  class="flex flex-wrap md:start md:rating mb-5">    
+                                    <app-star 
+                                        [activityCompletionStatus] = "completeDone"
+                                        [filledIndex] = "feedbacks[id].rating - 1" 
+                                        (ratingChange)="setRating(id, $event)"
+                                    ></app-star>
+                            </div>
+                            
+                        </div>
+    
+                        <div  class="">
+                            <p class="text-base sm:text-lg md:text-3xl font-bold text-vumi-blue mt-3">{{ courseComment.question }}  <span *ngIf="isCommentRequired"  class="text-vumi-orange font-bold mt-4 ml-1">*</span></p>
+                        </div>
+                        <textarea  *ngIf="!completeDone"
+                            class="mt-3 py-4 w-full h-30  md:h-40 p-4 text-lg" style="border:1px solid black;"
+                            [(ngModel)]="courseComment.answer"
+                        >
+                        </textarea>
+    
+                    <textarea  [disabled]="true" *ngIf="completeDone" 
+                            class="mt-3 py-4 w-full cursor-not-allowed h-30  md:h-40 p-4 text-lg" style="border:1px solid black;"
+                            [(ngModel)]="courseComment.answer"
+                    >
+    
+                    </textarea>
+    
+                   
+                </div>  
+                
+                <div class="lg:max-w-4xl xl:max-w-7xl mb-2 mx-auto">
+                    <div
+                        class="infxs:mx-0 xs:mx-15 sm:mx-18 md:mx-20 lg:mx-30 xl:mx-40 gap-2 flex flex-row 
+                        justify-between lg:mt-4 infxs:mt-4 lg:mb-4 infxs:mb-4"
+                    >
+                        <button
+                            *ngIf="prevActivityID != -1 && prevActivityType != 'customcert'"
+                            (click)="goPrevActivity()"
+                            style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+                            class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px]
+                            bg-vumi-orange text-white font-bold capitalize  outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                        >
+                        <mat-icon class="text-white icon-size-7" aria-hidden="false" aria-label="previous activity icon"
+                        [svgIcon]="'mat_solid:keyboard_arrow_left'"></mat-icon>
+                            <span>{{"Previous"|translate}}</span>
+                        </button>
+
+                        <button *ngIf="isSubmissionComplete()  && !submitSectionLoader && !certificateAvailable"
+                            (click)="onSubmit()"
+                            class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-white bg-vumi-blue font-bold capitalize  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="submit"
+                        >
+                               {{"Submit"|translate}}
+                        </button> 
+    
+                         <button *ngIf="!isSubmissionComplete()  && !submitSectionLoader && !certificateAvailable"
+                            [disabled]="true"
+                            class="infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] cursor-not-allowed bg-gray-300 font-bold capitalize  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="submit"
+                        >
+                              {{"Submit"|translate}}
+                        </button>
+    
+    
+                        <button *ngIf="certificateAvailable && completeDone && !submitSectionLoader"
+                           (click)=" getCertificate()"
+                            
+                            class="infxs:px-2 button-vumi infxs:text-base sm:text-lg border-vumi-blue bg-vumi-blue text-white font-bold capitalize 
+                             outline-none focus:outline-none mr-1 mb-1 ease-linear 
+                            transition-all duration-150"
+                            type="button"
+                        >
+                            {{"Download Certificate"|translate}}
+                        </button>
+    
+                        <div *ngIf="submitSectionLoader" class="flex-end items-center">
+                            <div class="loader"></div>
+                        </div>
+    
+                       
+                    
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <p
+                        class="text-left text-vumi-black font-semibold lg:text-4xl sm:text-5xl infxs:text-3xl"
+                    >
+                        {{ title  }}
+                    </p>
+                </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+

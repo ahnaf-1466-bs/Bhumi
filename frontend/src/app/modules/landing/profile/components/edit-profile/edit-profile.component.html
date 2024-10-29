@@ -1,0 +1,466 @@
+<div>
+    <div
+        *ngIf="loading == false"
+        class="container m-auto grid grid-cols-1 md:grid-cols-2 gap-1 lg:m-auto xl:h-auto overflow-hidden bg-vumi-white"
+    >
+        <div class="image-section order-last mt-2 md:mt-0 md:order-none">
+            <img
+                src="assets/images/signup-img.webp"
+                alt=""
+                class="block md:hidden"
+            />
+
+            <img
+                class="hidden md:block md:-ml-1/4"
+                src="assets/images/login/login.webp"
+            />
+        </div>
+
+        <div class="form-section p-2 py-6 md:w-2/3">
+            <div class="md:flex md:my-2">
+                <h6 class="font-bold text-vumi-orange text-3xl lg:text-4xl">
+                    {{ "UPDATE PROFILE" | translate }}
+                </h6>
+            </div>
+
+            <div
+                *ngIf="updateSuccess == false"
+                class="text-bold my-3 mb-4 md:mb-0 text-white md:h-6"
+            >
+                <p class="mx-auto text-vumi-orange font-bold">
+                    {{ "*Please fill up the form to continue" | translate }}
+                </p>
+            </div>
+
+            <form #profileUpdateForm class="mt-6" (ngSubmit)="updateProfile()">
+                <div class="login-form flex flex-col">
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.firstName == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.firstName"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.firstName !== ''
+                                    }"
+                                    for="email"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "First Name*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        *ngIf="user.firstName == ''"
+                        class="alert alert-danger"
+                    >
+                        <div
+                            *ngIf="user.firstName == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*First Name is required" | translate }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.lastName == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.lastName"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.lastName !== ''
+                                    }"
+                                    for="email"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Last Name*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="user.lastName == ''" class="alert alert-danger">
+                        <div
+                            *ngIf="user.lastName == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*Last Name Name is required" | translate }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.username == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    [disabled]="true"
+                                    matInput
+                                    [(ngModel)]="user.username"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="cursor-not-allowed peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.username !== ''
+                                    }"
+                                    for="email"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Email*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.phone == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    minlength="11"
+                                    maxlength="11"
+                                    [(ngModel)]="user.phone"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.phone !== ''
+                                    }"
+                                    for="phone"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Contact Number*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <div
+                            *ngIf="user.phone == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*Contact number is required" | translate }}
+                        </div>
+
+                        <div
+                            *ngIf="
+                                user &&
+                                user.phone &&
+                                user.phone.length < 11 &&
+                                user.phone.length > 0
+                            "
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{
+                                "*Contact number must be 11 characters long"
+                                    | translate
+                            }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom': '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.organization"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.organization != ''
+                                    }"
+                                    for="organization"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Organization" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.designation == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.designation"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.designation !== ''
+                                    }"
+                                    for="email"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Designation*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        *ngIf="user.designation == ''"
+                        class="alert alert-danger"
+                    >
+                        <div
+                            *ngIf="user.designation == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*Designation is required" | translate }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.country == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <select
+                                    [(ngModel)]="user.country"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer bg-vumi-white rounded-none select-box"
+                                    style="
+                                        width: 150%;
+                                        appearance: none;
+                                        border-radius: 0;
+                                    "
+                                >
+                                    <option
+                                        *ngFor="let country of countries"
+                                        class="drop-box font-[700] rounded-none"
+                                        [value]="country.iso2"
+                                    >
+                                        {{ country.name }}
+                                    </option>
+                                </select>
+
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.country !== ''
+                                    }"
+                                    for="country"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Country*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <div
+                            *ngIf="user.country == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*Country is required" | translate }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.city == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.city"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.city !== ''
+                                    }"
+                                    for="city"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "City*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <div
+                            *ngIf="user.city == ''"
+                            class="text-vumi-orange -mt-2 font-semibold mb-2"
+                        >
+                            {{ "*City is required" | translate }}
+                        </div>
+                    </div>
+
+                    <div
+                        class="my-5"
+                        [ngStyle]="{
+                            'border-bottom':
+                                user.address == ''
+                                    ? ' 2px solid red'
+                                    : '2px solid #263a7f'
+                        }"
+                    >
+                        <div class="label flex items-center">
+                            <div class="relative w-full">
+                                <input
+                                    type="text"
+                                    required="true"
+                                    matInput
+                                    [(ngModel)]="user.address"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    class="peer w-full pt-1"
+                                />
+                                <label
+                                    [ngClass]="{
+                                        '-top-6': user.address !== ''
+                                    }"
+                                    for="address"
+                                    class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-4"
+                                >
+                                    {{ "Address*" | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <div
+                            *ngIf="user.address == ''"
+                            class="text-vumi-orange -mt-2 mb-3 font-semibold"
+                        >
+                            {{
+                                "*Address is required. This address will be used for certificate delivery"
+                                    | translate
+                            }}
+                        </div>
+                    </div>
+
+                    <button
+                        *ngIf="
+                            !loading &&
+                            !submitBtnLoader &&
+                            isFormValidated() == true
+                        "
+                        style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+                        class="rounded-[1px]
+                        bg-vumi-orange text-white infxs:text-base sm:text-lg p-3 font-bold mb-4"
+                    >
+                        {{ "Submit" | translate }}
+                    </button>
+
+                    <button
+                        *ngIf="
+                            !loading &&
+                            !submitBtnLoader &&
+                            isFormValidated() == false
+                        "
+                        [disabled]="true"
+                        class="bg-gray-300 text-white p-3 font-bold mb-4 cursor-not-allowed"
+                    >
+                        {{ "Submit" | translate }}
+                    </button>
+
+                    <div
+                        *ngIf="!loading && submitBtnLoader"
+                        class="flex justify-center items-center"
+                    >
+                        <div class="loader"></div>
+                    </div>
+
+                    <!-- </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div
+        *ngIf="loading == true"
+        class="flex min-h-screen justify-center items-center"
+    >
+        <div class="loader"></div>
+    </div>
+</div>

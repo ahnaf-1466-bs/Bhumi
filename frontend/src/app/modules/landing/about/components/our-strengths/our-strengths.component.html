@@ -1,0 +1,62 @@
+<div class="parent bg-vumi-white mx-auto pb-12">
+    <div class="heading-main text-2xl pt-8 text-center lg:text-left">
+        <p class="heading-1 mb-1 font-medium md:text-6xl text-vumi-blue">
+            {{ "OUR" | translate }}
+        </p>
+        <p class="heading-2 font-sans font-bold text-vumi-blue md:text-6xl">
+            {{ "STRENGTHS" | translate }}
+        </p>
+    </div>
+
+    <div
+        class="container bg-vumi-white mb-4 overflow-x-hidden sm:mx-auto sm:mt-4 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-1 lg:grid lg:grid-cols-3 lg:-gap-x-1 xl:grid xl:grid-cols-3 xl:ml-44"
+    >
+        <div
+            *ngFor="let strength of ourStrengths"
+            class="card bg-vumi-white sm:mt-6 lg:mt-6"
+        >
+            <div class="heading lg:w-56">
+                <h6
+                    *ngIf="!isBengali"
+                    class="text-vumi-blue text-center font-sans font-bold infxs:max-w-[180px] sm:max-w-fit"
+                >
+                    {{ strength?.strengthname }}
+                </h6>
+                <h6
+                    *ngIf="isBengali && strength?.strengthname_bn === null"
+                    class="text-vumi-blue text-center font-sans font-bold infxs:max-w-[180px] sm:max-w-fit"
+                >
+                    {{ strength?.strengthname }}
+                </h6>
+                <h6
+                    *ngIf="isBengali && strength?.strengthname_bn != null"
+                    class="text-vumi-blue text-center font-sans font-bold infxs:max-w-[180px] sm:max-w-fit"
+                >
+                    {{ strength?.strengthname_bn }}
+                </h6>
+                <hr class="solid infxs:w-1/12 sm:w-1/3 mx-auto m-3" />
+            </div>
+
+            <div class="content lg:w-60 infxs:hidden sm:block">
+                <p
+                    *ngIf="!isBengali"
+                    class="text-vumi-blue text-md text-bold font-sans text-center"
+                >
+                    {{ strength?.strengthbody }}
+                </p>
+                <p
+                    *ngIf="isBengali && strength?.strengthbody_bn === null"
+                    class="text-vumi-blue text-md text-bold font-sans text-center"
+                >
+                    {{ strength?.strengthbody }}
+                </p>
+                <p
+                    *ngIf="isBengali && strength?.strengthbody_bn != null"
+                    class="text-vumi-blue text-md text-bold font-sans text-center"
+                >
+                    {{ strength?.strengthbody_bn }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

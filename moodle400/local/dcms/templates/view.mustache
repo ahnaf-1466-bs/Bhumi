@@ -1,0 +1,124 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_dcms/view
+
+    The main page to view the last page activity
+
+    Classes required for JS:
+    * None
+
+    Data attibutes required for JS:
+    * All data attributes are required
+
+    Context variables required for this template:
+    * None
+
+    Example context (json):
+    {
+    }
+}}
+
+<div class="dcms_backtocourse">
+    <div class="container">
+        <br><h4>{{#str}} dcms_heading, local_dcms {{/str}}</h4><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card dcms_card" style="background-color: rgb(238, 238, 238)">
+                    <div class="card-body dcms_cardbody" style="margin-bottom: 27px">
+                        <h3 class="dcms_heading" style="margin-bottom: 40px">{{#str}} teampage, local_dcms {{/str}}</h3>
+                        <a id="custom-cert-again-course-btn" href="{{director}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} director, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{founder}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} founder, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{instructor}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} instructor, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{operation}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} operation, local_dcms {{/str}}</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card dcms_card" style="background-color: rgb(238, 238, 238)">
+                    <div class="card-body dcms_cardbody" style="margin-bottom: 27px">
+                        <h3 class="dcms_heading" style="margin-bottom: 40px">{{#str}} homepage, local_dcms {{/str}}</h3>
+                        <a id="custom-cert-again-course-btn" href="{{siteintro}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} siteintro, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{feedback}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} feedback, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{partner}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} partner, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{footer}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} footer, local_dcms {{/str}}</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card dcms_card" style="background-color: rgb(238, 238, 238)">
+                    <div class="card-body dcms_cardbody">
+                        <h3 class="dcms_heading">{{#str}} aboutpage, local_dcms {{/str}}</h3>
+                        <a id="custom-cert-again-course-btn" href="{{ourstory}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} ourstory, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{vision}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} vision, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{vumifor}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} vumifor, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{whyvumi}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} whyvumi, local_dcms {{/str}}</button>
+                        </a>
+
+                        <a id="custom-cert-again-course-btn" href="{{strength}}">
+                            <button class="btn btn-primary dcmsbtn">{{#str}} strength, local_dcms {{/str}}</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-12">
+                    <a id="custom-cert-again-course-btn" href="{{urls}}">
+                        <button class="btn btn-secondary dcmsbtn mx-auto d-block">
+                            {{#str}} backtocourse, local_dcms {{/str}}
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

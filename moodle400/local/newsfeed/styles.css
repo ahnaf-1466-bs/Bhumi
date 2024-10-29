@@ -1,0 +1,50 @@
+.localimg {
+    float: left;
+    margin-right: 3%;
+    border-radius: 18px;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.localcard-body {
+    float: left;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.newsbutton {
+    float: right;
+    margin-right: 5px;
+}
+
+.dateclass {
+    float: right;
+    margin-right: 10px;
+}
+
+.statusclass {
+    float: right;
+    background-color: rgb(59 130 246/0.5);
+    text-align: right;
+    border-radius: 18px;
+    padding: 5px 15px;
+    margin-top: -5px;
+    font-weight: bold;
+}
+
+.newsbody {
+    margin-top: 30px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.5rem;}

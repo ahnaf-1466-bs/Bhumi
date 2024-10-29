@@ -1,0 +1,72 @@
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/autoplay";
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    // text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: white;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.my-wrapper {
+    .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal,
+    .swiper-pagination-custom,
+    .swiper-pagination-fraction {
+        @media screen and (min-width: 1300px) {
+            bottom: 30px;
+        }
+        @media screen and (min-width: 1440px) {
+            bottom: 80px;
+        }
+        @media screen and (min-width: 1920px) {
+            bottom: 30px;
+        }
+        bottom: 30px;
+    }
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+.homeImg {
+    position: relative;
+    .slide_content {
+        position: absolute;
+        top: 1px;
+    }
+}

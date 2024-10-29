@@ -1,0 +1,199 @@
+<div
+    *ngIf="!visibleStatus"
+    class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12"
+>
+    <div class="loader"></div>
+</div>
+
+<div class="min-h-screen">
+    <div
+        *ngIf="!enrolled && visibleStatus"
+        class="container overflow-hidden grid grid-cols-1 gap-2 mb-20 sm:grid-cols-2"
+    >
+        <div *ngIf="getScreenWidth >= 600" class="py-16 mb-10 lg:py-8 xl:py-16">
+            <p class="payment-heading ml-1/12 mt-12 mb-20 font-medium">
+                {{ "Payment_Method" | translate }}
+            </p>
+            <div class="image-section order-last mt-2 sm:mt-0 sm:order-none">
+                <img
+                    class="hidden sm:block left-banner"
+                    src="assets/images/login/login.webp"
+                />
+            </div>
+        </div>
+
+        <div *ngIf="getScreenWidth < 600">
+            <p class="font-semibold text-3xl -mb-12 mt-8 text-center">
+                {{ "Payment_Method" | translate }}
+            </p>
+        </div>
+
+        <div
+            class="bg-white info-container mt-16 overflow-hidden my-auto mx-auto mr-5 ml-5"
+        >
+            <div class="flex card">
+                <div class="p-6 bg-white sm:h-full sm:w-full">
+                    <div class="mt-2 mb-10 lg:pl-14">
+                        <p class="enroll">{{ "Enroll" | translate }}</p>
+                    </div>
+
+                    <div class="lg:flex lg:justify-between">
+                        <div class="">
+                            <p class="course-rate">1x.</p>
+                        </div>
+
+                        <div class="mt-4 lg:mt-0">
+                            <p class="course-name">{{ courseName }}</p>
+                        </div>
+
+                        <div class="mt-4 lg:-mt-1.5">
+                            <h6 class="font-sans text-2xl font-bold">
+                                {{ totalPayment }} BDT
+                            </h6>
+                        </div>
+                    </div>
+
+                    <div class="lg:flex lg:justify-around">
+                        <div class=""></div>
+
+                        <div class=""></div>
+                    </div>
+
+                    <div class="flex mt-8 mb-16">
+                        <input
+                            *ngIf="!isBengali"
+                            type="text"
+                            class="input-field form-control block px-3 text-base font-normal text-gray-700 bg-clip-padding border border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-900 focus:border-2 placeholder:text-lg placeholder:font-medium"
+                            [(ngModel)]="userGivenCoupon"
+                            placeholder="Enter Coupon"
+                        />
+                        <input
+                            *ngIf="isBengali"
+                            type="text"
+                            class="input-field form-control block px-3 text-base font-normal text-gray-700 bg-clip-padding border border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-900 focus:border-2 placeholder:text-lg placeholder:font-medium"
+                            [(ngModel)]="userGivenCoupon"
+                            placeholder="কুপন লিখুন"
+                        />
+
+                        <button
+                            id="verify-btn"
+                            (click)="verifyCoupon()"
+                            class="bg-blue-700 w-2/5 -ml-2 hover:bg-blue-700 text-white text-lg font-bold py-2 px-1 rounded sm:px-2 sm:w-1/3"
+                        >
+                            {{ "VERIFY" | translate }}
+                        </button>
+                    </div>
+                    <div
+                        *ngIf="isInvalidCoupon && couponVerificationStatusDone"
+                        class="-mt-12"
+                    >
+                        <p class="text-vumi-orange font-bold">
+                            *{{ "INVALID_COUPON" | translate }}
+                        </p>
+                    </div>
+                    <div
+                        *ngIf="
+                            isDiscountFound &&
+                            !isInvalidCoupon &&
+                            couponVerificationStatusDone
+                        "
+                        class="flex justify-between"
+                    >
+                        <h6 class="text-green-500 font-bold text-2xl">
+                            {{ "DISCOUNT" | translate }}:
+                        </h6>
+                        <h6 class="text-green-500 font-bold text-2xl">
+                            {{ discountPercentage }}%
+                        </h6>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="flex justify-between pt-6 px-6 pb-6 mb-12">
+                <div>
+                    <h6 class="text-3xl font-semibold">
+                        {{ "TOTAL" | translate }}:
+                    </h6>
+                </div>
+
+                <div class="text-xl pt-1">
+                    <h6 class="font-sans text-3xl font-bold">
+                        {{ paymentAfterDiscount }} BDT
+                    </h6>
+                </div>
+            </div>
+
+            <div class="flex px-6">
+                <input
+                    id="default-checkbox"
+                    type="checkbox"
+                    [(ngModel)]="isChecked"
+                    value=""
+                    class="w-4 pt-2 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                    for="default-checkbox"
+                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                    {{
+                        "By clicking here, You agree to our Terms and Condition, Privacy Policy and Refund Policy"
+                            | translate
+                    }}.
+                </label>
+            </div>
+
+            <div class="text-center mt-2 px-6 pb-6">
+                <button
+                    *ngIf="isChecked"
+                    class="bg-blue-900 confirm-btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm text-lg"
+                    [disabled]="!isChecked"
+                    (click)="openPaymnetGateway()"
+                >
+                    {{ "Confirm Payment" | translate }}
+                </button>
+
+                <button
+                    *ngIf="!isChecked"
+                    [disabled]="true"
+                    class="bg-gray-300 confirm-btn text-white font-bold py-2 px-4 rounded-sm text-lg"
+                    [disabled]="!isCheked"
+                >
+                    {{ "Confirm Payment" | translate }}
+                </button>
+            </div>
+
+            <!-- <div>
+                <img
+                    *ngIf="getScreenWidth < 600"
+                    src="https://vumi.com.bd/image/pay/Shape.png"
+                    class="mt-12 -mb-6 -ml-4"
+                    alt=""
+                />
+            </div> -->
+        </div>
+    </div>
+
+    <div
+        *ngIf="enrolled && visibleStatus"
+        class="h-screen flex justify-center items-center"
+    >
+        <div>
+            <h1
+                class="text-center text-vumi-orange text-2xl font-bold lg:text-4xl"
+            >
+                YOU ARE ALREADY ENROLLED IN THIS COURSE
+            </h1>
+
+            <div class="text-center mt-7">
+                <button
+                    type="button"
+                    (click)="goToFirstActivity()"
+                    class="text-white text-lg bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                    Go To First Activity
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

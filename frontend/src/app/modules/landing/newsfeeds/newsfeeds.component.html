@@ -1,0 +1,48 @@
+<div class="lg:max-w-4xl xl:max-w-7xl mx-auto">
+    <div class="min-h-screen infxs:mx-7 md:m-0">
+        <div
+            class="flex justify-center lg:h-[400px] xl:h-[680px] lg:w-[890px] xl:w-[1270px] min-h-fit"
+        >
+            <img [src]="picture" />
+        </div>
+        <div class="flex justify-center text-center">
+            <h1
+                *ngIf="!isBengali"
+                class="infxs:text-4xl sm:text-7xl font-black mt-4 xl:mt-6 mb-4 xl:mb-6"
+                [innerHTML]="title | sanitizeHtml"
+            ></h1>
+            <h1
+                *ngIf="isBengali && title_bn === null"
+                class="infxs:text-4xl sm:text-7xl font-black mt-4 xl:mt-6 mb-4 xl:mb-6"
+                [innerHTML]="title | sanitizeHtml"
+            ></h1>
+            <h1
+                *ngIf="isBengali && title_bn != null"
+                class="infxs:text-4xl sm:text-7xl font-black mt-4 xl:mt-6 mb-4 xl:mb-6"
+                [innerHTML]="title_bn | sanitizeHtml"
+            ></h1>
+        </div>
+        <div class="flex justify-center mb-4">
+            <h1
+                class="infxs:text-lg sm:text-4xl font-bold"
+                [innerHTML]="formattedDate | sanitizeHtml"
+            ></h1>
+        </div>
+        <div
+            *ngIf="!isBengali"
+            class="text-base sm:text-lg mb-4"
+            [innerHTML]="newsBody | sanitizeHtml"
+        ></div>
+        <div
+            *ngIf="isBengali && newsBody_bn === null"
+            class="text-base sm:text-lg mb-4"
+            [innerHTML]="newsBody | sanitizeHtml"
+        ></div>
+        <div
+            *ngIf="isBengali && newsBody_bn != null"
+            class="text-base sm:text-lg mb-4"
+            [innerHTML]="newsBody_bn | sanitizeHtml"
+        ></div>
+    </div>
+    <div id="description-container" class="hidden"></div>
+</div>

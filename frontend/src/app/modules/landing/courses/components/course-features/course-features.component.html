@@ -1,0 +1,25 @@
+<div class="bg-vumi-lightgrey">
+    <div class="lg:max-w-4xl xl:max-w-7xl py-8 mx-auto">
+            <h1
+            class="text-4xl px-12 xs:px-0 infxs:leading-none xs:leading-normal font-extrabold infxs:mb-10 infxs:mt-5 xs:mb-8 xs:mt-0 uppercase md:text-vumi-blue infxs:text-vumi-orange lg:text-left infxs:text-center"
+        >
+            {{"COURSE FEATURES"|translate}}
+            </h1>
+
+        <div
+            class="flex flex-wrap justify-center lg:justify-start infxs:gap-2 sm:gap-4 xl:gap-6 md:h-auto"
+        >
+            <ng-container *ngFor="let feature of features">
+                <div
+                    class="infxs:mx-auto sm:mx-1 md:mx-0 infxs:w-90 sm:w-100 md:h-auto md:w-72 xl:w-100"
+                >
+                    <app-course-single-feature
+                        [imageURL]="feature?.feature_pic"
+                        [english_text]="feature?.feature_heading"
+                        [bangla_text]="feature?.feature_heading_bangla"
+                    ></app-course-single-feature>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

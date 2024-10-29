@@ -1,0 +1,59 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_coursefeedback/question
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+<div>
+    <a class="btn btn-secondary mb-5" href="{{back_url}}?id={{cmid}}">Back</a>
+
+    <h2>Course Feedback</h2>
+    <a class="btn btn-primary" href="{{edit_question_url}}?cmid={{cmid}}&feedbackid={{feedbackid}}">Add a new questions</a>
+
+    <h5 class="mt-5">Questions</h5>
+    
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {{#questions}}
+            <tr>
+                <td>{{question}}</td>
+                <td>{{type}}</td>
+                <td>
+                    <a href="{{edit_question_url}}?cmid={{cmid}}&feedbackid={{feedbackid}}&questionid={{id}}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/questions}}
+          
+        </tbody>
+      </table>
+</div>

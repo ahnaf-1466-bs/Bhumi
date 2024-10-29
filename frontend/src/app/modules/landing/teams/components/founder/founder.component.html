@@ -1,0 +1,87 @@
+<div class="bg-vumi-blue pt-4">
+    <div
+        class="lg:max-w-6xl xl:max-w-7xl mx-auto lg:py-12 xl:py-15 md:flex md:gap-4"
+    >
+        <div class="md:text-left md:min-w-80 title-section sm:pl-4">
+            <h4 class="text-vumi-white text-4xl md:text-5xl">
+                {{ "MEET OUR" | translate }}
+            </h4>
+            <h4
+                class="text-vumi-white -mt-1 mb-6 text-4xl md:text-5xl font-extrabold"
+            >
+                {{ "IDEA FOUNDERS" | translate }}
+            </h4>
+        </div>
+
+        <div class="relative w-full md:w-2/3 py-3 slider-sec">
+            <div class="overflow-hidden">
+                <div class="flex">
+                    <div class="w-full flex-none">
+                        <ng-container *ngIf="founderList">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div
+                                        *ngFor="let founder of founderList"
+                                        class="swiper-slide px-4"
+                                    >
+                                        <div
+                                            class="md:text-left md:slider-img-div founder-card-item"
+                                        >
+                                            <div>
+                                                <img
+                                                    [src]="founder.picurl"
+                                                    alt=""
+                                                    class="slider-img"
+                                                />
+                                                <p
+                                                    *ngIf="!isBengali"
+                                                    class="title mt-5 font-bold text-2xl text-vumi-white"
+                                                >
+                                                    {{ founder.foundername }}
+                                                </p>
+                                                <p
+                                                    *ngIf="isBengali"
+                                                    class="title mt-5 font-bold text-2xl text-vumi-white"
+                                                >
+                                                    {{ founder.foundername_bn }}
+                                                </p>
+
+                                                <p
+                                                    *ngIf="!isBengali"
+                                                    class="mt-1 subtitle font-medium text-xl text-vumi-white"
+                                                >
+                                                    {{ founder.founderdeg }}
+                                                </p>
+                                                <p
+                                                    *ngIf="isBengali"
+                                                    class="mt-1 subtitle font-medium text-xl text-vumi-white"
+                                                >
+                                                    {{ founder.founderdeg_bn }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="swiper-pagination"></div> -->
+                                <button
+                                    class="swiper-button-prev bg-vumi-white"
+                                >
+                                    <i
+                                        class="fa fa-chevron-left lg:font-[600] lg:text-[22px] xl:text-[30px]"
+                                    ></i>
+                                </button>
+                                <button
+                                    class="swiper-button-next bg-vumi-white"
+                                >
+                                    <i
+                                        class="fa fa-chevron-right lg:font-[600] lg:text-[22px] xl:text-[30px]"
+                                    ></i>
+                                </button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

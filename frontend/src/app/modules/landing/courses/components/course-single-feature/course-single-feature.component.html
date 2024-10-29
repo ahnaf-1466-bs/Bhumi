@@ -1,0 +1,20 @@
+<div
+    class="h-full bg-vumi-white flex flex-row-reverse xs:flex-col justify-items-center items-center justify-between p-2 infxs:px-4 xs:px-2"
+    style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);"
+    >
+    <img
+        [src]="imageURL"
+        alt="single-feature-image"
+        class="xs:max-w-full infxs:max-w-1/2 min-h-fit w-[55px] h-[55px] xl:w-[150px] xl:h-[150px] mb-2 mt-2"
+    />
+    <p
+        class="text-lg infxs:text-left xs:text-center font-medium text-vumi-blue"
+    >
+        <ng-container *ngIf="lang==='en';else bn">
+            {{ english_text }}
+        </ng-container>
+        <ng-template #bn>
+            {{ bangla_text }}
+        </ng-template>
+    </p>
+</div>

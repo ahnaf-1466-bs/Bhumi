@@ -1,0 +1,765 @@
+<!-- Loading bar -->
+
+<!-- Wrapper -->
+
+<div class="all-wrapper" [ngClass]="{ bn: lang === 'bn', en: lang == 'en' }">
+    <div
+        *ngIf="showDiv && currentUrls.includes('course')"
+        class="bg-gradient-to-r from-[#69c0b3] to-[#f8b133] relative"
+    >
+        <div
+            class="flex flex-wrap justify-around lg:max-w-4xl xl:max-w-7xl mx-auto text-white"
+        >
+            <div class="text-center" *ngIf="distance > 0">
+                <div class="text-vumi-black font-semibold text-2xl uppercase">
+                    Course Starts In
+                </div>
+
+                <div class="flex gap-8 justify-center">
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ days }}</p>
+
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Days
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ hours }}</p>
+
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Hours
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ minutes }}</p>
+
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Minutes
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ seconds }}</p>
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Seconds
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" *ngIf="discountDistance > 0">
+                <div class="text-vumi-black font-semibold text-2xl uppercase">
+                    Discount Time Left
+                </div>
+                <div class="flex gap-8 justify-center">
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ discountDays }}</p>
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Days
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ discountHours }}</p>
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Hours
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ discountMinutes }}</p>
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Minutes
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-2xl">{{ discountSeconds }}</p>
+                        <p class="text-vumi-black text-sm font-semibold">
+                            Seconds
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="absolute infxs:right-[10px] md:right-[190px] xl:right-[310px] infxs:top-[10px] md:top-[28px]"
+                *ngIf="distance > 0 || discountDistance > 0"
+            >
+                <i
+                    (click)="closeDiv()"
+                    class="far fa-times-circle cursor-pointer text-3xl"
+                ></i>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-vumi-blue whitespace-nowrap">
+        <div class="p-4 lg:p-0 lg:max-w-4xl xl:max-w-7xl mx-auto">
+            <div class="flex justify-between gap-2">
+                <div class="flex items-center">
+                    <!-- logo  -->
+                    <div class="cursor-pointer">
+                        <img
+                            (click)="goto('')"
+                            class="w-40 ml-2 md:ml-0"
+                            src="assets/icons/vumi_logo.avif"
+                            alt="Logo not found!"
+                        />
+
+                        <div
+                            class="search my-3 ml-2 md:hidden w-40 relative rounded-3xl border"
+                        >
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="searchCourses"
+                                placeholder="{{
+                                    'WHAT_DO_YOU_WANT_TO_LEARN_TODAY'
+                                        | translate
+                                }}"
+                                class="py-2 mx-1 text-[8px] px-1 tex-white placeholder-gray-300"
+                            />
+                            <mat-icon
+                                class="absolute right-1 top-1 text-vumi-orange"
+                                svgIcon="heroicons_solid:search"
+                            ></mat-icon>
+
+                            <div class="search-result absolute z-10">
+                                <ngContainer *ngFor="let course of courses">
+                                    <div
+                                        *ngIf="
+                                            searchCourses !== '' &&
+                                            course.displayname
+                                                .toLowerCase()
+                                                .includes(
+                                                    searchCourses.toLowerCase()
+                                                )
+                                        "
+                                        class="bg-vumi-orange hover:bg-vumi-white hover:text-black text-vumi-white p-1 my-0.5 font-semibold text-xs w-40 cursor-pointer"
+                                        (click)="
+                                            displayCourseDetails(course.id)
+                                        "
+                                    >
+                                        <div
+                                            [innerHTML]="course.displayname"
+                                        ></div>
+                                    </div>
+                                </ngContainer>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- primary navbar -->
+
+                    <div class="hidden md:flex items-center text-lg">
+                        <a
+                            class="px-2 ml-2 xl:px-14"
+                            [routerLink]="['/about']"
+                            routerLinkActive="active"
+                        >
+                            {{ "WHY_VUMI" | translate }}
+                        </a>
+
+                        <a
+                            class="px-2 xl:px-10"
+                            [routerLink]="['/courses']"
+                            routerLinkActive="active"
+                        >
+                            {{ "COURSES" | translate }}
+                        </a>
+
+                        <a
+                            class="ml-2 xl:px-14"
+                            [routerLink]="['/ourTeam']"
+                            routerLinkActive="active"
+                        >
+                            {{ "OUR_TEAM" | translate }}
+                        </a>
+
+                        <div
+                            class="search ml-3 relative w-52 rounded-3xl border"
+                        >
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="searchCourses"
+                                placeholder="{{
+                                    'WHAT_DO_YOU_WANT_TO_LEARN_TODAY'
+                                        | translate
+                                }}"
+                                class="p-2 ml-3 mr-8 text-xs px-2 text-white placeholder-gray-300"
+                            />
+                            <mat-icon
+                                class="absolute right-2 top-1 text-vumi-orange"
+                                svgIcon="heroicons_solid:search"
+                            ></mat-icon>
+                            <div class="search-result absolute z-10">
+                                <ngContainer *ngFor="let course of courses">
+                                    <div
+                                        *ngIf="
+                                            searchCourses !== '' &&
+                                            course.displayname
+                                                .toLowerCase()
+                                                .includes(
+                                                    searchCourses.toLowerCase()
+                                                )
+                                        "
+                                        class="bg-vumi-orange hover:bg-vumi-white hover:text-black text-vumi-white p-1 my-0.5 font-semibold text-xs w-52 cursor-pointer"
+                                        (click)="
+                                            displayCourseDetails(course.id)
+                                        "
+                                    >
+                                        <div
+                                            [innerHTML]="course.displayname"
+                                        ></div>
+                                    </div>
+                                </ngContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- secondary navbar -->
+                <div class="ml-2 hidden md:flex items-center justify-between text-lg">
+                    <div class="my-5 w-22" appearance="fill">
+                        <div class="drop-down">
+                            <div class="wrapper" (click)="expandIt()">
+                                <img
+                                    [src]="selectedLanguage.img"
+                                    alt="nothing to show"
+                                    class="h-3 w-5"
+                                />
+                                <div class="text uppercase font-bold">
+                                    {{ selectedLanguage.name }}
+                                </div>
+                                <i
+                                    class="fas fa-caret-down text-[13px] -ml-[1.5px] mt-[3.5px]"
+                                ></i>
+                            </div>
+                            <i class="ri-arrow-drop-down-fill"> </i>
+                            <div
+                                class="list"
+                                [ngClass]="{ expand: isFlagExpand }"
+                            >
+                                <ngContainer
+                                    *ngFor="
+                                        let lang of languages;
+                                        let id = index
+                                    "
+                                >
+                                    <div
+                                        class="item"
+                                        [ngClass]="{
+                                            selected:
+                                                selectedLanguage.id === lang.id
+                                        }"
+                                        (click)="selectIt(id, lang.name)"
+                                    >
+                                        <img
+                                            [src]="lang.img"
+                                            alt=""
+                                            class="h-3 w-5"
+                                        />
+                                        <div class="text uppercase font-bold">
+                                            {{ lang.name }}
+                                        </div>
+                                    </div>
+                                </ngContainer>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        *ngIf="!isLogin"
+                        [routerLink]="['/signup']"
+                        routerLinkActive="active"
+                        class="mx-1 md:mx-0 rounded-ful capitalize"
+                    >
+                        {{ "SIGN_UP" | translate }}
+                    </button>
+
+                    <ng-container *ngIf="!isLogin">
+                        <button
+                            (click)="goto('login')"
+                            class="mx-1 md:mx-5 rounded-ful inline-block bg-vumi-orange px-4 py-2 text-vumi-white font-medium text-lg leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out capitalize"
+                            [ngClass]="{
+                                'min-w-[100px]': signing === 'LOG_OUT'
+                            }"
+                        >
+                            {{ signing | translate }}
+                        </button>
+                    </ng-container>
+
+                    <ng-container *ngIf="isLogin">
+                        <div class="flex items-center mr-3">
+                            <button
+                                mat-button
+                                [matMenuTriggerFor]="notifications"
+                            >
+                                <div class="relative">
+                                    <mat-icon
+                                        class="notification-icon mt-2 cursor-pointer"
+                                        >notifications</mat-icon
+                                    >
+                                    <div
+                                        class="notification-count bg-vumi-orange ml-3 -mt-7 absolute"
+                                        *ngIf="unreadCount > 0"
+                                    >
+                                        {{ unreadCount }}
+                                    </div>
+                                </div>
+                            </button>
+                            <mat-menu
+                                #notifications="matMenu"
+                                class="flex justify-left overflow-hidden"
+                                xPosition="before"
+                            >
+                                <div class="mat-menu-panel">
+                                    <!-- Added class for styling -->
+                                    <div *ngIf="allNotificationsLength > 0">
+                                        <div
+                                            class="border-b-2"
+                                            *ngFor="
+                                                let notification of allNotifications
+                                            "
+                                        >
+                                            <div
+                                                *ngIf="
+                                                    notification.read == true
+                                                "
+                                            >
+                                                <div class="ml-4 mr-8">
+                                                    <h1
+                                                        class="text-lg font-medium"
+                                                    >
+                                                        {{
+                                                            notification.subject
+                                                        }}
+                                                    </h1>
+                                                    <P
+                                                        class="text-sm font-normal -mt-1"
+                                                        >{{
+                                                            notification.timecreatedpretty
+                                                        }}</P
+                                                    >
+                                                </div>
+                                            </div>
+                                            <div
+                                                *ngIf="
+                                                    notification.read !== true
+                                                "
+                                                class="bg-vumi-grey"
+                                            >
+                                                <div class="ml-4 mr-8">
+                                                    <h1
+                                                        class="text-lg font-medium"
+                                                    >
+                                                        {{
+                                                            notification.subject
+                                                        }}
+                                                    </h1>
+                                                    <P
+                                                        class="text-sm font-normal -mt-1"
+                                                        >{{
+                                                            notification.timecreatedpretty
+                                                        }}</P
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="allNotificationsLength == 0">
+                                        <div>
+                                            <div class="ml-4 mr-8 my-2">
+                                                <h1 class="text-lg font-medium">
+                                                    {{"You have no notifications"|translate}}
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    *ngIf="allNotificationsLength > 0"
+                                    class="flex justify-center text-md text-vumi-blue font-semibold mt-1 border-t-2"
+                                >
+                                    <button (click)="markAllAsRead()">
+                                        Mark all as read
+                                    </button>
+                                </div>
+                            </mat-menu>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="isLogin">
+                        <button mat-button [matMenuTriggerFor]="menu">
+                            <div class="flex justify-between items-center">
+                                <i class="material-icons text-vumi-white"
+                                    >person</i
+                                >
+                                <h2 class="px-1 pt-1">{{ firstName }}</h2>
+                                <i
+                                    class="fas fa-caret-down text-[13px] pt-1"
+                                ></i>
+                            </div>
+                        </button>
+                        <mat-menu
+                            #menu="matMenu"
+                            class="px-0 py-0 w-1 mx-0 my-0 flex justify-center overflow-hidden"
+                        >
+                            <button mat-menu-item>
+                                <button
+                                    (click)="goto('profile')"
+                                    class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                    [ngClass]="{
+                                        'min-w-[100px]': signing === 'LOG_IN'
+                                    }"
+                                >
+                                    {{ "PROFILE" | translate }}
+                                </button>
+                            </button>
+                            <button mat-menu-item>
+                                <button
+                                    (click)="goto('dashboard')"
+                                    class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                    [ngClass]="{
+                                        'min-w-[100px]': signing === 'LOG_OUT'
+                                    }"
+                                >
+                                    {{ "DASHBOARD" | translate }}
+                                </button>
+                            </button>
+                            <button mat-menu-item>
+                                <button
+                                    (click)="goto('wish-list')"
+                                    class="whitespace-nowrap mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                    [ngClass]="{
+                                        'min-w-[100px]': signing === 'LOG_OUT'
+                                    }"
+                                >
+                                    {{ "Wish List" | translate }}
+                                </button>
+                            </button>
+                            <button mat-menu-item>
+                                <button
+                                    (click)="goto('login')"
+                                    class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                    [ngClass]="{
+                                        'min-w-[100px]': signing === 'LOG_OUT'
+                                    }"
+                                >
+                                    {{ signing | translate }}
+                                </button>
+                            </button>
+                        </mat-menu>
+                    </ng-container>
+                </div>
+                <!-- mobile menu button -->
+                <div
+                    class="mobile-menu md:hidden flex flex-col justify-around items-end text-lg"
+                >
+                    <div class="flex items-center">
+                        <button
+                            *ngIf="!isLogin"
+                            (click)="goto('signup')"
+                            class="mx-1 md:mx-5 rounded-ful"
+                        >
+                            {{ "SIGN_UP" | translate }}
+                        </button>
+                        <ng-container *ngIf="!isLogin">
+                            <button
+                                (click)="goto('login')"
+                                class="mx-1 md:mx-5 rounded-ful inline-block bg-vumi-orange px-2 py-1 text-vumi-white font-medium text-lg leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out capitalize"
+                                [ngClass]="{
+                                    'min-w-[100px]': signing === 'LOG_OUT'
+                                }"
+                            >
+                                {{ signing | translate }}
+                            </button>
+                        </ng-container>
+
+                        <ng-container *ngIf="isLogin">
+                            <button mat-button [matMenuTriggerFor]="menu">
+                                <div
+                                    class="flex justify-between items-center mr-[16px] -mt-1"
+                                >
+                                    <i class="material-icons text-vumi-white"
+                                        >person</i
+                                    >
+                                    <h2 class="px-1 pt-1">{{ firstName }}</h2>
+                                    <i
+                                        class="fas fa-caret-down text-[13px] pt-1"
+                                    ></i>
+                                </div>
+                            </button>
+                            <mat-menu
+                                #menu="matMenu"
+                                class="px-0 py-0 w-1 mx-0 my-0 flex justify-center overflow-hidden"
+                            >
+                                <button mat-menu-item>
+                                    <button
+                                        (click)="goto('profile')"
+                                        class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                        [ngClass]="{
+                                            'min-w-[100px]':
+                                                signing === 'LOG_IN'
+                                        }"
+                                    >
+                                        {{ "PROFILE" | translate }}
+                                    </button>
+                                </button>
+
+                                <button mat-menu-item>
+                                    <button
+                                        (click)="goto('dashboard')"
+                                        class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                        [ngClass]="{
+                                            'min-w-[100px]':
+                                                signing === 'LOG_OUT'
+                                        }"
+                                    >
+                                        {{ "DASHBOARD" | translate }}
+                                    </button>
+                                </button>
+
+                                <button mat-menu-item>
+                                    <button
+                                        (click)="goto('wish-list')"
+                                        class="whitespace-nowrap mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                        [ngClass]="{
+                                            'min-w-[100px]':
+                                                signing === 'LOG_IN'
+                                        }"
+                                    >
+                                        {{ "Wish List" | translate }}
+                                    </button>
+                                </button>
+
+                                <button mat-menu-item>
+                                    <button
+                                        (click)="goto('login')"
+                                        class="mx-1 md:mx-5 rounded-ful inline-block px-4 py-2 text-vumi-blue font-medium text-lg leading-tight"
+                                        [ngClass]="{
+                                            'min-w-[100px]':
+                                                signing === 'LOG_OUT'
+                                        }"
+                                    >
+                                        {{ signing | translate }}
+                                    </button>
+                                </button>
+                            </mat-menu>
+                        </ng-container>
+                    </div>
+                    <mat-icon
+                        (click)="expandMenu()"
+                        class="mr-3 text-vumi-white"
+                        [svgIcon]="menuIcon"
+                    ></mat-icon>
+                </div>
+            </div>
+        </div>
+        <!-- mobile navigation  -->
+        <div
+            class="mobile-menus md:hidden transition transition-all duration-150 ml-[18px] text-lg"
+            [ngClass]="{ hidden: !isExpand }"
+        >
+            <a
+                class="block py-4 px-2"
+                [routerLink]="['/about']"
+                (click)="expandMenu()"
+            >
+                {{ "WHY_VUMI" | translate }}
+            </a>
+            <a
+                class="flex py-4 px-2 items-center"
+                [routerLink]="['/courses']"
+                (click)="expandMenu()"
+            >
+                {{ "COURSES" | translate }}
+            </a>
+
+            <a
+                class="flex py-4 px-2 items-center"
+                [routerLink]="['/ourTeam']"
+                (click)="expandMenu()"
+            >
+                {{ "OUR_TEAM" | translate }}
+            </a>
+
+            <div class="flex px-2 items-center py-4">
+                <div class="my-5 w-22" appearance="fill">
+                    <div class="drop-down">
+                        <div class="wrapper" (click)="expandIt()">
+                            <img
+                                [src]="selectedLanguage.img"
+                                alt="nothing to show"
+                                class="h-3 w-5"
+                            />
+                            <div class="text uppercase font-bold">
+                                {{ selectedLanguage.name }}
+                            </div>
+                            <i
+                                class="fas fa-caret-down text-[13px] -ml-[1.5px] mt-[3.5px]"
+                            ></i>
+                        </div>
+                        <i class="ri-arrow-drop-down-fill"> </i>
+                        <div class="list" [ngClass]="{ expand: isFlagExpand }">
+                            <ngContainer
+                                *ngFor="let lang of languages; let id = index"
+                            >
+                                <div
+                                    class="item"
+                                    [ngClass]="{
+                                        selected:
+                                            selectedLanguage.id === lang.id
+                                    }"
+                                    (click)="selectIt(id, lang.name)"
+                                >
+                                    <img
+                                        [src]="lang.img"
+                                        alt=""
+                                        class="h-3 w-5"
+                                    />
+                                    <div class="text uppercase font-bold">
+                                        {{ lang.name }}
+                                    </div>
+                                </div>
+                            </ngContainer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex flex-col flex-auto w-full">
+        <!-- Content -->
+        <div class="flex flex-col flex-auto">
+            <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                 Otherwise, layout changes won't be registered and the view won't be updated! -->
+            <router-outlet *ngIf="true"></router-outlet>
+        </div>
+    </div>
+
+    <!-- footer starts from here -->
+
+    <footer class="bg-black text-white">
+        <div
+            class="pt-5 lg:max-w-4xl xl:max-w-7xl mx-auto flex flex-wrap justify-center sm:justify-between"
+        >
+            <div class="p-4 w-full md:w-auto flex flex-col justify-around">
+                <div class="flex justify-center md:justify-start items-center">
+                    <div class="logo">
+                        <img
+                            [routerLink]="['/']"
+                            class="w-50 cursor-pointer"
+                            src="assets/icons/vumi_logo.avif"
+                            alt="Logo not found!"
+                        />
+                    </div>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p
+                        class="w-60 mx-2 mt-6 text-center flex justify-center md:justify-start"
+                    >
+                        {{ "House #20, Road #11 (New)," | translate }}<br />
+                        {{ "Dhanmondi R/A, Dhaka-1209" | translate }}
+                    </p>
+                </div>
+            </div>
+            <div class="p-4 w-full md:w-auto flex flex-col justify-around">
+                <div class="flex justify-center mb-8">
+                    <a
+                        [routerLink]="['/certificateVerification']"
+                        target="_blank"
+                        class="button-vumi-orange cursor-pointer"
+                    >
+                        {{ "Verify Certificate" | translate }}
+                    </a>
+                </div>
+                <ul class="flex justify-center text-[#e55037] font-extrabold">
+                    <li>
+                        <p
+                            class="cursor-pointer"
+                            (click)="navigateToFooterPage('privacyAndPolicy')"
+                        >
+                            {{ "PRIVACY POLICY" | translate }}
+                        </p>
+                    </li>
+
+                    <li>
+                        <p
+                            class="cursor-pointer"
+                            (click)="navigateToFooterPage('termsAndCondition')"
+                        >
+                            {{ "TERMS AND CONDITION" | translate }}
+                        </p>
+                    </li>
+
+                    <li>
+                        <p
+                            class="cursor-pointer"
+                            (click)="navigateToFooterPage('faq')"
+                        >
+                            {{ "FAQ" | translate }}
+                        </p>
+                    </li>
+                    <li>
+                        <p
+                            class="cursor-pointer"
+                            (click)="navigateToFooterPage('refundPolicy')"
+                        >
+                            {{ "REFUND POLICY" | translate }}
+                        </p>
+                    </li>
+                </ul>
+                <div class="social mt-10">
+                    <ul class="flex justify-between">
+                        <li>
+                            <a
+                                href="https://www.facebook.com/vumi.bd"
+                                target="_blank"
+                            >
+                                <i
+                                    class="fab fa-facebook text-[32px] text-vumi-white hover:text-[#3b5998]"
+                                ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.youtube.com/channel/UCrw3Esa5grF55WpLKgcy-aw"
+                                target="_blank"
+                            >
+                                <i
+                                    class="fab fa-youtube text-[32px] text-vumi-white hover:text-[#c4302b]"
+                                ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.instagram.com/vumi_bd/?igshid=YmMyMTA2M2Y%3D"
+                                target="_blank"
+                            >
+                                <i
+                                    class="fab fa-instagram text-[32px] text-vumi-white hover:text-[#d62976]"
+                                ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/" target="_blank">
+                                <i
+                                    class="fab fa-twitter text-[32px] text-vumi-white hover:text-[#00acee]"
+                                ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.linkedin.com/company/vumi-bangladesh-limited/"
+                                target="_blank"
+                            >
+                                <i
+                                    class="fab fa-linkedin text-[32px] text-vumi-white hover:text-[#0072b1]"
+                                ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

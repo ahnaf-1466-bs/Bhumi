@@ -1,0 +1,76 @@
+.directorGrid{
+    cursor: pointer;
+}
+
+.button-disabled {
+    background-color: rgb(212, 207, 207) !important;
+    cursor: not-allowed;
+  }
+
+ 
+input:focus {
+  outline: none;
+}
+
+
+img{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.loader {
+  border: 14px solid #f3f3f3; /* Light grey */
+ border-top: 8px solid #3498db; /* Blue */
+ border-radius: 50%;
+ width: 60px;
+ height: 60px;
+ animation: spin 0.5s linear infinite;
+}
+
+@media only screen and (max-width: 599px) {
+   .heading{
+        text-align: center !important;
+   }
+
+   .title-section{
+      margin-left: 1.5rem !important;
+   }
+
+   img{
+      width: 10rem !important;
+      height:  10rem !important;
+      margin: auto;
+   }
+}
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 1279px) {
+   .topbar{
+     margin-left: 3% !important;
+     margin-right:  3% !important;
+   }
+
+   img{
+    width: 15rem !important;
+    height:  15rem !important;
+    margin: auto;
+ }
+}
+
+@media only screen and (min-width: 1300px) {
+  .directorGrid{
+    width: 10rem !important;
+    height: 3rem !important;
+  }
+  img{
+    height: 14rem !important;
+    width: 14rem !important;
+  }
+  .directorInfo{
+    margin-left: -3.4rem !important;
+  }
+}
+

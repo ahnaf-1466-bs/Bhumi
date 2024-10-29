@@ -1,0 +1,76 @@
+<div class="!h-screen">
+    <swiper
+        [pagination]="{ clickable: true }"
+        [autoplay]="{
+            delay: 5000,
+            stopOnLastSlide: false,
+            disableOnInteraction: false
+        }"
+        [loop]="true"
+        class="my-wrapper !h-screen"
+    >
+        <ng-container *ngFor="let a of sliderItems">
+            <ng-template swiperSlide>
+                <div
+                    class="relative min-w-full bg-no-repeat bg-cover bg-center homeImg"
+                >
+                    <div
+                        class="hidden md:block overlay absolute top-0 left-0 w-full h-screen"
+                    ></div>
+
+                    <img class="hidden md:block h-screen" [src]="a.img1" />
+                    <img
+                        class="infxs:block h-screen md:hidden"
+                        [src]="a.img2"
+                    />
+
+                    <div
+                        class="md:p-4 lg:p-0 lg:max-w-4xl xl:max-w-7xl mx-auto"
+                    >
+                        <div
+                            class="slide_content infxs:text-center md:text-left infxs:w-full md:w-1/4 infxs:mt-14 xs:mt-14 sm:mt-20 md:mt-30 lg:mt-30 2lg:mt-90 xl:mt-120 infxs:px-6 md:px-0"
+                        >
+                            <app-slide-content
+                                [title]="title"
+                                [subtitle]="sub_title"
+                                [para]="siteIntro"
+                                [para_bn]="siteIntro_bn"
+                            >
+                            </app-slide-content>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </swiper>
+</div>
+
+<div class="lg:max-w-4xl xl:max-w-7xl mx-auto">
+    <app-popular-courses></app-popular-courses>
+</div>
+
+<app-experts-minds></app-experts-minds>
+
+<app-upcoming-course></app-upcoming-course>
+<app-newsfeed
+    *ngIf="newsfeeds?.length > 0"
+    [newsFeeds]="newsfeeds"
+></app-newsfeed>
+
+<div class="">
+    <app-potentials></app-potentials>
+</div>
+
+<app-testimonials
+    *ngIf="feedbacks?.length > 0"
+    [feedbacks]="feedbacks"
+></app-testimonials>
+
+<div class="lg:max-w-6xl xl:max-w-7xl mx-auto">
+    <app-key-partners
+        *ngIf="partners?.length > 0"
+        [partners]="partners"
+    ></app-key-partners>
+</div>
+
+<app-digital-learning></app-digital-learning>

@@ -1,0 +1,121 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_discout/view
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+<style>
+    .fa {
+        cursor: pointer;
+    }
+</style>
+
+<div>
+    <h1>Discount Module</h1>
+    <a class="btn btn-primary" href="{{ edit_coupon }}">Create New Coupon</a>
+
+    <table class="table table-hover table-center mt-5">
+        <tr class="text-center">
+            <th>
+                {{#str}} course_name, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} created_by, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} coupon_code, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} type, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} limit, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} discount_percentage, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} time_created, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} time_modified, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} time_expired, local_discount {{/str}}
+            </th>
+            <th>
+                {{#str}} action, local_discount {{/str}}
+            </th>
+        </tr>
+        {{#coupons}}
+        <tr class="text-center">
+            <td style='text-align:left'>{{fullname}}</td>
+            <td>{{firstname}}</td>
+            <td>{{coupon_code}}</td>
+            <td>
+                {{#type}}
+                    {{#str}} private, local_discount {{/str}}
+                {{/type}}
+                {{^type}}
+                    {{#str}} public, local_discount {{/str}}
+                {{/type}}
+            </td>
+            <td>{{max_use}}</td>
+            <td>{{discount_percentage}}</td>
+            <td>{{timecreated}}</td>
+            <td>{{timemodified}}</td>
+            <td>{{timeexpired}}</td>
+            <td>
+                {{#active}}
+                <a href="{{edit_coupon}}?id={{id}}&active=0">
+                    <i class="fa fa-eye"></i>
+                </a>
+                {{/active}}
+                {{^active}}
+                <a href="{{edit_coupon}}?id={{id}}&active=1">
+                    <i class="fa fa-eye-slash"></i>
+                </a>
+                {{/active}}
+                <a href="{{edit_coupon}}?id={{id}}" class="ml-1">
+                    <i class="icon fa fa-cog fa-fw"></i>
+                </a>
+                <a onclick="showAlert('{{id}}')"  class="text-danger">
+                    <i class="icon fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {{/coupons}}
+        
+    
+    </table>
+
+</div>
+
+<script>
+    function showAlert(id) {  
+        let result = confirm('Are you sure you want to delete the entry?');
+        if(result) {
+            window.location.href = '{{ edit_coupon }}?id=' + id + '&delete=1';            
+        }
+    }
+</script>

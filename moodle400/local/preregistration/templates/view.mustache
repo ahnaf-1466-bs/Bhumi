@@ -1,0 +1,122 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_preregistration/view
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+<style>
+    .fa {
+        cursor: pointer;
+    }
+</style>
+
+<div>
+    <a class="btn btn-primary" href="{{ edit_batch }}">
+        {{#str}} create_new_batch, local_preregistration {{/str}}
+    </a>
+
+    <a class="btn btn-outline-info ml-3" href="{{ edit_email_template_url }}">
+        {{#str}} email_template_settings_text, local_preregistration {{/str}}
+    </a>
+
+    <table class="table table-hover table-center mt-5">
+        <tr class="text-center">
+            <th>
+                {{#str}} course_name, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} batch_name, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} batch_description, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} startdate, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} enddate, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} status, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} timemodified, local_preregistration {{/str}}
+            </th>
+            <th>
+                {{#str}} action, local_preregistration {{/str}}    
+            </th>
+        </tr>
+        {{#batches}}
+        <tr class="text-center">
+            <td style='width:15%; text-align:left'>{{fullname}}</td>
+            <td style='width:15%'>{{name}}</td>
+            <td style='width:15%'>{{description}}</td>
+            <td style='width:10%'>{{startdate}}</td>
+            <td style='width:10%'>{{enddate}}</td>
+            <td style='width:5%'>
+                {{#active}}
+                    <span class="badge badge-success">
+                    {{#str}} activestatus, local_preregistration {{/str}}
+                    </span>
+                {{/active}}
+
+                {{^active}}
+                    <span class="badge badge-danger">
+                    {{#str}} inactivestatus, local_preregistration {{/str}}
+                    </span>
+                {{/active}}
+            </td>
+            <td style='width:10%'>{{timemodified}}</td>
+            <td style='width:25%'>
+                <a href="{{batch_details_url}}?batchid={{id}}">
+                    <span class="btn btn-sm btn-primary">Add Details</span>
+                </a>
+                <a class="ml-2" href="{{users_list_url}}?batchid={{id}}">
+                    <i class="fa fa-users"></i>
+                </a>
+                <a class="ml-2" href="{{edit_batch}}?id={{id}}">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <!-- Need to implement a confirmation modal before delete. -->
+                <a class="ml-2 text-danger" onclick="showAlert('{{id}}')">
+                    <i class="fa fa-trash"></i>
+                </a>
+                
+            </td>
+        </tr>
+        {{/batches}}
+        
+    
+    </table>
+
+
+</div>
+
+<script>
+    function showAlert(id) {  
+        let result = confirm('Are you sure you want to delete the entry?');
+        if(result) {
+            window.location.href = '{{ edit_batch }}?id=' + id + '&delete=1';            
+        }
+    }
+</script>

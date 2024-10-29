@@ -1,0 +1,73 @@
+.container{
+    height: 25rem !important;
+}
+
+.heading-2{
+    margin-top: -1.5rem !important;
+}
+
+
+image{
+    width: 1rem !important;
+    height: 1rem !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .container{
+        height: fit-content !important;
+        margin-bottom: 1rem;
+    }
+    
+    .heading, .for-whom-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+       
+    }
+
+    .heading-2{
+        margin-top: 0.1rem !important;
+        font-size: larger;
+    }
+
+    .heading-1{
+        font-weight: 600 !important;
+        font-size: larger;
+    }
+  }
+
+
+@media only screen and (min-width: 992px) {
+   .heading{
+      margin-left: 15% !important;
+   } 
+
+
+    .dummy{
+        width: 33% !important;
+    }
+
+    .logo-container{
+        width: 67% !important;
+        display: flex !important;
+        padding-left: 0 !important;
+        flex-direction: row !important;
+    }
+
+    .fresh-graduates{
+        width: 25% !important;
+    }
+
+    .managers{
+        width: 25% !important;
+    }
+
+    .skill{
+        width: 25% !important;
+    }
+}
+
+
+
+

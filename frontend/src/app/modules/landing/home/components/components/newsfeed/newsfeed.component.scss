@@ -1,0 +1,48 @@
+.btnSwipePrev {
+    color: #e55037;
+    background: white;
+    border-radius: 100%;
+    @apply min-w-8 max-w-8 min-h-8 max-h-8 sm:min-w-12 sm:max-w-12 sm:min-h-12 sm:max-h-12;
+}
+
+.btnSwipeNext2 {
+    color: #e55037;
+    background: white;
+    border-radius: 100%;
+    @apply min-w-8 min-h-8 sm:min-w-12 sm:min-h-12;
+}
+
+.btnSwipePhone {
+    color: #e55037;
+    background: white;
+    border-radius: 100%;
+}
+
+button {
+    z-index: 1000;
+}
+
+.swiper_phone {
+    position: relative;
+    .swiper_text_phone {
+        position: relative;
+        left: 4px;
+        top: 7px;
+    }
+}
+
+.element.style {
+    height: auto;
+}
+
+.cdk-global-scrollblock {
+    left: 0px;
+    top: 0px !important;
+    overflow: hidden !important;
+}
+
+.my-span {
+    p {
+        display: inline;
+    }
+}

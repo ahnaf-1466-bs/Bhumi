@@ -1,0 +1,57 @@
+<div
+    *ngIf="loading"
+    class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12"
+>
+    <div class="loader"></div>
+</div>
+<div
+    class="mx-auto lg:max-w-4xl xl:max-w-7xl mt-4 text-vumi-orange h-auto"
+    *ngIf="!loading"
+>
+    <div
+        class="bg-vumi-orange lg:py-3 xl:py-4 px-12 lg:text-xl xl:text-2xl text-vumi-white"
+    >
+        <h3 class="text-center">{{"Review"|translate}}</h3>
+    </div>
+
+    <div
+        class="mt-5 text-black py-6 px-12 border border-vumi-blue lg:text-lg bg-[#f3f2f2] xl:text-xl"
+    >
+        <p>{{"Status"|translate}} : {{ attemptResponse?.state }}</p>
+        <p>
+            {{"Started on"|translate}} :
+            {{ attemptResponse?.timestart * 1000 | date : "MMM d, y h:mm a" }}
+        </p>
+
+        <p>
+            {{"Completed on"|translate}} :
+            {{ attemptResponse?.timefinish * 1000 | date : "MMM d, y h:mm a" }}
+        </p>
+        <p>
+            {{"Time taken"|translate}}:
+            {{
+                attemptResponse?.timefinish - attemptResponse?.timestart | timer
+            }}
+        </p>
+        <p>{{"Score"|translate}} : {{ attemptResponse.sumgrades }}</p>
+    </div>
+
+    <div class="text-black mt-12">
+        <div
+            class="mx-auto max-w-7xl bg-[#f3f2f2]"
+            *ngFor="let q of questionsHtml"
+        >
+            <div [innerHTML]="q"></div>
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <button
+        style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+        class="button-vumi-orange font-bold capitalize mb-8"
+            (click)="goBack()"
+        >
+            {{"Finish Attempt"|translate}}
+        </button>
+    </div>
+</div>

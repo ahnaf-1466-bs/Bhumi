@@ -1,0 +1,55 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_coursefeedback/answer
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+<div>
+    <a class="btn btn-secondary" href="{{back_url}}?id={{cmid}}">Back</a>
+
+
+    <h3 class="mt-5">Responses</h3>
+    
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Question</th>
+            <th scope="col">Type</th>
+            <th scope="col">Response</th>
+          </tr>
+        </thead>
+        <tbody>
+            {{#responses}}
+            <tr>
+                <td>{{firstname}} {{lastname}}</td>
+                <td>{{question}}</td>
+                <td>{{type}}</td>
+                <td>{{response}}</td>
+            </tr>
+            {{/responses}}
+          
+        </tbody>
+    </table>
+</div>

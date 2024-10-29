@@ -1,0 +1,45 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_syllabus/manage
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+{{#messages}}
+    <div class="localmessage{{messagetype}} card mt-2 mb-2">
+        <div class="localcard-body">
+            <div class="fullnews" onclick="location.href='{{fullnewsurl}}?newsid={{id}}'">
+                <img src="{{picurl}}" width="200px" height="180px" class="localimg"/>
+                <p class="statusclass">{{status}}</p>
+                <p class="dateclass">{{#str}} date, local_newsfeed {{/str}} {{date}}</p>
+                <h3 class="title">{{newstitle}}</h3>
+                <h6 class="subtitle">{{newssubtitle}}</h6>
+            <br>
+            </div>
+            <input type="button" class="btn btn-danger newsbutton" value="{{deletenews}}" onclick="location.href='{{featureurl}}?newsid={{id}}&del=1'">
+            <input type="button" class="btn btn-primary newsbutton" value="{{editnews}}" onclick="location.href='{{featureurl}}?newsid={{id}}'">
+          </div>
+    </div>
+
+{{/messages}}
+<input type="button" class="btn btn-primary" value="{{val}}" onclick="location.href='{{featureurl}}'" />
+<input type="button" class="btn btn-secondary" value="{{back}}" onclick="location.href='{{backurl}}'" />

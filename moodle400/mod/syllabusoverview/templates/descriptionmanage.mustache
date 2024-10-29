@@ -1,0 +1,55 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_syllabus/manage
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+{{#messages}}
+    <div class="localmessage{{messagetype}} card mt-2 mb-2">
+        <div class="card-body">
+            <a href="{{descriptionsectionurl}}&messageid={{id}}">
+                {{#pix}} t/edit, core, Edit this section {{/pix}}
+            </a>
+            <a href="{{descriptionsectionurl}}&messageid={{id}}&del=1">
+                {{#pix}} t/delete, core, Edit this section {{/pix}}
+            </a>
+
+<!--            <iframe src="{{descriptionurl}}" width="30%" height=300" style="float: right; margin-left: 5%"></iframe><br>-->
+            <p style="text-align: justify">{{description}} </p>
+            {{#fileurl}}
+                <iframe src="{{fileurl}}" width="40%" height="300" style="float: right; margin-left: 5%"></iframe><br>
+            {{/fileurl}}
+            {{^fileurl}}
+                <iframe src="{{descriptionurl}}" width="40%" height="300" style="float: right; margin-left: 5%"></iframe><br>
+            {{/fileurl}}
+
+        </div>
+    </div>
+{{/messages}}
+
+<hr>
+<input type="button" class="btn btn-primary" value="{{adddescription}}" onclick="location.href='{{descriptionsectionurl}}'" />
+<input type="button" class="btn btn-secondary" value="{{back}}" onclick="location.href='{{backurl}}'">
+
+
+

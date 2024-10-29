@@ -1,0 +1,29 @@
+<div class="w-60 md:pt-8 md:pb-4 lg:w-100 xl:w-120">
+    <div class="flex flex-row flex-wrap items-center">
+        <i
+            class="material-icons bg-[#f3f2f2] rounded-full p-2 text-3xl text-[#ffd1b3] mx-2 text-center my-2"
+            >credit_card</i
+        >
+        <p class="text-xl lg:text-2xl xl:text-3xl font-semibold">
+            Choose Payment Gateway
+        </p>
+    </div>
+
+    <div
+        class="md:flex md:flex-wrap md:gap-14 md:justify-center md:items-center md:mt-4"
+    >
+        <div class="my-10 sm:my-0 card cursor-pointer" (click)="useBkash()">
+            <img
+                src="assets/images/bkash.webp"
+                class="w-28 h-16 min-w-[8rem] min-h-[3rem]"
+            />
+        </div>
+
+        <div class="my-10 sm:my-0 card cursor-pointer" (click)="useSurjoPay()">
+            <img
+                src="assets/images/shurjopay.webp"
+                class="w-28 h-20 min-w-[8rem] min-h-[6rem]"
+            />
+        </div>
+    </div>
+</div>

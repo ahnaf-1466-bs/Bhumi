@@ -1,0 +1,32 @@
+<div *ngIf="status==1" class="success-message min-h-screen">
+   
+    <i class="far fa-check-circle mt-4 icon" style="color: #07c336;"></i>
+    <h2 class="font-bold text-green-800 text-5xl mt-6">{{"Payment Successful!" | translate }}</h2>
+    <p class="font-bold text-green-600 text-2xl mb-8">{{"Thank you for your purchase" | translate }}</p>
+    <button (click)="goToCourse()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ">
+         {{"Course Details" | translate}}
+    </button>
+</div>
+
+
+<div *ngIf="status==2" class="failure-message min-h-screen">
+        <i class="far fa-window-close  mt-4 icon" style="color: #f50a0a;"></i>
+        <h2 class="font-bold text-vumi-orange text-5xl mt-6">{{ failedMessage }}</h2>
+        <p class="font-bold text-vumi-orange text-xl mb-8">{{"We were unable to process your payment" | translate}}</p>
+        <button (click)="goToCourse()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ">
+            {{"Course Details" | translate}}
+        </button>
+</div>
+
+
+
+<div *ngIf="status==3" class="failure-message min-h-screen">
+   
+    <i class="far fa-window-close  mt-4 icon" style="color: #f50a0a;"></i>
+    <h2 class="font-bold text-vumi-orange text-5xl mt-6">{{"Payment Cancelled!" | translate }}</h2>
+    <p class="font-bold text-vumi-orange text-xl mb-8">{{"We were unable to process your payment" | translate}}</p>
+    <button (click)="goToCourse()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ">
+        {{"Course Details" | translate}}
+    </button>
+</div>
+

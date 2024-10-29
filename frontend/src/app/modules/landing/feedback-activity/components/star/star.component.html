@@ -1,0 +1,12 @@
+<div   class="flex items-center gap-1">
+    <span   *ngFor="let item of stars; let indx = index" class="text-gray-300 text-4xl">
+      <div [ngStyle]="activityCompletionStatus ? {'disabled': 'true', 'cursor': 'not-allowed'} : {'disabled': 'false', 'cursor' : 'pointer'}">
+            <i [ngStyle]="activityCompletionStatus ? {'disabled': 'true', 'cursor': 'not-allowed'} : {'disabled': 'false', 'cursor' : 'pointer'}"  class="fa fa-star"
+                  [ngStyle]="indx <= filledIndex ? {'color': ' #FF8C00'} : {'color': '#D0D0D0'}"
+                  (click)="onClick(indx)"
+            ></i>
+      </div>
+       
+    </span>
+</div>
+  

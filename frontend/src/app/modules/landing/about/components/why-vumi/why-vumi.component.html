@@ -1,0 +1,38 @@
+<div
+    class="story overflow-hidden sm:h-80 lg:h-90 xl:h-100 pt-12 sm:flex min-h-fit bg-vumi-blue bg-cover bg-no-repeat sm:justify-center sm:items-center"
+>
+    <div
+        class="bcground-banner bg-vumi-white -ml-20 h-32 mt-8 p-4 sm:-ml-32 lg:-ml-32 flex justify-center items-center xl:-pl-8"
+    >
+        <div class="heading-text">
+            <p
+                class="text-vumi-blue text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-semibold"
+            >
+                {{ "whyy" | translate }}
+            </p>
+            <p
+                class="text-vumi-blue text-2xl font-sans -mt-2 sm:-mt-4 sm:text-3xl lg:text-4xl xl:text-4xl font-bold"
+            >
+                {{ "vumii?" | translate }}
+            </p>
+        </div>
+    </div>
+
+    <div class="content mt-10 flex justify-center items-center">
+        <p
+            *ngIf="!isBengali"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl lg:ml-2 xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+            [innerHTML]="whyVumi | sanitizeHtml"
+        ></p>
+        <p
+            *ngIf="isBengali && whyVumi_bn === ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl lg:ml-2 xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+            [innerHTML]="whyVumi | sanitizeHtml"
+        ></p>
+        <p
+            *ngIf="isBengali && whyVumi_bn != ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl lg:ml-2 xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+            [innerHTML]="whyVumi_bn"
+        ></p>
+    </div>
+</div>

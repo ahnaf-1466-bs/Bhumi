@@ -1,0 +1,8 @@
+<div class="pb-4">
+    <div class="list-item text-lg font-bold text-vumi-blue">
+        {{ syllabus_title }}
+    </div>
+    <div class="pl-4 text-lg text-vumi-blue">
+        <div [innerHTML]="syllabus_items | sanitizeHtml"></div>
+    </div>
+</div>

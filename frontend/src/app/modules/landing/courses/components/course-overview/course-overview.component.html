@@ -1,0 +1,54 @@
+<div class="bg-vumi-blue">
+    <div class="lg:max-w-4xl xl:max-w-7xl md:py-10 xl:py-12 mx-auto">
+        <div class="flex infxs:flex-col lg:flex-row infxs:items-center lg:items-start lg:justify-between">
+            <div
+                class="text-vumi-white flex flex-col infxs:text-center lg:text-left md:basis-5/12 infxs:w-3/4"
+            >
+                <h1
+                    class="text-4xl font-black infxs:mt-10 leading-4"
+                >
+                    {{"OVERVIEW"|translate}}
+                </h1>
+                <h1
+                    class="text-4xl font-normal whitespace-nowrap"
+                >
+                    {{"OF THE COURSE"|translate}}
+                </h1>
+                <div
+                    class="space-y-5 xl:mt-5 md:text-xl infxs:text-sm"
+                >
+                    <p class="text-lg mt-2 text-justify">
+                        {{ description?.short_description }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="infxs:w-3/4 lg:w-140 xl:w-180 mx-auto infxs:mb-8 lg:mb-0"
+            >
+                <div *ngIf="embedVideoURL!==undefined; else notEmbed">
+                    <div class="mt-5 scale-90">
+                        <iframe id="video-iframe" [src]="embedVideoURL" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <ng-template #notEmbed>
+                    <div *ngIf="descriptionURL?.includes('.mp4') || 
+                                        descriptionURL?.includes('.webm') || 
+                                        descriptionURL?.includes('.mov'); else notVideo"
+                                        class="lg:ml-8 flex justify-center mt-5 scale-90">
+                        <video controls class="">
+                            <source [src]="descriptionURL" type="video/mp4" />
+                        </video>
+                    </div>
+                    <ng-template #notVideo>
+                        <div>
+                            <img *ngIf="descriptionURL" [src]="descriptionURL" alt="course overview" class="lg:ml-8 mt-5 basis-6/12 scale-90 lg:h-80 xl:h-100" />
+                        </div>
+                    </ng-template>
+                </ng-template>
+                
+            </div>
+        </div>
+    </div>
+</div>

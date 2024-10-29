@@ -1,0 +1,54 @@
+
+<div  class="lg:max-w-4xl xl:max-w-7xl py-14 mx-auto min-h-screen">
+    <h1 class="text-base md:text-4xl text-vumi-orange md:text-left infxs:text-center">
+      <span
+         class="text-base  md:text-3xl lg:text-4xl  md:font-extrabold   infxs:text-6xl infxs:font-extrabold block md:inline"
+      >{{ "WISH LIST"|translate }}</span
+  >
+   <span
+      class="md:mt-0 md:ml-3 text-base  md:text-3xl  lg:text-4xl infxs:text-6xl infxs:ml-0infxs:-mt-18 uppercase"
+    >{{ "COURSES"|translate }}</span
+      >
+    </h1>
+  
+  
+      <div class="relative py-3 mt-4 mx-auto">
+        <div class="overflow-hidden">
+          <div class="flex">
+            <div class="w-full flex-none">
+              <div *ngIf="favCourses"> 
+                  <div class="swiper-container-wishlisted">
+                      <div class="swiper-wrapper">
+                        <div *ngFor="let course of favCourses" class="swiper-slide px-6 flex flex-wrap">
+                          <div class="w-64 xl:w-90">
+                            <img [src]="course.picurl" alt="" class="h-36 xl:h-50 cursor-pointer" (click)="displayCourseDetails(course.id)">
+                            <p *ngIf="course.fullname" class="h-10 mt-5 mb-4 cursor-pointer font-bold text-lg text-vumi-blue line-clamp-2" [innerHTML]="course.fullname" (click)="displayCourseDetails(course.id)"></p>
+                            <p *ngIf="course.summary" class="h-14 mt-3 cursor-pointer mb-2 font-medium text-base text-vumi-blue line-clamp-3" [innerHTML]="course.summary" (click)="displayCourseDetails(course.id)"></p>
+                            
+                            <button *ngIf="course.favourite" (click)="unfavourite(course.id)"
+                            style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+                            class="rounded-[1px]
+                            bg-vumi-orange text-white infxs:text-base sm:text-lg mt-4 font-bold py-1.5 px-3">
+                                 Remove from Wish List
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="swiper-button-prev bg-vumi-orange">
+                        <i class="fa fa-chevron-left lg:font-[600] lg:text-[22px] xl:text-[30px]"></i>
+                      </button>
+                      <button class="swiper-button-next bg-vumi-orange">
+                        <i class="fa fa-chevron-right lg:font-[600] lg:text-[22px] xl:text-[30px]"></i>
+                      </button>
+                    </div>
+                    
+             </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+</div>

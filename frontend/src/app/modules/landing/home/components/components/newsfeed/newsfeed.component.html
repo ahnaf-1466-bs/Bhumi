@@ -1,0 +1,160 @@
+<div class="bg-vumi-blue">
+    <div class="lg:max-w-4xl xl:max-w-7xl py-14 infxs:px-5 md:px-0 mx-auto">
+        <div class="flex items-center md:items-start">
+            <button
+                (click)="slidePrevExperts()"
+                class="btnSwipeNext2 md:mt-28 xl:mt-40 ml-3 xl:ml-1 flex justify-center items-center"
+            >
+                <i
+                    class="fa fa-chevron-left icon-size-5 md:icon-size-7"
+                ></i>
+            </button>
+            <swiper
+                #swiper
+                [virtual]="true"
+                [slidesPerView]="1"
+                [spaceBetween]="10"
+                [navigation]="false"
+            >
+                <ng-template
+                    *ngFor="let nf of newsFeeds"
+                    swiperSlide
+                    class="overflow-hidden bg-contain bg-no-repeat bg-center"
+                >
+                    <div class="flex infxs:flex-col infxs:gap-y-2 md:gap-y-0 md:flex-row bg-vumi-blue">
+                        <!-- Below div is render if selected language is English -->
+                        <div
+                            *ngIf="!isBengali"
+                            class="md:w-1/2 text-left h-auto scale-90 mx-auto text-vumi-white"
+                        >
+                            <h1
+                                (click)="displayNewsDetails(nf.id)"
+                                class="text-4xl -mt-6 mb-6 font-extrabold cursor-pointer"
+                            >
+                                {{ nf?.newstitle | translate }}
+                            </h1>
+
+                            <span
+                                class="text-lg my-span"
+                                [innerHTML]="
+                                    seeMore
+                                        ? nf?.newsbody
+                                        : (nf?.newsbody | slice : 0 : 260) | sanitizeHtml
+                                "
+                            ></span>
+
+                            <span
+                                *ngIf="nf.newsbody.length >= 260"
+                                (click)="displayNewsDetails(nf?.id)"
+                                class="cursor-pointer"
+                            >
+                                {{ !seeMore ? "... See More" : "See Less" }}
+                            </span>
+                            <div class="infxs:hidden md:block">
+                                <button
+                                    (click)="openShareModal(nf?.id)"
+                                    class="button-vumi infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-vumi-blue bg-vumi-white font-bold uppercase mt-4"
+                                >
+                                    {{ "SHARE" | translate }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Below div is render if selected language is Bengali -->
+                        <div
+                            *ngIf="isBengali"
+                            class="md:w-1/2 text-left h-auto scale-90 mx-auto text-vumi-white"
+                        >
+                            <h1
+                                *ngIf="nf?.newstitle_bn != null"
+                                (click)="displayNewsDetails(nf?.id)"
+                                class="text-4xl -mt-6 mb-6 font-extrabold cursor-pointer"
+                            >
+                                {{ nf?.newstitle_bn | translate }}
+                            </h1>
+                            <h1
+                                *ngIf="nf?.newstitle_bn === null"
+                                (click)="displayNewsDetails(nf?.id)"
+                                class="text-4xl -mt-6 mb-6 font-extrabold cursor-pointer"
+                            >
+                                {{ nf?.newstitle | translate }}
+                            </h1>
+
+                            <span
+                                *ngIf="nf?.newsbody_bn != null"
+                                class="text-lg my-span "
+                                [innerHTML]="
+                                    seeMore
+                                        ? nf?.newsbody_bn
+                                        : (nf?.newsbody_bn | slice : 0 : 260) | sanitizeHtml
+                                "
+                            ></span>
+                            <span
+                                *ngIf="nf?.newsbody_bn === null"
+                                class="text-lg my-span "
+                                [innerHTML]="
+                                    seeMore
+                                        ? nf?.newsbody
+                                        : (nf?.newsbody | slice : 0 : 260) | sanitizeHtml
+                                "
+                            ></span>
+
+                            <span
+                                *ngIf="
+                                    nf?.newsbody_bn?.length >= 260 &&
+                                    nf?.newsbody_bn != null
+                                "
+                                (click)="displayNewsDetails(nf.id)"
+                                class="cursor-pointer"
+                            >
+                                {{ !seeMore ? "... আরো দেখুন" : "See Less" }}
+                            </span>
+                            <span
+                                *ngIf="
+                                    nf?.newsbody?.length >= 260 &&
+                                    nf?.newsbody_bn === null
+                                "
+                                (click)="displayNewsDetails(nf.id)"
+                                class="cursor-pointer"
+                            >
+                                {{ !seeMore ? "... See More" : "See Less" }}
+                            </span>
+
+                            <div class="infxs:hidden md:block">
+                                <button
+                                    (click)="openShareModal(nf?.id)"
+                                    class="button-vumi infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-vumi-blue bg-vumi-white font-bold uppercase mt-4"
+                                >
+                                    {{ "SHARE" | translate }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            (click)="displayNewsDetails(nf?.id)"
+                            class="xs:max-w-full md:h-[270px] xl:h-[380px] md:w-[430px] xl:w-[620px] min-h-fit cursor-pointer"
+                        >
+                            <img [src]="nf?.picurl" />
+                        </div>
+                        <div class="infxs:block md:hidden self-center">
+                            <button
+                                (click)="openShareModal(nf?.id)"
+                                class="button-vumi infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-vumi-blue bg-vumi-white font-bold uppercase mt-4"
+                            >
+                                {{ "SHARE" | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+            <button
+                (click)="slideNextExperts()"
+                class="btnSwipeNext2 md:mt-28 xl:mt-40 md:mr-1 xl:mr-6 md:-ml-5 xl:-ml-7 flex justify-center items-center"
+            >
+                <i
+                    class="fa fa-chevron-right icon-size-5 md:icon-size-7"
+                ></i>
+            </button>
+        </div>
+    </div>
+</div>

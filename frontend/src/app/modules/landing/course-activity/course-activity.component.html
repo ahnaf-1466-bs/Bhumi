@@ -1,0 +1,110 @@
+<!-- <p>
+    Course Contents:
+</p>
+<p>
+    <ng-container *ngIf="modules">
+        <p *ngFor="let module of modules; index as i" (click)="clickActivityFromMenu(module,i)" 
+            [ngClass]="{'font-bold':currentActivityId==module.id}"
+        >
+            {{module.name}}
+        </p>
+    </ng-container>
+</p> -->
+
+<!-- Large screen size START-->
+<div class="hidden md:block" *ngIf="!isMobileWidth">
+    <button class="p-4 pl-24 w-96 text-vumi-orange" type="button" [ngClass]="{' bg-white shadow-lg':drawer.opened}"
+        (click)="drawer.toggle()">
+        <div class="flex items-center justify-start gap-1">
+            <ng-container *ngIf="drawer.opened;else drawerClosed">
+                <mat-icon class="text-vumi-orange" aria-hidden="false" aria-label="menu open"
+                    [svgIcon]="'mat_outline:hide_left_menu'"></mat-icon>
+                <span>{{"Hide Course Overview"|translate}}</span>
+            </ng-container>
+            <ng-template #drawerClosed>
+                <mat-icon class="text-vumi-orange" aria-hidden="false" aria-label="menu open"
+                    [svgIcon]="'mat_outline:hide_left_menu'"></mat-icon>
+                <span>{{"View Course Overview"|translate}}</span>
+            </ng-template>
+        </div>
+    </button>
+    <mat-drawer-container class="container" autosize>
+        <mat-drawer #drawer class="sidenav" mode="side" opened="true">
+            <p class="grid grid-cols-1 gap-5">
+                <ng-container *ngFor="let topic of allTopics; index as topicIndex">
+                    <custom-accordion [isTopicCompleted]="topicStatus.get(topic.id)" [headerText]="topicIndex+1 + '. ' + topic.name" [isOpened]="topic.id==currentTopicId">
+                        <div class="grid grid-cols-1 gap-5">
+                            <p class="p-2 cursor-pointer text-left pr-10" *ngFor="let module of topic.modules; index as moduleIndex"
+                                (click)="clickActivityFromMenu(module,moduleIndex,topicIndex)" [ngClass]="{'bg-[#FFF3F1] border-l-4 border-vumi-orange':
+                                currentActivityId==module.id}">
+                                <span class="flex justify-between items-center">
+                                    <span>
+                                        <b class="capitalize">{{(getActivityTypeInMenu(module)|translate)+': '}}</b> <span>{{module.name}}</span>
+                                    </span>
+                                    <span *ngIf="activityStatus.size > 0 && activityStatus.get(module.id)!==undefined">
+                                        <ng-container *ngIf="activityStatus.get(module.id)===true">
+                                            <mat-icon class="icon-size-3.5" aria-hidden="false" aria-label="activity completed"
+                                                [svgIcon]="'mat_outline:check_circle_vumi_blue'"></mat-icon>
+                                        </ng-container>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </custom-accordion>
+                </ng-container>
+            </p>
+        </mat-drawer>
+
+        <div class="px-5">
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-drawer-container>
+</div>
+<!-- Large screen size END-->
+
+
+<!-- Mobile screen size START-->
+<div class="md:hidden" *ngIf="isMobileWidth">
+    <div class="px-4">
+        <router-outlet></router-outlet>
+    </div>
+    <button class="p-4 mb-2 text-vumi-orange" type="button" (click)="showAccordion=!showAccordion">
+        <div class="flex items-center justify-center gap-1">
+            <ng-container *ngIf="showAccordion;else accordionClosed">
+                <mat-icon class="text-vumi-orange" aria-hidden="false" aria-label="menu open"
+                    [svgIcon]="'mat_outline:hide_left_menu'"></mat-icon>
+                <span>{{"Hide Course Overview"|translate}}</span>
+            </ng-container>
+            <ng-template #accordionClosed>
+                <mat-icon class="text-vumi-orange" aria-hidden="false" aria-label="menu open"
+                    [svgIcon]="'mat_outline:hide_left_menu'"></mat-icon>
+                <span>{{"View Course Overview"|translate}}</span>
+            </ng-template>
+        </div>
+    </button>
+    <p class="grid grid-cols-1 gap-5 pb-4" [ngClass]="{'hidden':!showAccordion}">
+        <ng-container *ngFor="let topic of allTopics; index as topicIndex">
+            <custom-accordion [isTopicCompleted]="topicStatus.get(topic.id)" [headerText]="topicIndex+1+'. '+topic.name" [isOpened]="topic.id==currentTopicId">
+                <div class="grid grid-cols-1 gap-5">
+                    <p class="p-2 cursor-pointer text-left pr-10" *ngFor="let module of topic.modules; index as moduleIndex"
+                        (click)="clickActivityFromMenu(module,moduleIndex,topicIndex)" [ngClass]="{'bg-[#FFF3F1] border-l-4 border-vumi-orange':
+                                                    currentActivityId==module.id}">
+                        <span class="flex justify-between">
+                            <span>
+                                <b class="capitalize">{{(getActivityTypeInMenu(module)|translate)+': '}}</b> <span>{{module.name}}</span>
+                            </span>
+                            <span *ngIf="activityStatus.size > 0 && activityStatus.get(module.id)!==undefined">
+                                <ng-container *ngIf="activityStatus.get(module.id)===true">
+                                    <mat-icon class="icon-size-3.5" aria-hidden="false" aria-label="activity completed"
+                                        [svgIcon]="'mat_outline:check_circle_vumi_blue'"></mat-icon>
+                                </ng-container>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+            </custom-accordion>
+        </ng-container>
+    </p>
+</div>
+<!-- Mobile screen size END-->

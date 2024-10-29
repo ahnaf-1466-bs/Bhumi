@@ -1,0 +1,147 @@
+<div class="bg-vumi-white hidden md:block">
+    <div class="min-h-screen grid grid-cols-2">
+        <div class="relative bg-vumi-white">
+            <img
+                src="assets\images\pages\courses\what-will-you-learn\1.webp"
+                alt="what will you learn"
+                class="absolute left-0 bottom-0"
+            />
+        </div>
+
+        <div class="flex flex-col xl:ml-12">
+            <h1
+                class="lg:font-normal xl:font-medium lg:text-5xl xl:text-7xl text-vumi-orange whitespace-nowrap uppercase mt-6 xl:mt-16"
+                style="white-space: nowrap"
+            >
+                Verify <strong class="font-black">Vumi</strong> certificate
+            </h1>
+            <div class="text-vumi-blue lg:text-xl xl:text-base mt-2 xl:mt-6">
+                <form [formGroup]="loginForm" (ngSubmit)="resetCode()">
+                    <div class="form-group">
+                        <label for="code" class="text-2xl xl:text-3xl"
+                            >Code:</label
+                        >
+
+                        <input
+                            class="px-2 m-3 w-[270px] xl:w-[390px] py-2 xl:py-3 border border-vumi-blue"
+                            type="tel"
+                            placeholder="enter code"
+                            formControlName="code"
+                        />
+                        <button
+                            class="px-4 xl:px-6 py-2 xl:py-3 bg-vumi-blue button-vumi text-white"
+                            (click)="verifyCode()"
+                            [disabled]="!loginForm.valid"
+                            title="Click to add"
+                        >
+                            Verify
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="showIt" class="mt-4 xl:mt-8">
+                <div *ngIf="massage === 'No certificates found'" class="wrong">
+                    <h1 class="text-black font-bold text-3xl text-center">
+                        No certificate found
+                    </h1>
+                </div>
+                <div
+                    *ngIf="massage !== 'No certificates found'"
+                    class="correct"
+                >
+                    <h1 class="font-bold text-3xl text-black text-center">
+                        Certificate found
+                    </h1>
+                </div>
+                <div *ngIf="massage !== 'No certificates found'">
+                    <div
+                        *ngIf="loading"
+                        class="flex justify-center items-center w-[440px] xl:w-[584px] h-[260px] xl:h-[460px] mt-6 xl:mt-10"
+                    >
+                        <div class="loader"></div>
+                    </div>
+                    <img
+                        *ngIf="!loading"
+                        [src]="imageSrc"
+                        alt=""
+                        class="w-[440px] xl:w-[584px] h-[276px] xl:h-[420px] mt-6 xl:mt-12"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile start -->
+<div class="infxs:block md:hidden bg-vumi-white">
+    <div class="min-h-screen flex flex-wrap">
+        <div class="max-w-80 sm:max-w-xl mx-auto">
+            <h1
+                class="font-medium text-3xl sm:text-6xl text-vumi-orange uppercase mt-6 sm:mt-8 text-center"
+            >
+                Verify <strong class="font-black">Vumi</strong> certificate
+            </h1>
+            <div class="text-vumi-blue mt-3">
+                <form [formGroup]="loginForm" (ngSubmit)="resetCode()">
+                    <div class="form-group">
+                        <label
+                            for="code"
+                            class="text-xl sm:text-3xl font-medium"
+                            >Code:</label
+                        >
+                        <input
+                            class="px-1 m-2 w-[180px] sm:w-[340px] py-2 border border-vumi-blue"
+                            type="tel"
+                            placeholder="enter code"
+                            formControlName="code"
+                        />
+
+                        <button
+                            class="px-4 py-2 bg-vumi-blue text-white button-vumi mt-3 "
+                            (click)="verifyCode()"
+                            [disabled]="!loginForm.valid"
+                            title="Click to add"
+                        >
+                            Verify
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="showIt" class="mt-4">
+                <div *ngIf="massage === 'No certificates found'" class="wrong">
+                    <h1 class="text-black font-bold text-xl text-center">
+                        No certificate found
+                    </h1>
+                </div>
+                <div
+                    *ngIf="massage !== 'No certificates found'"
+                    class="correct"
+                >
+                    <h1 class="font-bold text-xl text-black text-center">
+                        Certificate found
+                    </h1>
+                </div>
+                <div *ngIf="massage !== 'No certificates found'">
+                    <div
+                        *ngIf="loading"
+                        class="flex justify-center items-center w-[310px] sm:w-[486px] h-[220px] sm:h-[360px] mt-6"
+                    >
+                        <div class="loader"></div>
+                    </div>
+                    <img
+                        *ngIf="!loading"
+                        [src]="imageSrc"
+                        alt=""
+                        class="w-[310px] sm:w-[486px] h-full mx-auto mt-6"
+                    />
+                </div>
+            </div>
+        </div>
+        <ng-container>
+            <img
+                src="assets\images\pages\courses\what-will-you-learn\1.webp"
+                alt="what will you learn"
+            />
+        </ng-container>
+    </div>
+</div>
+<!-- mobile end -->

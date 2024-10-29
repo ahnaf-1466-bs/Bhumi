@@ -1,0 +1,66 @@
+<div style="background-color: white;">
+    <div  class="min-h-screen  lg:max-w-4xl xl:max-w-7xl mx-auto pt-10 pb-12" style="background-color: white;">    
+    
+        
+        <div class="md:text-left title-section sm:pl-4">
+            <h4 class="text-vumi-orange text-4xl  md:text-5xl">{{"MEET OUR" | translate}}</h4>
+            <h1 class="text-vumi-orange  -mt-2 mb-6 text-4xl md:text-5xl  font-extrabold"> {{ "OPERATION" | translate}}</h1>
+            <h1 class="text-vumi-orange -mt-8 mb-6 text-4xl md:text-5xl  font-extrabold">{{"TEAM" | translate}}</h1>
+        </div>
+      
+        <div class="flex justify-center mx-auto gap-9 mb-6">
+                <div   *ngFor="let op of firstTier" class="operationGrid">
+               
+                    <div >
+                        <img [src]="op.picurl" alt="" class="mx-auto text-center" style="width:156px;height: 185px;">
+                        <div *ngIf="!isBengali" class=" directorInfo text-center">
+                            <h4 class="text-vumi-orange font-semibold text-lg mt-4 ">{{ op.operationname }}</h4>
+                            <p class="text-lg font-medium ">{{ op.operationdeg }}</p>
+                            <p class="text-lg font-medium ">{{ op.operationmail }}</p>
+                        </div>
+                        <div *ngIf="isBengali" class=" directorInfo text-center">
+                            <h4 class="text-vumi-orange font-semibold text-lg mt-4 ">{{ op.operationname_bn}}</h4>
+                            <p class="text-lg font-medium ">{{ op.operationdeg_bn }}</p>
+                            <p class="text-lg font-medium ">{{ op.operationmail }}</p>
+                        </div>
+                    </div>
+         
+                </div>
+        </div>
+      
+       
+
+
+        <div   *ngFor="let num of getNumberArray(rows); let i = index" >
+               
+                <div 
+                    class="grid-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto  gap-14 w-full  mb-6 sm:mb-12"
+                >
+                        <div  *ngFor="let operation of this.tier[i]"  class="operationGrid">
+                            
+                            <div >
+                                <img [src]="operation.picurl" alt="" class="h-36 w-36 mx-auto">
+                                <div *ngIf="!isBengali" class=" directorInfo text-center">
+                                    <h4 class="text-vumi-orange font-semibold text-lg mt-4">{{ operation.operationname }}</h4>
+                                    <p class="text-lg font-medium">{{ operation.operationdeg }}</p>
+                                    <p class="text-lg font-medium">{{ operation.operationmail }}</p>
+                                </div>
+                                <div *ngIf="isBengali" class=" directorInfo text-center">
+                                    <h4 class="text-vumi-orange font-semibold text-lg mt-4 ">{{ operation.operationname_bn}}</h4>
+                                    <p class="text-lg font-medium ">{{ operation.operationdeg_bn }}</p>
+                                    <p class="text-lg font-medium ">{{ operation.operationmail }}</p>
+                                </div>
+                            </div>
+                        </div>   
+                </div>
+        </div>
+            
+    
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,332 @@
+<div class="bg-vumi-testimonials md:py-12 xl:py-16 h-[36rem]">
+    <div class="lg:max-w-4xl xl:max-w-7xl md:mt-8 mx-auto">
+        <div class="flex flex-wrap justify-start">
+            <div class="md:w-1/2 h-full mx-auto infxs:hidden md:block relative">
+                <!-- <button
+                    (click)="slidePrevTestimonials()"
+                    class="btnSwiper absolute top-1/2 -translate-y-1/2 -left-6 xl:-left-8"
+                >
+                    <i
+                        class="fa fa-chevron-left md:font-[600] md:text-[22px] xl:text-[30px]"
+                    ></i>
+                </button> -->
+                <button
+                    (click)="slidePrevTestimonials()"
+                    class="absolute bg-white w-8 h-8 sm:w-12 sm:h-12 rounded-full text-vumi-orange flex items-center justify-center top-1/2 -translate-y-1/2 -left-6 xl:-left-8"
+                >
+                    <i
+                        class="fa fa-chevron-left icon-size-5 md:icon-size-7"
+                    ></i>
+                </button>
+                <div>
+                    <swiper
+                        #swiper
+                        [virtual]="true"
+                        [slidesPerView]="1"
+                        [spaceBetween]="10"
+                        [navigation]="false"
+                    >
+                        <ng-template
+                            swiperSlide
+                            class="bg-no-repeat bg-cover bg-center"
+                        >
+                            <div class="w-full">
+                                <img
+                                    [src]="feedbacks[curIndex]?.picurl"
+                                    class="h-[360px] w-full"
+                                />
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+                <!-- <button
+                    (click)="slideNextTestimonials()"
+                    class="btnSwiper absolute top-1/2 -translate-y-1/2 -right-6 xl:-right-8 infxs:hidden md:block"
+                >
+                    <i
+                        class="fa fa-chevron-right md:font-[600] md:text-[22px] xl:text-[30px]"
+                    ></i>
+                </button> -->
+                <button (click)="slideNextTestimonials()"
+                    class="absolute bg-white w-8 h-8 sm:w-12 sm:h-12 rounded-full text-vumi-orange top-1/2 -translate-y-1/2 -right-6 xl:-right-8 infxs:hidden md:flex items-center justify-center">
+                    <i class="fa fa-chevron-right icon-size-5 md:icon-size-7"></i>
+                </button>
+            </div>
+            <div
+                class="text-vumi-white md:basis-4/12 xl:basis-5/12 md:text-left infxs:text-center"
+            >
+                <h4
+                    class="infxs:text-4xl md:leading-10 xl:leading-[66px] md:font-black xl:font-black infxs:font-semibold infxs:px-4 md:px-0 lg:-mt-2 infxs:mt-12"
+                >
+                    <strong *ngIf="!isBengali"
+                        >{{ feedbacks[curIndex]?.subject }}
+                    </strong>
+                    <strong
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.subject_bn === ''
+                        "
+                        >{{ feedbacks[curIndex]?.subject }}
+                    </strong>
+                    <strong
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.subject_bn != ''
+                        "
+                        >{{ feedbacks[curIndex]?.subject_bn }}
+                    </strong>
+                </h4>
+                <div class="md:space-y-8 xl:space-y-14 md:-mt-2 xl:-mt-4">
+                    <p
+                        *ngIf="!isBengali"
+                        class="md:hidden md:mb-0 infxs:mb-8 infxs:block px-4 text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbacktext_bn === ''
+                        "
+                        class="md:hidden md:mb-0 infxs:mb-8 infxs:block px-4 text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbacktext_bn != ''
+                        "
+                        class="md:hidden md:mb-0 infxs:mb-8 infxs:block px-4 text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext_bn }}
+                    </p>
+                    <p
+                        *ngIf="!isBengali"
+                        class="md:block md:w-[285px] xl:w-[450px] infxs:hidden text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbacktext_bn === ''
+                        "
+                        class="md:block md:w-[285px] xl:w-[450px] infxs:hidden text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbacktext_bn != ''
+                        "
+                        class="md:block md:w-[285px] xl:w-[450px] infxs:hidden text-lg"
+                    >
+                        {{ feedbacks[curIndex]?.feedbacktext_bn }}
+                    </p>
+                </div>
+                <div
+                    class="flex flex-col justify-center md:mt-10 xl:mt-14 md:block infxs:hidden"
+                >
+                    <h1
+                        *ngIf="!isBengali"
+                        class="text-3xl font-semibold md:-mt-4 xl:-mt-7"
+                    >
+                        {{ feedbacks[curIndex]?.feedbackname }}
+                    </h1>
+                    <h1
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbackname_bn === ''
+                        "
+                        class="text-3xl font-semibold md:-mt-4 xl:-mt-7"
+                    >
+                        {{ feedbacks[curIndex]?.feedbackname }}
+                    </h1>
+                    <h1
+                        *ngIf="
+                            isBengali &&
+                            feedbacks[curIndex]?.feedbackname_bn != ''
+                        "
+                        class="text-3xl font-semibold md:-mt-4 xl:-mt-7"
+                    >
+                        {{ feedbacks[curIndex]?.feedbackname_bn }}
+                    </h1>
+                    <h2
+                        *ngIf="!isBengali"
+                        class="text-lg font-medium md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.position }}
+                    </h2>
+                    <h2
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.position_bn === ''
+                        "
+                        class="text-lg font-medium md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.position }}
+                    </h2>
+                    <h2
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.position_bn != ''
+                        "
+                        class="text-lg font-medium md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.position_bn }}
+                    </h2>
+                    <p
+                        *ngIf="!isBengali"
+                        class="text-lg font-normal md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.company }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.company_bn === ''
+                        "
+                        class="text-lg font-normal md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.company }}
+                    </p>
+                    <p
+                        *ngIf="
+                            isBengali && feedbacks[curIndex]?.company_bn != ''
+                        "
+                        class="text-lg font-normal md:-mt-1 xl:-mt-2"
+                    >
+                        {{ feedbacks[curIndex]?.company_bn }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- phone responsive start -->
+            <div class="infxs:flex flex-col md:hidden w-full">
+                <div class="flex justify-center">
+                    <div class="mx-auto infxs:mt-18 sm:mt-26">
+                        <!-- <button (click)="slidePrevExpertsPhone()">
+                            <mat-icon
+                                class="btnSwiperPhone"
+                                svgIcon="heroicons_solid:chevron-left"
+                            ></mat-icon>
+                        </button> -->
+                        <button (click)="slidePrevTestimonials()"
+                            class="bg-white w-8 h-8 sm:w-12 sm:h-12 rounded-full text-vumi-orange flex items-center justify-center">
+                            <i class="fa fa-chevron-left icon-size-5 md:icon-size-7"></i>
+                        </button>
+                    </div>
+
+                    <div class="infxs:w-[280px] sm:w-[420px] h-fit">
+                        <swiper
+                            #swiper2
+                            [virtual]="true"
+                            [slidesPerView]="1"
+                            [spaceBetween]="10"
+                            [navigation]="false"
+                        >
+                            <ng-template
+                                swiperSlide
+                                class="bg-no-repeat bg-cover bg-center text-left"
+                            >
+                                <div class=" w-full swiper_phone">
+                                    <img
+                                        [src]="feedbacks[curIndex]?.picurl"
+                                        class="infxs:h-[158px] sm:h-[236px] w-full"
+                                    />
+                                </div>
+                            </ng-template>
+                        </swiper>
+                    </div>
+
+                    <div class="mx-auto infxs:mt-18 sm:mt-26">
+                        <!-- <button (click)="slideNextExpertsPhone()">
+                            <mat-icon
+                                class="btnSwiperPhone"
+                                svgIcon="heroicons_solid:chevron-right"
+                            ></mat-icon>
+                        </button> -->
+                        <button (click)="slideNextTestimonials()"
+                            class="bg-white w-8 h-8 sm:w-12 sm:h-12 rounded-full text-vumi-orange flex items-center justify-center">
+                            <i class="fa fa-chevron-right icon-size-5 md:icon-size-7"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="text-vumi-white text-center w-full infxs:flex justify-center md:hidden"
+                >
+                    <div class="flex flex-col justify-center py-6">
+                        <h1
+                            *ngIf="!isBengali"
+                            class="text-3xl font-semibold -mt-2"
+                        >
+                            {{ feedbacks[curIndex]?.feedbackname }}
+                        </h1>
+                        <h1
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.feedbackname_bn === ''
+                            "
+                            class="text-3xl font-semibold -mt-2"
+                        >
+                            {{ feedbacks[curIndex]?.feedbackname }}
+                        </h1>
+                        <h1
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.feedbackname_bn != ''
+                            "
+                            class="text-3xl font-semibold -mt-2"
+                        >
+                            {{ feedbacks[curIndex]?.feedbackname_bn }}
+                        </h1>
+                        <h2
+                            *ngIf="!isBengali"
+                            class="text-lg font-normal -mt-1"
+                        >
+                            {{ feedbacks[curIndex]?.position }}
+                        </h2>
+                        <h2
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.position_bn === ''
+                            "
+                            class="text-lg font-normal -mt-1"
+                        >
+                            {{ feedbacks[curIndex]?.position }}
+                        </h2>
+                        <h2
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.position_bn != ''
+                            "
+                            class="text-lg font-normal -mt-1"
+                        >
+                            {{ feedbacks[curIndex]?.position_bn }}
+                        </h2>
+                        <p *ngIf="!isBengali" class="text-lg font-normal -mt-1">
+                            {{ feedbacks[curIndex]?.company }}
+                        </p>
+                        <p
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.company_bn === ''
+                            "
+                            class="text-lg font-normal -mt-1"
+                        >
+                            {{ feedbacks[curIndex]?.company }}
+                        </p>
+                        <p
+                            *ngIf="
+                                isBengali &&
+                                feedbacks[curIndex]?.company_bn != ''
+                            "
+                            class="text-lg font-normal -mt-1"
+                        >
+                            {{ feedbacks[curIndex]?.company_bn }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- phone responsive end -->
+        </div>
+    </div>
+</div>

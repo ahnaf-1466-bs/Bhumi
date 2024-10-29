@@ -1,0 +1,77 @@
+<div class="bg-vumi-testimonials pb-8 md:pb-22 h-auto" *ngIf="persons?.length>0">
+    <div class="lg:max-w-4xl xl:max-w-7xl mx-auto">
+        <div
+            class="text-vumi-white infxs:pt-5 md:pt-10 lg:text-left infxs:text-center text-4xl"
+        >
+            <h1 class="">{{"LEARN FROM"|translate}}</h1>
+            <h1 class="font-black md:-mt-4 infxs:-mt-5">{{"THE BEST"|translate}}</h1>
+        </div>
+
+        <div class="md:hidden">
+            <app-learn-from-slide></app-learn-from-slide>
+        </div>
+        <div class="hidden md:grid grid-cols-3">
+            <div class="text-vumi-white ml-12 lg:ml-0">
+                <ng-container *ngFor="let person of persons">
+                    <div
+                        [ngClass]="{
+                            'border-vumi-blue w-full text-vumi-blue active ':
+                                selectedPerson?.id === person.id,
+                            'border-vumi-white w-2/3':
+                                selectedPerson?.id !== person.id
+                        }"
+                        (click)="selected(person.id)"
+                        class="border-b-2 group-hover:border-vumi-blue cursor-pointer py-2"
+                    >
+                        <h1 class="font-semibold lg:text-lg xl:text-2xl">
+                            {{ person.firstname }} {{ person.lastname }}
+                        </h1>
+                        <ng-container
+                            *ngFor="
+                                let custom of person?.customfields;
+                                let id = index
+                            "
+                        >
+                            <p
+                                *ngIf="id === 1"
+                                class="font-normal lg:text-xl xl:text-xl"
+                            >
+                                {{ custom?.value }}
+                            </p>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="basis-1/3 border-l-2 border-vumi-blue text-vumi-blue">
+                <p
+                    class="font-bold lg:text-4xl xl:text-6xl infxs:text-4xl ml-5 -mb-5"
+                >
+                    *****
+                </p>
+                <h1
+                    class="font-black lg:text-3xl xl:text-6xl infxs:text-4xl ml-5"
+                >
+                    {{ selectedPerson?.firstname }}
+                    {{ selectedPerson?.lastname }}
+                </h1>
+                <h2
+                    class="font-semibold lg:text-base xl:text-2xl infxs:text-3xl ml-5 lg:-mt-2 xl:-mt-3 sm:mt-0 infxs:-mt-5"
+                    [innerHTML]="selectedPerson?.customfields[0]?.value"
+                ></h2>
+                <h2
+                    class="font-semibold lg:text-base xl:text-2xl infxs:text-3xl ml-5 lg:-mt-1 xl:-mt-2 sm:mt-0 infxs:-mt-5"
+                    [innerHTML]="selectedPerson?.customfields[1]?.value"
+                ></h2>
+                <div class="mx-5 mt-4">
+                    <div [innerHTML]="selectedPerson?.description"></div>
+                </div>
+            </div>
+            <div class="mr-12 lg:mr-0" *ngIf="selectedPerson?.profileimageurl">
+                <img
+                    [src]="selectedPerson?.profileimageurl.replace('f1', 'f3')"
+                    alt="Image not found"
+                />
+            </div>
+        </div>
+    </div>
+</div>

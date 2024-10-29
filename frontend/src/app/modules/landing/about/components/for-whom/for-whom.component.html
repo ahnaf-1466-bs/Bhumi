@@ -1,0 +1,41 @@
+<div class="container text-vumi-blue">
+    <div class="heading text-2xl pt-8">
+        <p class="heading-1 mb-1 font-bold md:text-6xl">
+            {{ "WHO IS" | translate }}
+        </p>
+        <p class="heading-2 font-sans font-extrabold md:text-6xl">
+            {{ "bhumi" | translate }} <span>{{ "FOR" | translate }}?</span>
+        </p>
+    </div>
+
+    <div class="mt-8 md:flex for-whom-container">
+        <div class="dummy"></div>
+
+        <div class="logo-container">
+            <div
+                *ngFor="let vumiFor of forWhom"
+                class="fresh-graduates mb-8 lg:mb-0"
+            >
+                <img [src]="vumiFor.picurl" alt="" class="infxs:w-auto infxs:h-14 sm:w-28 sm:h-24 mx-auto" />
+                <h1
+                    *ngIf="!isBengali"
+                    class="text-xl font-sans font-medium text-center lg:mt-4 infxs:w-[185px] lg:w-auto"
+                >
+                    {{ vumiFor?.vumiforname }}
+                </h1>
+                <h1
+                    *ngIf="isBengali && vumiFor?.vumiforname_bn === ''"
+                    class="text-xl font-sans font-medium text-center lg:mt-4 infxs:w-[185px] lg:w-auto"
+                >
+                    {{ vumiFor?.vumiforname }}
+                </h1>
+                <h1
+                    *ngIf="isBengali && vumiFor?.vumiforname_bn != ''"
+                    class="text-xl font-sans font-medium text-center lg:mt-4 infxs:w-[185px] lg:w-auto"
+                >
+                    {{ vumiFor?.vumiforname_bn }}
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>

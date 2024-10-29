@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/coursefeedback/db" VERSION="20120122" COMMENT="XMLDB file for COURSEFEEDBACK module"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="coursefeedback" COMMENT="Each record is one coursefeedback and its config data">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="iscommentrequired" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0=Comment optional 1=Comment required"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="coursefeedback_all_ratings" COMMENT="User ratings and comments for courses">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" AUTO_INCREMENT="true" COMMENT="Unique identifier for the rating" SEQUENCE="true" />
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the course being rated" />
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the user submitting the rating" />
+        <FIELD NAME="rating" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="true" DEFAULT="0" COMMENT="Numerical rating (1-5)" />
+        <FIELD NAME="comment" TYPE="text" NOTNULL="false" COMMENT="Comment or review about the course" />
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the rating was submitted" />
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the rating was last edited" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="coursefeedback_questions" COMMENT="Questions for course feedback">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" AUTO_INCREMENT="true" COMMENT="Unique identifier for the question" SEQUENCE="true" />
+        <FIELD NAME="feedbackid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the feedback this question belongs to" />
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the course this question pertains to" />
+        <FIELD NAME="cmid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="CM ID of the course this question pertains to" />
+        <FIELD NAME="question" TYPE="text" NOTNULL="true" COMMENT="The text of the question" />
+        <FIELD NAME="type" TYPE="text" LENGTH="20" NOTNULL="true" COMMENT="The type of question (Course/Instructor)" />
+        <FIELD NAME="createdby" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the user who created the question" />
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the question was created" />
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the question was last modified" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="feedbackid" TYPE="foreign" FIELDS="feedbackid" REFTABLE="coursefeedback" REFFIELDS="id" />
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="coursefeedback_response" COMMENT="Responses to course feedback questions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" AUTO_INCREMENT="true" COMMENT="Unique identifier for the response" SEQUENCE="true" />
+        <FIELD NAME="questionid" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the question this response belongs to" />
+        <FIELD NAME="courseid" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the course this response pertains to" />
+        <FIELD NAME="response" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="true" COMMENT="The answer to the question (rating: 1-5)" />
+        <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" COMMENT="ID of the user who submitted the response" />
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the response was submitted" />
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" COMMENT="Timestamp indicating when the response was last modified" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="questionid" TYPE="foreign" FIELDS="questionid" REFTABLE="coursefeedback_question" REFFIELDS="id" />
+      </KEYS>
+    </TABLE>
+
+  </TABLES>
+</XMLDB>

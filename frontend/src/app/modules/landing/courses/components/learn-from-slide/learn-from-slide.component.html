@@ -1,0 +1,73 @@
+<div class="bg-vumi-testimonials">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-row flex-wrap items-center">
+            <button
+                class="mx-auto fill-vumi-orange bg-vumi-white rounded-full p-2 swiper-btn-next -mt-50"
+                (click)="slidePrev()"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    viewBox="0 0 384 512"
+                >
+                    <path
+                        d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+                    />
+                </svg>
+            </button>
+            <div class="max-w-64">
+                <swiper #swiper [spaceBetween]="10" [virtual]="true">
+                    <ng-template
+                        swiperSlide
+                        class="text-left"
+                        *ngFor="let person of persons"
+                    >
+                        <div
+                            class="bg-vumi-testimonials text-center text-vumi-blue"
+                        >
+                            <img
+                                [src]="
+                                    person?.profileimageurl.replace('f1', 'f3')
+                                "
+                                alt="Image not found"
+                                class="object-contain h-auto w-auto"
+                            />
+                            <div class="mb-4 text-white pt-5">
+                                <p class="font-extrabold text-6xl">*****</p>
+                                <p class="font-extrabold text-3xl">
+                                    {{ person?.firstname }}
+                                    {{ person?.lastname }}
+                                </p>
+                                <p
+                                    class="font-medium text-lg"
+                                    [innerHTML]="person?.customfields[0]?.value"
+                                ></p>
+
+                                <p class="font-medium text-lg">
+                                    {{ person?.customfields[1]?.value }}
+                                </p>
+                            </div>
+                            <div class="py-5 text-vumi-blue text-lg font-bold">
+                                <div [innerHTML]="person?.description"></div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <button
+                class="mx-auto fill-vumi-orange bg-vumi-white rounded-full p-2 swiper-btn-prev -mt-50"
+                (click)="slideNext()"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    viewBox="0 0 384 512"
+                >
+                    <path
+                        d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                    />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

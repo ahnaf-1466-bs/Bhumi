@@ -1,0 +1,57 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_feedback/feedbackmanage
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+{{#messages}}
+    <div class="localmessage{{messagetype}} card mt-2 mb-2">
+        <div class="card-body">
+            <div onclick="location.href='{{fullfeed}}?messageid={{id}}'">
+                <img src="{{picurl}}" alt="" width="400" height="300" class="dcms_img"/>
+                <h4>{{feedbackname}}</h4>
+            <h6>{{#str}} position_desc, local_dcms {{/str}} {{position}}</h6>
+            <p class="feedback"><b>{{#str}} company_desc, local_dcms {{/str}}</b>{{company}}</p>
+            <p class="feedback"><b>{{#str}} subject_desc, local_dcms {{/str}}</b>{{subject}}</p>
+
+            <h4> (Bengali) </h4>
+            <h4>{{feedbackname_bn}}</h4>
+            <h6>{{#str}} position_desc, local_dcms {{/str}} {{position_bn}}</h6>
+            <p class="feedback"><b>{{#str}} company_desc, local_dcms {{/str}}</b> <br>{{company_bn}}</p>
+            <p class="feedback"><b>{{#str}} subject_desc, local_dcms {{/str}}</b> <br>{{subject_bn}}</p>
+
+        </div>
+        <a href="{{feedbackurl}}?messageid={{id}}">
+                {{#pix}} t/edit, core, Edit this section {{/pix}}
+            </a>
+            <a href="{{feedbackurl}}?messageid={{id}}&del=1">
+                {{#pix}} t/delete, core, Edit this section {{/pix}}
+            </a>
+
+        </div>
+    </div>
+{{/messages}}
+
+<hr>
+<input type="button" class="btn btn-primary" value="{{val}}" onclick="location.href='{{feedbackurl}}'" />
+<input type="button" class="btn btn-secondary" value="{{back}}" onclick="location.href='{{backurl}}'">

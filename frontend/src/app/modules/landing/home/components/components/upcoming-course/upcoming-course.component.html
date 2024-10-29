@@ -1,0 +1,77 @@
+<div
+    class="lg:max-w-4xl xl:max-w-7xl py-14 mx-auto" [ngStyle]="{'hidden':(upcomingCourseList.length===0)}"
+>
+    <h1
+        class="text-4xl text-vumi-orange md:text-left infxs:text-center px-4 lg:px-0"
+    >
+        <span
+            class="md:font-bold text-4xl infxs:font-extrabold block md:inline"
+            >{{ "UPCOMING" | translate }}</span
+        >
+        <span
+            class="md:mt-0 md:ml-3 text-4xl infxs:ml-0infxs:-mt-18 uppercase"
+            >{{ "COURSES" | translate }}</span
+        >
+    </h1>
+    <p class="font-semibold text-lg lg:-mt-2 infxs:px-6 md:px-4 lg:px-0 infxs:text-center md:text-left">
+        {{ "SEE WHAT'S ARE COMING" | translate }}
+    </p>
+
+    <div class="relative py-3 mt-4 
+    infxs:max-w-xs 2xs:max-w-xs xs:max-w-xs sm:max-w-xs min-[640px]:max-w-2xl md:max-w-[40rem] min-[1024px]:max-w-[60rem] lg:max-w-4xl 2lg:max-w-6xl xl:max-w-7xl 
+    mx-auto">
+        <div class="overflow-hidden">
+            <div class="flex">
+                <div class="w-full flex-none">
+                    <ng-container *ngIf="upcomingCourseList">
+                        <div class="swiper-container-upc">
+                            <div class="swiper-wrapper w-min">
+                                <div
+                                    *ngFor="let course of upcomingCourseList"
+                                    class="swiper-slide px-6 flex flex-col infxs:justify-center sm:justify-start items-center"
+                                >
+                                    <div class="w-64 xl:w-90">
+                                        <img
+                                            [src]="course.picurl"
+                                            alt="Image not found"
+                                            class="h-36 xl:h-50 cursor-pointer"
+                                            (click)="
+                                                displayCourseDetails(course.id)
+                                            "
+                                        />
+                                        <p
+                                            *ngIf="course.fullname"
+                                            class="h-12 mt-5 mb-4 cursor-pointer line-clamp-2 font-bold text-lg text-justify text-vumi-blue"
+                                            [innerHTML]="course.fullname"
+                                            (click)="
+                                                displayCourseDetails(course.id)
+                                            "
+                                        ></p>
+                                        <p
+                                            *ngIf="course.summary"
+                                            class="h-26 mt-1 text-justify mb-2 cursor-pointer line-clamp-5 font-medium text-base text-vumi-blue"
+                                            [innerHTML]="course.summary | sanitizeHtml"
+                                            (click)="
+                                                displayCourseDetails(course.id)
+                                            "
+                                        ></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="swiper-button-prev bg-vumi-orange">
+                                <i
+                                    class="fa fa-chevron-left icon-size-5 md:icon-size-7"
+                                ></i>
+                            </button>
+                            <button class="swiper-button-next bg-vumi-orange">
+                                <i
+                                    class="fa fa-chevron-right icon-size-5 md:icon-size-7"
+                                ></i>
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

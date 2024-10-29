@@ -1,0 +1,153 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_preregistration/batch_details
+
+
+    Example context (json):
+    {
+
+    }
+}}
+
+<style>
+    .programdate-section{
+        background-color: #ededed;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+</style>
+
+<div>
+    <a class="btn btn-secondary mb-5" href="{{ goback }}">Go Back</a>
+    <h3>Add details for {{ batchname }}</h3>
+    <h4>Course: {{ coursename }} </h4>
+    
+    <div class="mt-5">
+        <a class="btn btn-primary" href="{{ edit_programdate }}?batchid={{ batchid }}">
+            Add a program date
+        </a>
+        {{^hasdeadline}}
+        <a class="btn btn-primary" href="{{ edit_deadline }}?batchid={{ batchid }}">
+            Add a deadline
+        </a>
+        {{/hasdeadline}}
+        {{^hascost}}
+        <a class="btn btn-primary" href="{{ edit_cost }}?batchid={{ batchid }}">
+            Add cost
+        </a>
+        {{/hascost}}
+        {{^hascourselength}}
+        <a class="btn btn-primary" href="{{ edit_courselength }}?batchid={{ batchid }}">
+            Add course length
+        </a>
+        {{/hascourselength}}
+        <!-- 
+        <a class="btn btn-primary" href="{{ edit_programpdf }}?batchid={{ batchid }}">
+            Add program pdf or brochure
+        </a> -->
+        
+    </div>
+
+    {{#hasdata}}
+    <div class="programdate-section">
+        <div class="row">
+            {{#hasprogramdates}}
+            <div class="col-md-3">
+                <h5 class="mt-3">Program dates</h5>
+                <ul>
+                    {{#programdates}}
+                        <li>
+                            {{value}} 
+                            <a class="ml-2" href="{{edit_programdate}}?batchid={{ batchid }}&dataid={{ id }}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <!-- Need to implement a confirmation modal before delete. -->
+                            <a class="ml-2 text-danger" href="{{edit_programdate}}?batchid={{ batchid }}&dataid={{ id }}&delete=1">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </li>
+                    {{/programdates}}
+                </ul>
+            </div>
+            {{/hasprogramdates}}
+            {{#hasdeadline}}
+            <div class="col-md-3">
+                <h5 class="mt-3">Application Deadline</h5>
+                <ul>
+                    
+                    <li>
+                        {{deadlinedate}} 
+                        <a class="ml-2" href="{{edit_deadline}}?batchid={{ batchid }}&dataid={{ deadlineid }}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <!-- Need to implement a confirmation modal before delete. -->
+                        <a class="ml-2 text-danger" href="{{edit_deadline}}?batchid={{ batchid }}&dataid={{ deadlineid }}&delete=1">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            {{/hasdeadline}}
+            
+            {{#hascost}}
+            <div class="col-md-3">
+                <h5 class="mt-3">Course Cost/Fee</h5>
+                <ul>
+                    
+                    <li>
+                        {{costvalue}} 
+                        <a class="ml-2" href="{{edit_cost}}?batchid={{ batchid }}&dataid={{ costid }}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <!-- Need to implement a confirmation modal before delete. -->
+                        <a class="ml-2 text-danger" href="{{edit_cost}}?batchid={{ batchid }}&dataid={{ costid }}&delete=1">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            {{/hascost}}
+
+            {{#hascourselength}}
+            <div class="col-md-3">
+                <h5 class="mt-3">Course Length</h5>
+                <ul>
+                    
+                    <li>
+                        {{courselengthvalue}} 
+                        <a class="ml-2" href="{{edit_courselength}}?batchid={{ batchid }}&dataid={{ courselengthid }}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <!-- Need to implement a confirmation modal before delete. -->
+                        <a class="ml-2 text-danger" href="{{edit_courselength}}?batchid={{ batchid }}&dataid={{ courselengthid }}&delete=1">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            {{/hascourselength}}
+        </div>
+    </div>
+    {{/hasdata}}
+
+
+</div>

@@ -1,0 +1,134 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/autoplay";
+@import '~swiper/swiper-bundle.css';
+.swiper-button-prev {
+  width: 5px;
+  height: 5px;
+  background-size: 10px 10px;  
+  color: red;
+  top: 38% !important;
+}
+
+
+.swiper-button-next {
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  color: red;
+  top: 38% !important;
+}
+
+.swiper-slide{
+  background: transparent !important;
+}
+
+.fa{
+  font-size: initial !important;
+}
+
+
+img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+/* Add a circle background to the slider buttons */
+.swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important; /* Change the background color here */
+}
+
+.swiper-button-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important; /* Change the background color here */
+}
+
+
+/* Add an arrow image inside the slider buttons */
+.swiper-button-prev::after, .swiper-button-next::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+@media only screen and (max-width: 599px) {
+  
+  img{
+     width: 10rem !important;
+     height:  10rem !important;
+     margin: auto;
+  }
+
+  .title-section{
+     margin-left: 1.5rem !important;
+  }
+
+  .ins-card-item{
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+  }
+  .title, .subtitle{
+    text-align: center !important;
+  }
+}
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 1279px) {
+  
+  img{
+   width: 15rem !important;
+   height:  15rem !important;
+   margin: auto;
+}
+}
+
+
+@media only screen and (min-width: 960px){
+  .swiper-button-prev {
+    left: -6%;
+  }
+  
+  .swiper-button-next {
+    right: -6%;
+  }
+
+    .slider-sec{
+        margin-left: 11% !important;
+        margin-right: 5% !important;
+    }
+
+   .slider-img{
+      width: 220px !important;
+      height: 233.41px !important;
+   }
+   .slider-img-div{
+      width: 300px !important;
+      height: 282px !important;
+   }
+
+   .slider-sec{
+       width: 60% !important;
+   }
+}
+
+

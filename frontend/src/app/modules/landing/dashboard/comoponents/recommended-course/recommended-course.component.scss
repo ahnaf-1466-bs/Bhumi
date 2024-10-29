@@ -1,0 +1,61 @@
+
+.swiper-button-prev {
+  width: 5px;
+  height: 5px;
+  background-size: 10px 10px;  
+  color: white;
+  left: 3px;
+}
+
+.swiper-button-next {
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  color: white;
+  right: 3px;
+}
+
+.fa{
+  font-size: initial !important;
+}
+.swiper-slide{
+  text-align: left !important;
+}
+
+/* Add a circle background to the slider buttons */
+.swiper-button-prev {
+  top: 26%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  //background-color: rgb(69, 65, 65 !important; /* Change the background color here */
+}
+
+.swiper-button-next {
+  top: 26%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  //background-color: rgb(69, 65, 65) !important; /* Change the background color here */
+}
+
+
+/* Add an arrow image inside the slider buttons */
+.swiper-button-prev::after, .swiper-button-next::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+

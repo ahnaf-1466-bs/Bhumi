@@ -1,0 +1,41 @@
+.courseGrid{
+    cursor: pointer;
+}
+
+.button-disabled {
+    background-color: rgb(212, 207, 207) !important;
+   
+    cursor: not-allowed;
+  }
+
+  .loader {
+    border: 14px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #0e6eae; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 0.8s linear infinite;
+ }
+
+ input:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 599px) {
+  //  .heading, .search-section{
+  //      text-align: center !important;
+  //  }
+
+   .heading{
+        text-align: center !important;
+      // margin-left: auto !important;
+      // margin-right: auto !important;
+   }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1279px) {
+   .topbar{
+     margin-left: 3% !important;
+     margin-right:  3% !important;
+   }
+}

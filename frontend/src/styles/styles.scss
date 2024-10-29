@@ -1,0 +1,50 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+@import '~swiper/swiper-bundle.css';
+
+@font-face {
+    font-family: "bangla";
+    src: url("../assets/fonts/inter/custom_bangla.ttf");
+    unicode-range: U+980 –9FF;
+}
+@font-face {
+    font-family: "english";
+    src: url("../assets/fonts/inter/Avenir.ttc");
+    unicode-range: U+00-7FF;
+}
+*{
+    font-family: 'english' , 'bangla';
+}
+
+#dummy {
+    background-color: rgb(255,255,255);
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+.button-vumi-orange{
+    @apply infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] rounded-[1px] bg-vumi-orange 
+    text-white infxs:text-base sm:text-lg;
+    filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-vumi{
+    @apply rounded-[1px] infxs:text-base sm:text-lg;
+    filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

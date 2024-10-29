@@ -1,0 +1,101 @@
+<div class="bg-vumi-blue md:h-auto">
+    <div class="lg:max-w-4xl xl:max-w-7xl pt-12 mx-auto">
+        <div class="flex infxs:flex-wrap md:flex-nowrap justify-center md:justify-between">
+            <div class="md:w-1/2 h-full hidden md:flex items-end">
+                <img [src]="digital_learning_photo" />
+            </div>
+            <div class="text-vumi-white text-right mr-3 lg:mr-0">
+                <div
+                    class="md:text-right text-4xl infxs:mt-10 lg:mt-14 infxs:font-black lg:font-extrabold infxs:text-center"
+                >
+                    <h1 class="font-extrabold leading-[18px]">
+                        {{ "ENABLING" | translate }}
+                    </h1>
+                    <h1
+                        class="font-black inline md:block text-4xl"
+                    >
+                        <strong>{{ "DIGITAL_LEARNING" | translate }}</strong>
+                    </h1>
+                </div>
+
+                <div
+                    class="flex flex-col justify-center lg:mt-22 xl:mt-15 lg:-mb-1 xl:-mb-0"
+                >
+                    <div
+                        class="w-full flex md:justify-end infxs:justify-center lg:-mt-20 xl:-mt-12 mb-3"
+                    >
+                        <img
+                            class="infxs:h-13 lg:h-8 xl:h-14 infxs:w-10 lg:w-7 xl:w-13"
+                            [src]="download_icon"
+                        />
+                    </div>
+                    <h2
+                        class="text-lg font-semibold -mt-3 text-vumi-orange md:text-right infxs:text-center"
+                    >
+                        {{ "DOWNLOAD_VUMI_APP" | translate }}
+                    </h2>
+                    <div
+                        class="flex flex-row text-left md:justify-end infxs:justify-center lg:gap-3 xl:gap-5 infxs:gap-2 mt-3"
+                    >
+                        <div
+                            (click)="openCommingSoonModal()"
+                            class="cursor-pointer text-right border border-vumi-orange lg:px-2 xl:px-4 infxs:px-2 lg:py-1 xl:py-3 infxs:py-1 flex"
+                        >
+                            <div class="mt-2 mr-3">
+                                <img [src]="playStore_icon2" />
+                            </div>
+                            <div
+                                class="flex flex-col justify-end lg:ml-0 xl:ml-4"
+                            >
+                                <p
+                                    class="text-sm lg:-mb-0 xl:-mb-1"
+                                >
+                                    {{ "GET IN" | translate }}
+                                </p>
+                                <h1 class="text-lg">
+                                    {{ "PLAY STORE" | translate }}
+                                </h1>
+                            </div>
+                        </div>
+                        <div
+                            (click)="openCommingSoonModal()"
+                            class="cursor-pointer text-right border border-vumi-orange lg:px-2 xl:px-4 infxs:px-2 lg:py-1 xl:py-3 infxs:py-1 flex"
+                        >
+                            <div class="mt-2 mr-3">
+                                <img class="mt-1" [src]="appStore_icon2" />
+                            </div>
+                            <div
+                                class="flex flex-col justify-end lg:ml-0 xl:ml-4"
+                            >
+                                <p
+                                    class="text-sm lg:-mb-0 xl:-mb-1"
+                                >
+                                    {{ "GET IN" | translate }}
+                                </p>
+                                <h1 class="text-lg">
+                                    {{"APPLE STORE"|translate}}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab Start -->
+            <div
+                class="max-w-7xl pt-12 mx-auto infxs:hidden sm:block md:hidden"
+            >
+                <div class="h-full mx-auto flex items-end">
+                    <img [src]="digital_learningTab_photo" />
+                </div>
+            </div>
+            <!-- Tab End -->
+            <!-- Phone Start -->
+            <div
+                class="h-full mx-auto pt-6 infxs:flex items-end sm:hidden md:hidden"
+            >
+                <img [src]="digital_learningPhone_photo" />
+            </div>
+            <!-- Phone End -->
+        </div>
+    </div>
+</div>

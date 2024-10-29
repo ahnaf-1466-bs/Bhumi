@@ -1,0 +1,65 @@
+.warning {
+    border: 2px solid #dc2626 !important;
+}
+.theme-default .light .mat-mdc-checkbox.mat-warn,
+.theme-default.light .mat-mdc-checkbox.mat-warn {
+    --mdc-checkbox-selected-checkmark-color: #dc2626;
+    --mdc-checkbox-selected-focus-icon-color: blue;
+    --mdc-checkbox-selected-hover-icon-color: white;
+    --mdc-checkbox-selected-icon-color: white;
+    --mdc-checkbox-selected-pressed-icon-color: white;
+    --mdc-checkbox-unselected-focus-icon-color: #212121;
+    --mdc-checkbox-unselected-hover-icon-color: #212121;
+    --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+}
+.mdc-checkbox__background {
+    border: 2px solid #243982 !important;
+}
+
+@media only screen and (min-width: 600px) {
+    .form-section {
+        margin-top: 0rem !important;
+    }
+}
+
+.fab,
+.fa-linkedin,
+.fa-facebook {
+    font-size: 1.2rem !important;
+}
+
+.fa-google {
+    font-size: 1rem !important;
+}
+
+.label {
+    position: relative;
+}
+
+.label label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 1.5rem; /* adjust as needed */
+    font-weight: bold;
+    color: #263a7f;
+    transition: all 0.3s;
+}
+
+.label input:focus + label,
+.label input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem); /* adjust as needed */
+    font-size: 0.8em; /* adjust as needed */
+}
+
+.loader {
+    border: 14px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 0.5s linear infinite;
+}

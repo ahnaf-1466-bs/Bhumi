@@ -1,0 +1,49 @@
+.accordion {
+    @apply grid grid-cols-1 gap-y-5 w-full;
+}
+
+.accordion-item {
+    display: block;
+}
+
+.accordion-item+.accordion-item {
+}
+
+.accordion-item-header {
+    border: solid 1px #F3F3F3;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FBFBFB;
+    @apply border-[#F2F2F2];
+}
+
+.accordion-item-description {
+    font-size: 0.85em;
+    color: #999;
+}
+
+.accordion-item-header {
+    padding: 16px;
+    @apply infxs:pr-[2.6rem] md:pr-[2.1rem];
+}
+
+.accordion-item-body{
+    @apply py-4 infxs:px-2 md:px-0;
+}
+
+.accordion-item-header:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.accordion-item:first-child {
+    // border-top-left-radius: 4px;
+    // border-top-right-radius: 4px;
+}
+
+.accordion-item:last-child {
+    // border-bottom-left-radius: 4px;
+    // border-bottom-right-radius: 4px;
+}

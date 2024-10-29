@@ -1,0 +1,252 @@
+<div
+    class="container lg:relative md:mr-auto lg:h-[500px] 2lg:h-[680px] xl:h-[750px] lg:max-w-[84%] 2lg:max-w-[79%] xl:max-w-[82%]"
+>
+    <div
+        class="infxs:hidden lg:block left-segment lg:absolute flex order-1 sm:order-none"
+    >
+        <img
+            class="lg:max-w-[600px] 2lg:max-w-[610px] xl:max-w-240"
+            src="assets/images/login/login.webp"
+        />
+    </div>
+    <div
+        class="right-segment px-2 md:m-[50px] lg:m-0 lg:absolute right-0 lg:bottom-4 xl:bottom-14 2lg:bottom-18 form-section max-w-full flex flex-col justify-end"
+    >
+        <div
+            class="login-opts flex justify-around flex-wrap gap-x-6 mt-4 pt-1 pb-2"
+        >
+            <button
+                class="w-full mt-5 lg:my-0 lg:w-32 lg:pl-2 lg:pr-2 bg-vumi-blue text-white p-2 button-vumi"
+                i18n
+                (click)="getIssuerID('google')"
+            >
+                <i class="fab fa-google text-[32px] text-vumi-white mr-2"></i>
+                <span>{{ "Google" | translate }}</span>
+            </button>
+            <button
+                class="w-full mt-5 lg:my-0 lg:w-32 lg:pl-2 lg:pr-2 bg-vumi-blue text-white p-2 button-vumi"
+                i18n
+                (click)="getIssuerID('linkedin')"
+            >
+                <i class="fab fa-linkedin text-[32px] text-vumi-white mr-2"></i>
+                <span>{{ "Linkedin" | translate }}</span>
+            </button>
+            <button
+                class="w-full mt-5 lg:my-0 lg:w-32 lg:pl-2 lg:pr-2 bg-vumi-blue text-white p-2 button-vumi"
+                i18n
+                (click)="getIssuerID('facebook')"
+            >
+                <i class="fab fa-facebook text-[32px] text-vumi-white mr-2"></i>
+                <span>{{ "Facebook" | translate }}</span>
+            </button>
+        </div>
+
+        <fuse-alert
+            class="mt-8"
+            *ngIf="showAlert"
+            [appearance]="'outline'"
+            [showIcon]="true"
+            [type]="alert.type"
+            [@shake]="alert.type === 'error'"
+        >
+            {{ alert.message }}
+        </fuse-alert>
+
+        <form
+            action=""
+            class="mt-8"
+            [formGroup]="logInForm"
+            #LogInNgForm="ngForm"
+            (ngSubmit)="LogIn()"
+        >
+            <div class="login-form flex flex-col w-full">
+                <div
+                    class="my-5 pl-2 sm:pl-3"
+                    [ngStyle]="{
+                        'border-bottom':
+                            logInForm.get('username').invalid &&
+                            (logInForm.get('username').dirty ||
+                                logInForm.get('username').touched)
+                                ? ' 2px solid red'
+                                : '2px solid #263a7f'
+                    }"
+                >
+                    <div class="label flex items-center">
+                        <div class="relative w-full">
+                            <input
+                                id="username"
+                                [formControlName]="'username'"
+                                class="peer w-full pb-1.5"
+                                type="email"
+                                email="true"
+                                [value]="savedMail"
+                            />
+
+                            <label
+                                [ngClass]="{
+                                    '-top-6':
+                                        logInForm.get('username').value !== ''
+                                }"
+                                for="username"
+                                class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-5 peer-focus:-top-5"
+                            >
+                                {{ "Email" | translate }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    *ngIf="
+                        logInForm.get('username').invalid &&
+                        (logInForm.get('username').dirty ||
+                            logInForm.get('username').touched)
+                    "
+                    class="alert alert-danger"
+                >
+                    <div
+                        *ngIf="logInForm.get('username').errors?.['required']"
+                        class="text-vumi-orange -mt-2 font-semibold"
+                    >
+                        {{ "*Email is required" | translate }}
+                    </div>
+
+                    <div
+                        *ngIf="logInForm.get('username').errors.pattern"
+                        class="text-vumi-orange -mt-2 font-semibold"
+                    >
+                        {{ "*Invalid Email" | translate }}
+                    </div>
+                </div>
+
+                <div
+                    class="max-w-full flex justify-between my-5 pl-2 sm:pl-3"
+                    [ngStyle]="{
+                        'border-bottom':
+                            logInForm.get('password').invalid &&
+                            (logInForm.get('password').dirty ||
+                                logInForm.get('password').touched)
+                                ? ' 2px solid red'
+                                : '2px solid #263a7f'
+                    }"
+                >
+                    <div class="label flex items-center w-full">
+                        <div class="relative w-full">
+                            <input
+                                id="password"
+                                type="password"
+                                [formControlName]="'password'"
+                                #passwordField
+                                class="peer w-full pt-1"
+                                required
+                                [value]="savedPassword"
+                            />
+                            <label
+                                [ngClass]="{
+                                    '-top-6':
+                                        logInForm.get('password').value !== ''
+                                }"
+                                for="password"
+                                class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 -top-4 peer-focus:-top-4"
+                            >
+                                {{ "Password" | translate }}
+                            </label>
+                        </div>
+                    </div>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="
+                            passwordField.type === 'password'
+                                ? (passwordField.type = 'text')
+                                : (passwordField.type = 'password')
+                        "
+                        matSuffix
+                    >
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'password'"
+                            [svgIcon]="'heroicons_solid:eye'"
+                        ></mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'text'"
+                            [svgIcon]="'heroicons_solid:eye-off'"
+                        ></mat-icon>
+                    </button>
+                </div>
+
+                <div
+                    *ngIf="
+                        logInForm.get('password').invalid &&
+                        (logInForm.get('password').dirty ||
+                            logInForm.get('password').touched)
+                    "
+                    class="alert alert-danger"
+                >
+                    <div
+                        *ngIf="logInForm.get('password').errors?.['required']"
+                        class="text-vumi-orange -mt-2 font-semibold"
+                    >
+                        {{ "*Password is required" | translate }}
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <div class="remember flex items-center">
+                        <mat-checkbox
+                            color="warn"
+                            class="sm:-ml-2.5"
+                            #checkbox
+                            (change)="showOptions($event)"
+                        >
+                            <mat-label
+                                class="text-vumi-blue font-bold -ml-2.5"
+                                >{{ "Remember Me" | translate }}</mat-label
+                            >
+                        </mat-checkbox>
+                    </div>
+                    <mat-label
+                        class="text-vumi-blue cursor-pointer font-semibold"
+                        [routerLink]="['/password/forget']"
+                    >
+                        {{ "FORGOT_PASSWORD" | translate }}?
+                    </mat-label>
+                </div>
+                <button
+                    *ngIf="!logInForm.invalid"
+                    class="bg-vumi-blue p-3 font-bold button-vumi text-white"
+                >
+                    {{ "Log In" | translate }}
+                </button>
+
+                <button
+                    *ngIf="logInForm.invalid"
+                    [disabled]="true"
+                    class="bg-gray-300 text-white p-3 font-bold"
+                >
+                    {{ "Log In" | translate }}
+                </button>
+
+                <p
+                    class="text-center mt-5 text-vumi-blue font-semibold md:mb-8"
+                >
+                    {{ "Don't have an account?" | translate }}
+                    <span
+                        class="text-vumi-orange text-bold ml-2 cursor-pointer font-semibold"
+                        (click)="navigateToSignUp()"
+                        >{{ "Sign Up" | translate }}
+                    </span>
+                </p>
+            </div>
+        </form>
+    </div>
+    <div
+        class="infxs:block lg:hidden left-segment lg:absolute flex order-1 sm:order-none"
+    >
+        <img
+            class="lg:max-w-[600px] 2lg:max-w-[610px] xl:max-w-240"
+            src="assets/images/login/login-phn.webp"
+        />
+    </div>
+</div>

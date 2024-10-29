@@ -1,0 +1,24 @@
+<div class="overflow-x-hidden">
+    <app-director
+        [directorList]="directorList"
+        [isDataLoaded]="isDataLoaded"
+        [mxTierDirector]="mxTierDirector"
+    >
+    </app-director>
+
+    <app-founder [founderList]="founderList" *ngIf="isShowFounderList">
+    </app-founder>
+
+    <app-instructor
+        [instructorList]="instructorList"
+        *ngIf="isShowInstructorList"
+    >
+    </app-instructor>
+
+    <app-operation
+        [operationList]="operationList"
+        [mxTierOperation]="mxTierOperation"
+        *ngIf="isShowOperationList"
+    >
+    </app-operation>
+</div>

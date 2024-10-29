@@ -1,0 +1,125 @@
+<div
+    class="container lg:relative md:mr-auto lg:h-[500px] 2lg:h-[680px] xl:h-[750px] lg:max-w-[84%] 2lg:max-w-[79%] xl:max-w-[82%]"
+>
+    <div
+        class="infxs:hidden lg:block left-segment lg:absolute flex order-1 sm:order-none"
+    >
+        <img
+            class="lg:max-w-[600px] 2lg:max-w-[610px] xl:max-w-240"
+            src="assets/images/login/login.webp"
+        />
+    </div>
+    <div class="lg:absolute right-0 max-w-full flex flex-col mt-12">
+        <div class="md:flex md:justify-center md:my-2">
+            <h6 class="font-bold text-vumi-orange text-xl lg:text-2xl">
+                Pre registration for
+                <strong class="font-black">{{ courseName | titlecase }}</strong>
+            </h6>
+        </div>
+        <div *ngIf="successCode !== 0 && successCode == 200 && showMessage">
+            <p
+                class="mx-auto text-green-600 font-bold text-center my-3 xl:my-4 text-lg xl:text-xl"
+            >
+                *Registration Successful
+            </p>
+        </div>
+        <div *ngIf="successCode !== 0 && successCode !== 200 && showMessage">
+            <p
+                class="mx-auto text-green-600 font-bold text-center my-3 xl:my-4 text-lg xl:text-xl"
+            >
+                *The user has already registered for this batch
+            </p>
+        </div>
+        <div
+            *ngIf="loading && !showMessage"
+            class="flex justify-center items-center w-[240px] xl:w-[384px] h-[160px] xl:h-[220px]"
+        >
+            <div class="loader"></div>
+        </div>
+        <form
+            *ngIf="!loading && !showMessage"
+            action=""
+            class="mt-8"
+            [formGroup]="logInForm"
+            #LogInNgForm="ngForm"
+            (ngSubmit)="loader()"
+        >
+            <div
+                class="my-5 pl-2 sm:pl-3"
+                [ngStyle]="{
+                    'border-bottom': '2px solid #263a7f'
+                }"
+            >
+                <div class="label flex items-center">
+                    <div class="relative">
+                        <input
+                            id="name"
+                            type="text"
+                            [formControlName]="'name'"
+                            class="peer w-[full] sm:w-[24rem]"
+                            required
+                        />
+                        <label
+                            for="name"
+                            class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 top-0 mt-1 peer-focus:-top-4"
+                        >
+                            Name
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-form flex flex-col">
+                <div
+                    class="my-5 pl-2 sm:pl-3"
+                    [ngStyle]="{ 'border-bottom': '2px solid #263a7f' }"
+                >
+                    <div class="label flex items-center">
+                        <div class="relative">
+                            <input
+                                id="mail"
+                                [formControlName]="'mail'"
+                                class="peer w-[full] sm:w-[24rem]"
+                                type="email"
+                                email="true"
+                                [value]="savedMail"
+                                readonly
+                                style="cursor: not-allowed"
+                            />
+                            <label
+                                for="mail"
+                                class="flex text-vumi-blue font-bold items-center transition-all absolute left-0 top-0 mt-1"
+                                [ngClass]="{ 'peer-focus:-top-4': !savedMail }"
+                            >
+                                Email
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="bg-vumi-blue text-white p-3 font-bold button-vumi"
+                    (click)="PreRegistration()"
+                >
+                    Register
+                </button>
+            </div>
+        </form>
+        <p class="text-center mt-5 text-vumi-blue font-semibold md:mb-8">
+            Want to go to previous page?
+            <span
+                class="text-vumi-orange text-bold ml-2 cursor-pointer font-semibold"
+                (click)="navigateToPreviousPage()"
+                >Click Here
+            </span>
+        </p>
+    </div>
+    <div
+        class="infxs:block lg:hidden left-segment lg:absolute flex order-1 sm:order-none"
+    >
+        <img
+            class="lg:max-w-[600px] 2lg:max-w-[610px] xl:max-w-240"
+            src="assets/images/login/login-phn.webp"
+        />
+    </div>
+</div>

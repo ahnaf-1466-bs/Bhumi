@@ -1,0 +1,162 @@
+<div class="bg-vumi-white">
+    <div class="lg:max-w-4xl xl:max-w-7xl py-14 mx-auto md:block">
+        <h1
+            class="text-base md:text-4xl text-vumi-orange md:text-left infxs:text-center"
+        >
+            <span
+                class="text-base md:text-3xl lg:text-4xl md:font-extrabold infxs:text-6xl infxs:font-extrabold block md:inline"
+                >{{ "MY" | translate }}</span
+            >
+            <span
+                class="md:mt-0 md:ml-3 text-base md:text-3xl lg:text-4xl infxs:text-6xl infxs:ml-0infxs:-mt-18 uppercase"
+                >{{ "RECOMMENDED COURSES" | translate }}</span
+            >
+        </h1>
+        <div
+            *ngIf="recommendedCourseList.length > 0"
+            class="relative py-3 mt-4 mx-auto"
+        >
+            <div class="overflow-hidden">
+                <div class="flex">
+                    <div class="w-full flex-none">
+                        <ng-container *ngIf="recommendedCourseList">
+                            <div class="swiper-container-rcc">
+                                <div class="swiper-wrapper">
+                                    <div
+                                        *ngFor="
+                                            let course of recommendedCourseList
+                                        "
+                                        class="swiper-slide px-6"
+                                    >
+                                        <div>
+                                            <div
+                                                class="cursor-pointer"
+                                                (click)="
+                                                    displayCourseDetails(
+                                                        course.id
+                                                    )
+                                                "
+                                            >
+                                                <img
+                                                    [src]="course.picurl"
+                                                    alt=""
+                                                    class="h-36"
+                                                />
+                                                <p
+                                                    *ngIf="course.fullname"
+                                                    class="h-10 mt-5 font-bold text-lg text-vumi-blue"
+                                                    [innerHTML]="
+                                                        course.fullname.substring(
+                                                            0,
+                                                            34
+                                                        )
+                                                    "
+                                                ></p>
+                                                <p
+                                                    *ngIf="course.summary"
+                                                    class="h-10 mt-3 font-medium text-base text-vumi-blue"
+                                                    [innerHTML]="course.summary"
+                                                ></p>
+                                                <button
+                                                    *ngIf="!course.favourite"
+                                                    (click)="
+                                                        setFavourite(
+                                                            course.id,
+                                                            1
+                                                        )
+                                                    "
+                                                    style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3));"
+                                                    class="bg-green-600 mt-5 infxs:text-base sm:text-lg text-white font-bold py-1.5 px-3"
+                                                >
+                                                    Add to Wish List
+                                                </button>
+                                                <button
+                                                    *ngIf="course.favourite"
+                                                    (click)="
+                                                        setFavourite(
+                                                            course.id,
+                                                            0
+                                                        )
+                                                    "
+                                                    style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+                                                    class="rounded-[1px]
+                                                    bg-vumi-orange text-white infxs:text-base sm:text-lg mt-4 font-bold py-1.5 px-3"
+                                                >
+                                                    Remove from Wish List
+                                                </button>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer flex mt-1"
+                                                (click)="
+                                                    displayCourseDetails(
+                                                        course.id
+                                                    )
+                                                "
+                                            >
+                                                <div
+                                                    class="mt-4 h-2 w-full bg-gray-200 rounded-full"
+                                                >
+                                                    <div
+                                                        class="h-full bg-green-500 rounded-full"
+                                                        [style.width.%]="
+                                                            course.progress
+                                                        "
+                                                    ></div>
+                                                </div>
+                                                <p
+                                                    class="mt-2.5 ml-2 font-semibold"
+                                                >
+                                                    {{ course.progress }}%
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="swiper-button-prev bg-vumi-orange"
+                                >
+                                    <i
+                                        class="fa fa-chevron-left lg:font-[600] lg:text-[22px] xl:text-[30px]"
+                                    ></i>
+                                </button>
+                                <button
+                                    class="swiper-button-next bg-vumi-orange"
+                                >
+                                    <i
+                                        class="fa fa-chevron-right lg:font-[600] lg:text-[22px] xl:text-[30px]"
+                                    ></i>
+                                </button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            *ngIf="recommendedCourseList.length == 0"
+            class="flex justify-center items-center"
+        >
+            <div class="flex justify-center items-center">
+                <div>
+                    <svg
+                        class="w-36 h-36"
+                        style="
+                            fill: rgb(36 57 130);
+                            margin-left: 70px !important;
+                        "
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 512"
+                    >
+                        <path
+                            d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9v28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5V291.9c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"
+                        />
+                    </svg>
+                    <h1 class="text-center text-gray-600 font-bold text-4xl">
+                        {{ "No_Course_Found!" | translate }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

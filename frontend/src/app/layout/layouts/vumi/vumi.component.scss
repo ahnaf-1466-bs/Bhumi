@@ -1,0 +1,120 @@
+nav {
+    color: white;
+    font-size: 14.4px;
+    font-weight: 500;
+}
+ul li {
+    margin-left: 20px;
+}
+
+input {
+    width: 175px;
+}
+.drop-down {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    /* justify-content: center; */
+    background-color: #243982;
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.322);
+    width: 64px;
+    padding: 3px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.arrow {
+    font-size: 30px;
+}
+.wrapper {
+    display: flex;
+    // gap: 0.5rem;
+    gap: 4px;
+    align-items: center;
+}
+
+img {
+    width: 32px;
+}
+
+.list {
+    color: black;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+    top: 32px;
+    left: 0;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.322);
+    cursor: pointer;
+    max-height: 250px;
+    width: 100%;
+    z-index: 10000;
+}
+.list.expand {
+    display: inline;
+}
+.item {
+    display: flex;
+    align-items: center;
+    // padding: 0.5rem 1rem;
+    padding: 3px 2px;
+    // gap: 0.5rem;
+    gap: 4px;
+}
+.item:hover {
+    background-color: rgba(211, 211, 211);
+}
+.selected {
+    background-color: rgba(211, 211, 211);
+}
+.notification-icon {
+    position: relative;
+    color: white !important;
+}
+
+.notification-count {
+    position: absolute;
+    color: white;
+    font-size: 9px;
+    text-align: center;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* CSS for active route */
+.active {
+    position: relative;
+    display: inline-block; /* Make the link behave as an inline-block element */
+    text-align: center; /* Center the text and underline */
+}
+
+.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; /* gap size */
+    left: 50%; /* Position the underline in the center */
+    transform: translateX(-50%); /* Center the underline under the text */
+    width: 60px; /* fixed width of the underline */
+    height: 3px; /*  value of the underline height */
+    background-color: #e55037;
+}
+
+/* Set a minimum height for the notifications list */
+.mat-menu-panel {
+    height: 300px;
+    overflow-y: scroll; /* Add scrollbar when notifications list exceeds the height */
+    min-width: 260px;
+}
+@media screen and (min-width: 1920px) {
+    .mat-menu-panel {
+        height: 350px;
+        overflow-y: scroll; /* Add scrollbar when notifications list exceeds the height */
+        min-width: 300px;
+    }
+}

@@ -1,0 +1,45 @@
+.dcms_backtocourse span {
+    padding-right: 15px;
+}
+
+#custom-cert-again-course-btn {
+    text-decoration: none;
+    background-color: transparent;
+    color: transparent;
+}
+
+#custom-cert-again-course-btn:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: transparent;
+}
+.dcmsbtn {
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.dcms_img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.feedback {
+    margin: 0px;
+}
+
+.dcms_heading {
+    text-align: center;
+    padding-left: 18px;
+}
+
+.dcms_cardbody {
+    text-align: center;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.dcms_card {
+    box-shadow: 5px 5px 5px #888888;
+    margin-top: 20px;
+}

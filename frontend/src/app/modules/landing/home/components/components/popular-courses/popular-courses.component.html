@@ -1,0 +1,106 @@
+<div class="lg:max-w-4xl xl:max-w-7xl mx-auto mt-10">
+    <h1
+        class="text-4xl text-vumi-orange md:text-left infxs:text-center px-4 lg:px-0"
+    >
+        <span
+            class="md:font-bold infxs:text-4xl infxs:font-extrabold block md:inline"
+            >{{ "POPULAR" | translate }}</span
+        >
+        <span
+            class="md:mt-0 md:ml-3 infxs:text-4xl infxs:ml-0infxs:-mt-18 uppercase"
+            >{{ "COURSES" | translate }}</span
+        >
+    </h1>
+    <p
+        class="font-semibold text-lg lg:-mt-2 hidden md:block mb-3 xl:mb-5 px-4 lg:px-0"
+    >
+        {{ "SEE WHAT'S TRENDING RIGHT NOW" | translate }}
+    </p>
+
+    <div class="parent">
+        <!--Desktop Start-->
+        <div class="infxs:hidden md:block">
+            <div
+                class="flex flex-wrap md:gap-4 xl:gap-6 md:h-auto px-4 lg:px-0"
+            >
+                <ng-container
+                    *ngFor="let course of popular_courses?.slice(0, 6)"
+                >
+                    <ng-container *ngFor="let image of course?.overviewfiles">
+                        <div
+                            class="h-full bg-vumi-white relative border-2 flex xs:flex-col justify-items-center items-center justify-around rounded cursor-pointer"
+                            (click)="displayCourseDetails(course.id)"
+                        >
+                            <ng-container>
+                                <div
+                                    class="xs:max-w-full md:h-[200px] xl:h-[260px] md:w-[280px] 
+                                    xl:w-[380px] text-lg text-vumi-white relative bg-center bg-[length:100%_100%] object-cover px-5"
+                                    
+                                [ngStyle]="{'background-image': 'url(' + image?.fileurl.replace(
+                                    '/webservice',
+                                    ''
+                                ) + ')'}"
+                                >
+                                <div class="absolute top-1/2 translate-y-[-50%]">
+                                    <div [innerHTML]="course?.fullname" class="text-left font-bold"></div>
+                                <div [innerHTML]="course?.summary | sanitizeHtml" class="line-clamp-4"></div>
+                                </div>
+                            </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+        <!--Desktop End-->
+
+        <!--Phone Start-->
+        <div class="px-15 mt-12 infxs:grid infxs:grid-cols-2 sm:flex sm:flex-wrap gap-4 md:hidden">
+            <ng-container *ngFor="let course of popular_courses?.slice(0, 4)">
+                <ng-container>
+                    <div class="flex justify-center">
+                        <div class="child">
+                            <ng-container
+                                *ngFor="let image of course?.overviewfiles"
+                            >
+                                <img
+                                    (click)="displayCourseDetails(course.id)"
+                                    class="h-[230px] w-[167px] object-cover"
+                                    [src]="
+                                        image?.fileurl.replace(
+                                            '/webservice',
+                                            ''
+                                        )
+                                    "
+                                />
+                            </ng-container>
+                            <div
+                                class="sub-text infxs:w-[100px] 2xs:w-[135px]"
+                                (click)="displayCourseDetails(course.id)"
+                            >
+                                <h1 class="text-vumi-white text-lg font-bold line-clamp-6">
+                                    <div [innerHTML]="course?.fullname"></div>
+                                </h1>
+                                <div
+                                    class="text-vumi-white text-base line-clamp-3"
+                                    [innerHTML]="course?.summary | sanitizeHtml"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <!--Phone End-->
+    </div>
+</div>
+
+<!--See All Courses Button-->
+<div class="flex md:-mt-0 infxs:-mt-4 my-0 px-8 pt-14 pb-20 justify-center">
+    <button
+        class="button-vumi-orange"
+        [routerLink]="['/courses']"
+    >
+        {{ "SEE_ALL_COURSES" | translate }}
+    </button>
+</div>

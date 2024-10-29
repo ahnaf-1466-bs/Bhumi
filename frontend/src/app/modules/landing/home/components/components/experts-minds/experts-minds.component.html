@@ -1,0 +1,200 @@
+<div class="bg-vumi-orange">
+    <div class="lg:max-w-4xl xl:max-w-7xl py-14 mx-auto px-4 lg:px-0">
+        <div class="flex flex-col md:flex-row md:flex-wrap infxs:justify-center lg:justify-between">
+            <div
+                class="text-vumi-white md:basis-5/12 infxs:w-full md:w-1/2 infxs:text-center md:text-left md:-mt-0 infxs:-mt-16"
+            >
+                <h1
+                    class="infxs:text-4xl font-normal infxs:mt-12 lg:-mt-2"
+                >
+                    {{ "FROM_THE_MINDS" | translate }}
+                </h1>
+                <h1
+                    class="infxs:text-4xl infxs:-mt-4 lg:-mt-4 font-normal"
+                >
+                    {{ "OF_THE" | translate }}
+                    <strong>{{ "EXPERTS" | translate }}</strong>
+                </h1>
+                <div
+                    class="space-y-5 lg:-mt-2 xl:mt-5 infxs:text-lg"
+                >
+                    <p class="md:hidden md:mb-0 infxs:mb-8 infxs:block text-lg">
+                        {{"Lorem ipsum dolor sit,"|translate}}<br />
+                        {{"amet consectetur adipisicing elit. Facilis, voluptatem? Provident omnis aliquam deleniti."|translate}}
+                    </p>
+                    <p class="md:block infxs:hidden md:text-lg text-justify">
+                        {{"Lorem ipsum ....."|translate}}    
+                    </p>
+                </div>
+                <div class="infxs:hidden md:block">
+                    <div class="flex justify-center md:block">
+                        <button (click)="onClickBookASeat()"
+                            class="button-vumi bg-vumi-white text-vumi-orange md:px-6 xl:px-8 md:py-2 xl:py-2 font-semibold md:mt-10 xl:mt-5"
+                        >
+                            {{ "BOOK_A_SEAT" | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative md:w-1/2 h-full mx-auto">
+                <button
+                    (click)="slidePrevExperts()"
+                    class="btnSwipePrev absolute top-1/2 -translate-y-1/2 -left-6 xl:-left-8 hidden md:flex justify-center items-center"
+                >
+                    <i
+                        class="fa fa-chevron-left icon-size-5 md:icon-size-7"
+                    ></i>
+                </button>
+                <div class="hidden md:block">
+                    <swiper
+                        #swiper
+                        [virtual]="true"
+                        [slidesPerView]="1"
+                        [spaceBetween]="10"
+                        [navigation]="false"
+                    >
+                        <ng-container *ngFor="let a of sliderItems">
+                            <ng-template
+                                swiperSlide
+                                class="overflow-hidden bg-contain bg-no-repeat bg-center inline text-left"
+                            >
+                                <div class="swiper_image relative h-full">
+                                    <img [src]="a.img" />
+                                    <div
+                                        class="swiper_slide-text absolute top-7 left-6"
+                                    >
+                                        <div
+                                            class="z-10 flex flex-row infxs:gap-1 xl:gap-x-3"
+                                        >
+                                            <div
+                                                class="infxs:w-2 xl:w-4 infxs:h-2 xl:h-4 my-auto bg-vumi-orange rounded-full"
+                                            ></div>
+                                            <h1
+                                                class="infxs:text-3xl xl:text-5xl font-extrabold text-vumi-orange live"
+                                            >
+                                                {{"LIVE"|translate}}
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="text-black absolute bottom-9 left-6"
+                                    >
+                                        <p
+                                            class="text-lg font-bold"
+                                        >
+                                            {{"ALLAN TROUE"|translate}}
+                                        </p>
+                                        <p
+                                            class="text-lg font-semibold"
+                                        >
+                                            {{"Teaches Graphic Design"|translate}}
+                                        </p>
+                                        <p
+                                            class="text-lg font-bold"
+                                        >
+                                            {{"LIVE NOW!"|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </swiper>
+                </div>
+                <button
+                    (click)="slideNextExperts()"
+                    class="btnSwipeNext2 absolute top-1/2 -translate-y-1/2 -right-6 xl:-right-8 hidden md:flex justify-center items-center"
+                >
+                    <i
+                        class="fa fa-chevron-right icon-size-5 md:icon-size-7"
+                    ></i>
+                </button>
+            </div>
+
+            <!-- phone responsive start -->
+            <div class="md:hidden infxs:flex justify-center">
+                <div class="mt-48">
+                    <button (click)="slidePrevExpertsPhone()" class="btnSwipePrev flex justify-center items-center">
+                        <mat-icon
+                            class="btnSwiperPhone icon-size-5 md:icon-size-7"
+                            svgIcon="heroicons_solid:chevron-left"
+                        ></mat-icon>
+                    </button>
+                </div>
+
+                <div class="w-60 h-100 mx-5 md:hidden infxs:block">
+                    <swiper
+                        #swiper2
+                        [virtual]="true"
+                        [slidesPerView]="1"
+                        [spaceBetween]="10"
+                        [navigation]="false"
+                    >
+                        <ng-container *ngFor="let a of sliderItems">
+                            <ng-template
+                                swiperSlide
+                                class="bg-no-repeat bg-cover bg-center text-left"
+                            >
+                                <div class="swiper_phone">
+                                    <img [src]="a.img" />
+                                    <div class="swiper_text_phone">
+                                        <div
+                                            class="flex flex-row ml-4 mt-4 gap-x-2"
+                                        >
+                                            <div
+                                                class="w-2 h-2 my-auto bg-vumi-orange rounded-full"
+                                            ></div>
+                                            <h1
+                                                class="text-xl font-semibold text-vumi-orange live"
+                                            >
+                                                {{"LIVE"|translate}}
+                                            </h1>
+                                        </div>
+                                        <br />
+                                        <div class="mt-56">
+                                            <p
+                                                class="text-lg font-bold ml-2 text-white"
+                                            >
+                                                {{"ALLAN TROUE"|translate}}
+                                            </p>
+                                            <p
+                                                class="text-sm font-semibold ml-2 text-vumi-orange"
+                                            >
+                                                {{"Teaches Graphic Design"|translate}}
+                                            </p>
+                                            <p
+                                                class="text-lg font-bold ml-2 text-white"
+                                            >
+                                                {{"LIVE NOW!"|translate}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </swiper>
+                </div>
+
+                <div class="mt-48">
+                    <button (click)="slideNextExpertsPhone()" class="btnSwipeNext2 flex justify-center items-center">
+                        <mat-icon
+                            class="btnSwiperPhone icon-size-5 md:icon-size-7"
+                            svgIcon="heroicons_solid:chevron-right"
+                        ></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <!-- phone responsive end -->
+
+            <div class="md:hidden infxs:block">
+                <div class="flex justify-center md:block">
+                    <button (click)="onClickBookASeat()"
+                        class="button-vumi bg-vumi-white text-vumi-orange px-8 py-2 font-semibold mt-5"
+                    >
+                        {{ "BOOK_A_SEAT" | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

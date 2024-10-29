@@ -1,0 +1,17 @@
+@media only screen and (min-width: 320px) {
+    .certificate-shadow {
+        box-shadow: 20px 20px 0px 0px rgba($color: #172451d1, $alpha: 0.4);
+        -webkit-box-shadow: 20px 20px 0px 0px
+            rgba($color: #172451d1, $alpha: 0.4);
+        -moz-box-shadow: 20px 20px 0px 0px rgba($color: #172451d1, $alpha: 0.4);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .certificate-shadow {
+        box-shadow: 15px 15px 0px 0px rgba($color: #172451d1, $alpha: 0.4);
+        -webkit-box-shadow: 15px 15px 0px 0px
+            rgba($color: #172451d1, $alpha: 0.4);
+        -moz-box-shadow: 15px 15px 0px 0px rgba($color: #172451d1, $alpha: 0.4);
+    }
+}

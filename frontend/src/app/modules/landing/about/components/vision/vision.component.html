@@ -1,0 +1,34 @@
+<div
+    class="story pt-12 sm:flex min-h-fit sm:h-80 bg-vumi-orange bg-cover bg-no-repeat sm:justify-center sm:items-center"
+>
+    <div
+        class="bcground-banner bg-vumi-white -ml-12 mt-8 p-4 flex justify-center items-center lg:-ml-18 lg:h-26"
+    >
+        <p
+            class="heading-text text-vumi-blue text-2xl font-sans sm:text-3xl lg:text-4xl xl:text-4xl font-bold"
+        >
+            {{ "VISION" | translate }}
+        </p>
+    </div>
+
+    <div class="content mt-10 flex justify-center items-center">
+        <p
+            *ngIf="!isBengali"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ vision }}
+        </p>
+        <p
+            *ngIf="isBengali && vision_bn === ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ vision }}
+        </p>
+        <p
+            *ngIf="isBengali && vision_bn != ''"
+            class="text-vumi-white text-sm sm:text-md font-medium lg:text-xl xl:text-2xl infxs:text-center md:text-left infxs:w-[250px] md:w-fit"
+        >
+            {{ vision_bn }}
+        </p>
+    </div>
+</div>

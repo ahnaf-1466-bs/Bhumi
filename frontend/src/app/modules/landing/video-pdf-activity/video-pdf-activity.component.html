@@ -1,0 +1,142 @@
+<div class="infxs:min-h-[400px] md:min-h-screen">
+    <div *ngIf="loading" class="min-h-screen flex justify-center items-center">
+        <div class="loader"></div>
+    </div>
+
+    <div *ngIf="!enrolled" class="h-screen flex justify-center items-center">
+        <div>
+            <h1
+                class="text-center text-vumi-orange text-2xl font-bold lg:text-4xl"
+            >
+            {{"YOU ARE NOT ENROLLED IN THIS COURSE"|translate}}
+            </h1>
+
+            <div class="flex justify-center mt-7">
+                <button
+                    type="button"
+                    (click)="goToCourse()"
+                    class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                    {{"Course Details"|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        *ngIf="videoFound && enrolled"
+        class="video-container lg:max-w-4xl xl:max-w-7xl pb-5 infxs:pt-5 md:pt-0 mx-auto"
+    >
+        <div class="max-w-[1000px] mx-auto">
+            <div id="video" class="relative">
+                <video
+                    #myVideo
+                    controls
+                    (loadedmetadata)="onVideoMetadataLoaded($event)"
+                    (loadstart)="loadPreviousTime()"
+                    (timeupdate)="saveCurrentTime()"
+                    class="video-js vjs-default-skin"
+                    controlsList="fullscreen nodownload noremoteplayback noplaybackrate foobar"
+                    preload="metadata"
+                    width="100%"
+                    data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'
+                    class="mx-auto mb-6 rounded"
+                >
+                    <source [src]="video_src" type="video/mp4" />
+                </video>
+            </div>
+            <div class="lg:max-w-4xl xl:max-w-7xl mb-6 mx-auto">
+                <div
+                    class="infxs:mx-0 xs:mx-15 sm:mx-18 md:mx-20 lg:mx-30 xl:mx-40 gap-2 flex flex-row justify-between lg:mt-4 infxs:mt-4 lg:mb-4 infxs:mb-4"
+                >
+                    <button
+                        *ngIf="
+                            prevActivityID != -1 &&
+                            prevActivityType != 'customcert'
+                        "
+                        (click)="goPrevActivity()"
+                class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] bg-vumi-orange text-white  font-bold  outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                    >
+                    <mat-icon class="text-white icon-size-7" aria-hidden="false" aria-label="previous activity icon"
+                    [svgIcon]="'mat_solid:keyboard_arrow_left'"></mat-icon>
+                        <span>{{"Previous"|translate}}</span>
+                    </button>
+                    <button *ngIf="prevActivityID == -1"></button>
+
+                    <button
+                        *ngIf="nextActivityID != -1 && nextActivityType != 'customcert' && activityDone == true"
+                        (click)="goNextActivity()"
+                class="button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] bg-vumi-orange text-white font-bold  outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                    >
+                    <span>{{"Next"|translate}} </span>
+                    <mat-icon class="text-white icon-size-7" aria-hidden="false" aria-label="previous activity icon"
+                    [svgIcon]="'mat_solid:keyboard_arrow_right'"></mat-icon>
+                    </button>
+
+                    <button
+                        *ngIf="
+                            nextActivityID != -1 &&
+                            nextActivityType == 'customcert' &&
+                            certificateAvailable
+                        "
+                        (click)="getCertificate()"
+                        class="infxs:px-2 button-vumi infxs:text-base sm:text-lg infxs:w-30 infxs:h-8 sm:w-[140px] sm:h-[38px] border border-vumi-blue bg-vumi-blue text-white font-bold outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                    >
+                        {{"Download Certificate"|translate}}
+                    </button>
+
+                    <button
+                        *ngIf="
+                            nextActivityID != -1 &&
+                            nextActivityType == 'customcert' &&
+                            !certificateAvailable
+                        "
+                        [disabled]="true"
+                        class="infxs:px-2 text-base border border-gray-300 bg-gray-300 text-white font-bold outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                    >
+                        {{"Download Certificate"|translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p
+                    class="text-left text-[#121212] font-semibold lg:text-4xl sm:text-5xl infxs:text-3xl"
+                >
+                    {{ videoName }}
+                </p>
+            </div>
+            <div class="mb-4 flex gap-y-4 justify-between infxs:flex-col md:flex-row">
+                <!-- video button && description -->
+                <div class="flex flex-col gap-y-2">
+                    <button (click)="toggleVideoDescription()"
+                        class="w-[182px] infxs:h-8 sm:h-[38px] button-vumi infxs:text-base sm:text-lg bg-vumi-orange 
+                              text-white  font-bold  outline-none focus:outline-none mb-1 
+                              ease-linear transition-all duration-150" type="button">
+                        <span>{{"Video Description"|translate}}</span>
+                        <mat-icon *ngIf="!showVideoDesc" class="text-white icon-size-7" aria-hidden="false" aria-label="previous activity icon"
+                            [svgIcon]="'mat_solid:keyboard_arrow_down'"></mat-icon>
+                        <mat-icon *ngIf="showVideoDesc" class="text-white icon-size-7" aria-hidden="false" aria-label="previous activity icon"
+                            [svgIcon]="'mat_solid:keyboard_arrow_up'"></mat-icon>
+                    </button>
+                    <p [ngClass]="{'hidden':!showVideoDesc}" class="infxs:max-w-full md:max-w-[487px] text-justify infxs:text-base sm:text-lg" [innerHTML]="videoDesc | sanitizeHtml">
+                        
+                    </p>
+                </div>
+                <!-- pdf file -->
+                <div *ngIf="pdfURL">
+                    <span class="underline decoration-vumi-orange font-bold text-lg">{{"Files"|translate}}</span>
+                    <a class="text-lg flex items-center gap-2 mt-3 cursor-pointer" (click)="downloadPdfFile()">
+                        <span>1. </span>
+                        <span class="underline ">{{"Course Material Title"|translate}}</span>
+                        <mat-icon class="text-vumi-orange icon-size-7" aria-hidden="false" aria-label="pdf file"
+                            [svgIcon]="'mat_solid:insert_drive_file'"></mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

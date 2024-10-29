@@ -1,0 +1,46 @@
+.syllabusoverview_backtocourse span {
+    padding-right: 15px;
+}
+
+#custom-cert-again-course-btn:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: transparent;
+}
+.syllabusbtn {
+    margin-bottom: 10px;
+}
+
+.syllabusimg {
+    float: left;
+    margin-right: 3%;
+    border-radius: 18px;
+    width: 180px;
+    height: 130px;
+}
+
+.fa-edit:before {
+    content: "\f044";
+}
+
+.fa-trash-alt:before {
+    content: "\f2ed";
+}
+
+
+
+.syllabusoverview_cardbody {
+    text-align: center;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.syllabusoverview_card {
+    box-shadow: 5px 5px 5px #888888;
+    margin-top: 20px;
+}
+
+.syllabusoverview_container {
+    margin-left: 10%;
+    margin-right: 10%;
+}

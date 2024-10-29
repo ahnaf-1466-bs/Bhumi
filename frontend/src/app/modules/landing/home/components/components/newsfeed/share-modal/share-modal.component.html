@@ -1,0 +1,45 @@
+<div class="infxs:w-60 md:pt-8 md:pb-4 lg:w-100 xl:w-120">
+    <div class="flex justify-between">
+        <div class="infxs:text-xl lg:text-md xl:text-lg">
+            {{ "SHARE" | translate }}
+        </div>
+        <i
+            (click)="onNoClick()"
+            class="far fa-times-circle cursor-pointer text-3xl"
+        ></i>
+    </div>
+    <div>
+        <div
+            *ngIf="!isBengali && title != null"
+            class="infxs:text-sm md:text-xl xl:text-2xl font-bold"
+        >
+            {{ title }}
+        </div>
+        <div
+            *ngIf="isBengali && title_bn === null"
+            class="infxs:text-sm md:text-xl xl:text-2xl font-bold"
+        >
+            {{ title }}
+        </div>
+        <div
+            *ngIf="isBengali && title_bn != null"
+            class="infxs:text-sm md:text-xl xl:text-2xl font-bold"
+        >
+            {{ title_bn }}
+        </div>
+    </div>
+    <div class="mt-2">
+        <span>
+            {{ "Shareable Link:" | translate }}
+            <span>{{ updatedUrl }}</span>
+        </span>
+        <div class="flex justify-end mt-3">
+            <button
+                class="btn px-6 py-2 bg-vumi-blue text-white button-vumi"
+                [attr.data-clipboard-text]="updatedUrl"
+            >
+                {{ "Copy" | translate }}
+            </button>
+        </div>
+    </div>
+</div>

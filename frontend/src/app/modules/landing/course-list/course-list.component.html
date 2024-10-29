@@ -1,0 +1,94 @@
+<div
+    *ngIf="loading"
+    class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12"
+>
+    <div class="loader"></div>
+</div>
+<div
+    *ngIf="!loading"
+    class="min-h-screen lg:max-w-4xl xl:max-w-7xl mx-auto pt-10"
+>
+    <div class="topbar sm:flex sm:justify-between">
+        <div class="heading mx-auto sm:mx-0 flex justify-center">
+            <h1
+                class="lg:text-6xl xl:text-7xl infxs:text-5xl infxs:text-center infxs:mb-6 lg:mb-7 xl:mb-9 font-bold text-vumi-orange flex"
+            >
+                {{ "OUR_COURSES" | translate }}
+            </h1>
+        </div>
+
+        <div class="search-section mb-4 mx-7 sm:mx-0 lg:mt-4">
+            <div class="relative">
+                <input
+                    (keyup)="searchCourses()"
+                    type="text"
+                    class="border border-gray-300 rounded-md py-2 pl-4 pr-10 w-full sm:text-sm"
+                    placeholder="Search"
+                    [(ngModel)]="searchedItem"
+                    name="searchedItem"
+                />
+
+                <mat-icon
+                    (click)="searchCourses()"
+                    class="absolute right-2 top-1 text-vumi-orange cursor-pointer"
+                    svgIcon="heroicons_solid:search"
+                ></mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!coursesSearching">
+        <div *ngIf="currentPageCourses.length > 0"
+            class="grid-container flex flex-row justify-center sm:mx-0 flex-wrap gap-5 w-full courseGrid mb-6 sm:mb-12">
+            <div *ngFor="let course of currentPageCourses">
+                <app-course-list-item [image_url]="course.imageSrc" [name]="course.name" [instructors]="course.instructors"
+                    (click)="displayCourseDetails(course.id)"></app-course-list-item>
+            </div>
+        </div>
+    
+        <div *ngIf="currentPageCourses.length == 0" class="min-h-screen lg:max-w-4xl xl:max-w-7xl mx-auto pt-10">
+            <div class="flex justify-center items-center">
+                <h1 class="text-center font-bold text-3xl lg:text-7xl" style="color: rgb(114, 26, 26)">
+                    {{"No_Course_Found!"|translate}}
+                </h1>
+            </div>
+        </div>
+    
+        <div class="flex items-center justify-center mb-4">
+            <button (click)="goPrev()" [ngClass]="{
+                        'button-disabled':
+                            indexOfFirstCourse - numberOfCoursesPerPage < 0
+                    }" [disabled]="indexOfFirstCourse - numberOfCoursesPerPage < 0"
+                class="inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                {{"Prev" | translate}}
+            </button>
+    
+            <button (click)="goNext()" [ngClass]="{
+                        'button-disabled':
+                            indexOfFirstCourse + numberOfCoursesPerPage >=
+                            courseList.length
+                    }" [disabled]="
+                        indexOfFirstCourse + numberOfCoursesPerPage >=
+                        courseList.length
+                    "
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                {{"Next"|translate}}
+                <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="coursesSearching" class="flex justify-center items-center min-w-full min-h-max mt-6 lg:mt-12">
+        <div class="loader"></div>
+    </div>
+</div>

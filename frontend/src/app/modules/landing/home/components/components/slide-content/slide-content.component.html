@@ -1,0 +1,38 @@
+<p
+    class="infxs:text-7xl md:font-black infxs:text-vumi-blue md:text-vumi-white infxs:font-black"
+>
+    {{ title | translate }}
+</p>
+<p
+    class="infxs:text-7xl whitespace-nowrap md:-mt-6 infxs:text-vumi-blue md:text-vumi-white"
+>
+    {{ subtitle | translate }}
+</p>
+<p
+    *ngIf="!isBengali"
+    class="infxs:text-lg infxs:font-semibold md:font-light lg:mt-3 xl:mt-4 infxs:text-vumi-blue md:text-vumi-white"
+>
+    {{ para }}
+</p>
+
+<p
+    *ngIf="isBengali && para_bn === null"
+    class="infxs:text-lg infxs:font-semibold md:font-light lg:mt-3 xl:mt-4 infxs:text-vumi-blue md:text-vumi-white"
+>
+    {{ para }}
+</p>
+
+<p
+    *ngIf="isBengali && para_bn != null"
+    class="infxs:text-lg infxs:font-semibold md:font-light lg:mt-3 xl:mt-4 infxs:text-vumi-blue md:text-vumi-white"
+>
+    {{ para_bn }}
+</p>
+<div class="md:text-left infxs:text-center flex infxs:justify-center md:justify-start">
+    <button
+        class="mt-5 button-vumi-orange font-medium"
+        [routerLink]="['/dashboard']"
+    >
+        {{ "GET_STARTED" | translate }}
+    </button>
+</div>

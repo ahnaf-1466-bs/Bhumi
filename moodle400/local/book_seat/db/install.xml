@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/book_seat/db" VERSION="20120122" COMMENT="XMLDB file for local Book Seat plugin"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+
+        <TABLE NAME="local_book_seat_userinfo" COMMENT="Table for storing seat booking information">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Primary key"/>
+                <FIELD NAME="username" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Username"/>
+                <FIELD NAME="email" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="User Email"/>
+                <FIELD NAME="phone" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="User Phone"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time created"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>

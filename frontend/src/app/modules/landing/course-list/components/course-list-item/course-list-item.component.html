@@ -1,0 +1,28 @@
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="inner relative h-full">
+            <img [src] = "image_url" alt="" class="max-w-full h-full">
+        <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-vumi-white" [innerHTML]="name">
+        </p> 
+        </div>
+      </div>
+      <div class="flip-card-back relative">
+      
+        <div class="inner relative h-full">
+            <img [src] = "image_url" alt="" class="max-w-full h-full">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-vumi-white" >
+                    
+                    <h1 class="my-auto mx-auto mb-3 text-2xl">{{"INSTRUCTORS" | translate}}:</h1>
+                    
+                    <div *ngFor="let instructor of instructors"  >
+                          {{ instructor.fullname }}
+                    </div>
+              
+            </div> 
+        </div>
+           
+      </div>
+    </div>
+</div>
+  

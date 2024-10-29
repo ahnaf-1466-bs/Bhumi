@@ -1,0 +1,53 @@
+<div class="bg-vumi-orange" *ngIf="showComponent">
+    <div
+        class="lg:max-w-4xl xl:max-w-7xl lg:pt-12 xl:pt-14 lg:pb-8 xl:pb-12 mx-auto"
+    >
+        <div class="flex flex-row flex-wrap justify-center">
+            <div class="text-vumi-white basis-5/12 text-left mx-auto">
+                <h1
+                    class="lg:text-6xl xl:text-7xl font-bold lg:text-left infxs:text-center infxs:text-4xl infxs:whitespace-nowrap infxs:mt-10 md:mt-0"
+                >
+                    LIVE VIDEO
+                </h1>
+                <h1
+                    class="font-medium -mt-4 lg:text-left lg:text-5xl xl:text-6xl infxs:text-center infxs:text-3xl infxs:whitespace-nowrap"
+                >
+                    FOR THIS COURSE
+                </h1>
+                <div
+                    class="space-y-5 lg:-mt-2 xl:mt-5 md:text-xl infxs:text-sm"
+                >
+                    <p class="lg:text-xs xl:text-md mt-2 hidden lg:block">
+                        {{ description?.short_description }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="lg:w-140 xl:w-180 lg:-mr-10 xl:-mr-14 lg:-mt-8 mx-auto infxs:mb-8 lg:mb-0"
+            >
+                <div *ngIf="descriptionURL?.includes('.mp4'); else other">
+                    <video controls class="basis-6/12 scale-75">
+                        <source [src]="descriptionURL" type="video/mp4" />
+                    </video>
+                </div>
+                <ng-template #other>
+                    <div>
+                        <img
+                            [src]="descriptionURL"
+                            alt="course overview"
+                            class="basis-6/12 scale-75 lg:h-80 xl:h-100"
+                        />
+                    </div>
+                </ng-template>
+            </div>
+            <!-- <div class="text-center block md:hidden">
+                <button
+                    class="bg-vumi-white text-vumi-blue font-semibold infxs:text-md mb-6 px-2"
+                >
+                    Join Live Session
+                </button>
+            </div> -->
+        </div>
+    </div>
+</div>

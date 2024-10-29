@@ -1,0 +1,25 @@
+.btnSwiper {
+    @media screen and (min-width: 1300px) {
+        font-size: 30px;
+        width: 5%;
+        height: 0%;
+    }
+    @media screen and (min-width: 1440px) {
+        font-size: 30px;
+        width: 5%;
+        height: 0%;
+    }
+    @media screen and (min-width: 1920px) {
+        font-size: 42px;
+        width: 5%;
+        height: 5%;
+    }
+    color: white;
+    background: #e55037;
+    font-size: 30px;
+    border-radius: 100%;
+}
+
+.swiper-button {
+    @apply bg-vumi-orange rounded-full text-white w-8 h-8 sm:w-12 sm:h-12 flex justify-center items-center;
+}

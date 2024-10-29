@@ -1,0 +1,30 @@
+<div class="bg-vumi-lightgray">
+    <div class="lg:max-w-4xl xl:max-w-7xl py-12 mx-auto">
+        <div
+            class="lg:ml-2 xl:ml-6 infxs:leading-[24px] lg:leading-[38px] xl:leading-[44px] text-4xl font-bold mb-8 uppercase text-vumi-blue lg:text-left infxs:text-center"
+        >
+            <h1 class="font-medium text-4xl flex flex-col gap-y-4 md:gap-y-1">
+                {{"WHO WILL BE"|translate}} <br />
+                <strong class="font-extrabold">{{"BENEFITED"|translate}}?</strong>
+            </h1>
+        </div>
+
+        <div
+            class="lg:ml-2 xl:ml-6 flex infxs:flex-col infxs:gap-5 sm:flex-row sm:flex-wrap infxs:justify-center lg:justify-start md:flex-wrap lg:gap-6 xl:gap-12"
+        >
+            <ng-container *ngFor="let benefit of benefits">
+                <div class="h-auto w-auto py-auto flex flex-col items-center">
+                    <img
+                        class="infxs:h-[50px] infxs:w-auto lg:h-26 lg:w-24 xl:h-30 xl:w-28"
+                        [src]="benefit?.beneficiary_image"
+                    />
+                    <h1
+                        class="text-sm md:text-md font-semibold text-vumi-blue w-50 mt-4 flex flex-col items-center text-center"
+                    >
+                        {{ benefit?.beneficiary_name }}
+                    </h1>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

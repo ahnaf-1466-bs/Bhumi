@@ -1,0 +1,37 @@
+<div
+    *ngIf="loading"
+    class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12"
+>
+    <div class="loader"></div>
+</div>
+
+<div
+    *ngIf="!loading"
+    class="lg:max-w-4xl xl:max-w-7xl mx-auto lg:py-12 xl:py-15 min-h-screen"
+>
+    <h1
+        *ngIf="!isBengali"
+        class="mt-3 md:mt-0 text-center font-bold text-3xl lg:text-5xl mb-3 text-vumi-orange"
+    >
+        {{ data.title }}
+    </h1>
+    <h1
+        *ngIf="isBengali"
+        class="mt-3 md:mt-0 text-center font-bold text-3xl lg:text-5xl mb-3 text-vumi-orange"
+    >
+        {{ data.title_bn }}
+    </h1>
+
+    <div
+        *ngIf="!isBengali"
+        [innerHTML]="data.description"
+        class="desc text-xl px-4 md:px-0"
+        style="text-align: justify"
+    ></div>
+    <div
+        *ngIf="isBengali"
+        [innerHTML]="data.description_bn"
+        class="desc text-xl px-4 md:px-0"
+        style="text-align: justify"
+    ></div>
+</div>

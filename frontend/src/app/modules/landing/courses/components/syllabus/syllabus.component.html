@@ -1,0 +1,44 @@
+<div class="bg-vumi-white">
+    <div class="lg:max-w-4xl xl:max-w-7xl p-8 px-14 mx-auto">
+        <div class="grid infxs:grid-cols-1 lg:grid-cols-2 content-center">
+            <div
+                class="pb-18 font-black flex infxs:justify-center lg:justify-start text-4xl text-vumi-orange uppercase"
+            >
+                {{"Syllabus"|translate}}
+            </div>
+            <div class="mr-auto ml-14 mb-10 hidden lg:block">
+                <a [href]="syllabuspdf" target="_blank">
+                    <button
+                        class="w-full button-vumi-orange px-4 py-1 lg:mt-4 xl:mt-6"
+                    >
+                        {{"Download Syllabus PDF"|translate}}
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="grid infxs:grid-cols-1 lg:grid-cols-2 lg:text-left">
+            <ul class="list-disc list-outside">
+                <ng-container *ngFor="let syllabus of syllabus_details; let id = index">
+                        <app-syllabus-single *ngIf="id % 2 == 0" [syllabus_title]="syllabus?.syllabusheading"
+                            [syllabus_items]="syllabus?.syllabusbody" [mobile]="mobile"></app-syllabus-single>
+                </ng-container>
+            </ul>
+            <ul class="lg:ml-14 list-disc list-outside">
+                <ng-container *ngFor="let syllabus of syllabus_details; let id = index">
+                    <app-syllabus-single *ngIf="id % 2 !== 0" [syllabus_title]="syllabus?.syllabusheading"
+                        [syllabus_items]="syllabus?.syllabusbody" [mobile]="mobile"></app-syllabus-single>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+    <div class="pb-10 flex justify-center bg-vumi-white">
+        <a [href]="syllabuspdf" target="_blank">
+            <button
+            style="filter: drop-shadow(0px 4px 4px rgb(35, 6, 1,0.3))"
+                class="w-[234px] px-2 font-bold py-2 lg:hidden rounded-[1px] bg-vumi-orange text-white infxs:text-base sm:text-lg"
+            >
+                {{"Download Syllabus PDF"|translate}}
+            </button>
+        </a>
+    </div>
+</div>

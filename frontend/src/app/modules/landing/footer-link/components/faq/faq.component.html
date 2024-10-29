@@ -1,0 +1,32 @@
+<div *ngIf="loading" class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12">
+    <div class="loader"></div>
+</div>
+
+<div *ngIf="!loading" class="lg:max-w-4xl xl:max-w-7xl mx-auto lg:py-12 xl:py-15 min-h-screen">
+    <h1 class="mt-4 md:mt-0 text-center font-bold text-3xl lg:text-5xl mb-3 text-vumi-orange">{{"FAQ" | translate}}</h1>
+    <div *ngIf="!isBengali" class="accordion px-3 md:px-36">
+        <div class="accordion-item" *ngFor="let question of questions; let i = index" 
+             [class.active]="activeIndex === i" [class.expanded]="activeIndex === i">
+            <div class="accordion-title text-xl" (click)="toggleAccordion(i)">
+                {{ question }}
+                <i class="fa" [class.fa-chevron-down]="activeIndex !== i" [class.fa-chevron-up]="activeIndex === i"></i>
+            </div>
+            <div class="accordion-content desc text-base" style="text-align: justify; background-color: #e5dbd2;" 
+                 [class.active]="activeIndex === i" [innerHTML]="answers[i]">
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isBengali" class="accordion px-3 md:px-36">
+        <div class="accordion-item" *ngFor="let question of questions_bn; let i = index" 
+             [class.active]="activeIndex === i" [class.expanded]="activeIndex === i">
+            <div class="accordion-title text-xl" (click)="toggleAccordion(i)">
+                {{ question }}
+                <i class="fa" [class.fa-chevron-down]="activeIndex !== i" [class.fa-chevron-up]="activeIndex === i"></i>
+            </div>
+            <div class="accordion-content desc text-base" style="text-align: justify; background-color: #e5dbd2;" 
+                 [class.active]="activeIndex === i" [innerHTML]="answers_bn[i]">
+            </div>
+        </div>
+    </div>
+</div>

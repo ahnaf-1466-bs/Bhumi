@@ -1,0 +1,32 @@
+<div
+    class="container m-auto grid grid-cols-1 sm:grid-cols-2 gap-1 sm:h-screen sm:pb-10 lg:m-auto"
+>
+    <div class="image-section order-last mt-4 sm:mt-0 sm:order-none">
+        <img
+            src="assets/images/signup-img.webp"
+            alt=""
+            class="block sm:hidden"
+        />
+
+        <img
+            class="hidden sm:block md:-ml-1/4"
+            src="assets/images/login/login.webp"
+        />
+    </div>
+
+    <div class="form-section sm:flex mt-6 sm:mt-0 sm:">
+        <div class="right-segment sm:mt-1/4">
+            <div>
+                <h1 class="text-4xl mr-3 font-bold text-vumi-blue text-center">
+                    {{ "Password Successfully Updated" | translate }}
+                </h1>
+            </div>
+
+            <div
+                class="flex justify-center mt-4 text-vumi-orange font-bold text-xl"
+            >
+                <a routerLink="/login">{{ "Log In" | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+
+.bcground-banner{
+    transform: rotate(46deg);
+    width: 70% !important;
+    margin-left: -6rem !important;
+    margin-top: -16rem !important;
+    padding-left: 20% !important;
+
+}
+
+.heading-text{
+    transform: rotate(-46deg);
+}
+
+
+.content{
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+}
+
+.story{
+    padding-top: 5% !important;
+    padding-bottom: 5% !important;
+}
+
+//for mobile
+@media only screen and (max-width: 599px) {
+    .bcground-banner{
+        transform: rotate(46deg);
+        height: 5rem !important;
+        margin-top: -4rem !important;
+        padding-left: 60% !important;
+        width: 100% !important;
+    
+    }
+
+    .content{
+        margin-top: 38% !important;
+    }
+ }
+
+
+ //for tablet
+ @media only screen and (min-width: 600px) {
+        .content{
+            width: 65% !important;
+            padding-left: 5% !important;
+            padding-right: 20% !important;
+        }
+        .bcground-banner{
+            width: 50% !important;
+            height: 5rem !important;
+            margin-right: 2rem !important;
+        }
+
+ }
+
+ @media only screen and (min-width: 992px) {  //for laptop
+    .content{
+        width: 65% !important;
+        padding-left: 2% !important;
+        padding-right: 15% !important;
+    }
+    .bcground-banner{
+        width: 35% !important;
+        margin-right: 2rem !important;
+        height: 7.5rem !important;
+    }
+}
+
+
+

@@ -1,0 +1,55 @@
+
+.bcground-banner{
+    transform: rotate(8deg);
+    width: 80% !important;
+
+}
+
+.heading-text{
+    transform: rotate(-8deg);
+}
+
+
+.content{
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+}
+
+.story{
+    padding-top: 5% !important;
+    padding-bottom: 5% !important;
+}
+
+
+ @media only screen and (min-width: 600px) {
+        .content{
+            width: 60% !important;
+            padding-left: 5% !important;
+            padding-right: 20% !important;
+        }
+        .bcground-banner{
+            width: 40% !important;
+            margin-right: 2rem !important;
+        }
+
+ }
+
+ @media only screen and (min-width: 992px) {
+    .content{
+        width: 65% !important;
+        padding-left: 2% !important;
+        padding-right: 15% !important;
+    }
+    .bcground-banner{
+        width: 35% !important;
+    }
+    .heading-text{
+        margin-left: 30% !important;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .heading-text{
+        margin-left: 35% !important;
+    }
+}

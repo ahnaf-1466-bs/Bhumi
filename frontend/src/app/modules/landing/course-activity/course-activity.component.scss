@@ -1,0 +1,42 @@
+.course-overview {
+    @apply text-vumi-orange;
+}
+
+.drawer-container {
+    width: 100%;
+    height: 100%;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+    border-radius: 0.5rem !important;
+}
+
+.mat-accordion .mat-expansion-panel{
+    // margin-bottom: 0px !important;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav{
+  padding-left: 20px;
+  @apply md:pl-20 md:w-96 bg-transparent pb-10;
+}
+
+.mat-drawer{
+  background-color: white !important;
+  border: none !important;
+  @apply shadow-lg;
+}

@@ -1,0 +1,90 @@
+<div
+    *ngIf="!isDataLoaded"
+    class="flex justify-center items-center min-w-full min-h-screen mt-6 lg:mt-12"
+>
+    <div class="loader"></div>
+</div>
+
+<div *ngIf="isDataLoaded && isShowMessage" style="background-color: white">
+    <div
+        class="flex flex-wrap w-full h-screen lg:max-w-4xl xl:max-w-7xl mx-auto pt-10 pb-12"
+    >
+        <div class="md:text-left title-section sm:pl-4 md:w-1/2">
+            <h4 class="text-vumi-orange text-4xl md:text-5xl">
+                {{ "MEET OUR" | translate }}
+            </h4>
+            <h1
+                class="text-vumi-orange -mt-1 mb-6 text-4xl md:text-5xl font-extrabold"
+            >
+                {{ "DIRECTORS" | translate }}
+            </h1>
+        </div>
+        <div
+            class="flex pl-4 md:pl-0 md:w-1/2 justify-center sm:justify-start items-start sm:items-center text-center text-3xl md:text-4xl text-red-600 font-semibold"
+        >
+            {{ "No_records_to_show!" | translate }}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isDataLoaded && !isShowMessage" style="background-color: white">
+    <div
+        class="min-h-screen lg:max-w-4xl xl:max-w-7xl mx-auto pt-10 pb-12"
+        style="background-color: white"
+    >
+        <div class="md:text-left title-section sm:pl-4">
+            <h4 class="text-vumi-orange text-4xl md:text-5xl">
+                {{ "MEET OUR" | translate }}
+            </h4>
+            <h1
+                class="text-vumi-orange -mt-1 mb-6 text-4xl md:text-5xl font-extrabold"
+            >
+                {{ "DIRECTORS" | translate }}
+            </h1>
+        </div>
+
+        <div *ngFor="let num of getNumberArray(rows); let i = index">
+            <div
+                class="grid-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:mx-0 gap-8 w-full mb-6 sm:mb-12"
+            >
+                <div *ngFor="let director of this.tier[i]">
+                    <div>
+                        <div class="px-auto">
+                            <img
+                                [src]="director.picurl"
+                                alt=""
+                                class="mx-auto text-center"
+                                style="width: 156px; height: 185px"
+                            />
+                            <h4
+                                *ngIf="!isBengali"
+                                class="text-vumi-orange font-semibold mx-auto text-lg mt-4 text-center"
+                            >
+                                {{ director.directorname }}
+                            </h4>
+                            <h4
+                                *ngIf="isBengali"
+                                class="text-vumi-orange font-semibold mx-auto text-lg mt-4 text-center"
+                            >
+                                {{ director.directorname_bn }}
+                            </h4>
+
+                            <p
+                                *ngIf="!isBengali"
+                                class="text-lg font-medium mx-auto text-center"
+                            >
+                                {{ director.directordeg }}
+                            </p>
+                            <p
+                                *ngIf="isBengali"
+                                class="text-lg font-medium mx-auto text-center"
+                            >
+                                {{ director.directordeg_bn }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
