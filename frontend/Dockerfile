@@ -16,7 +16,7 @@ RUN ls
 
 # RUN rm -rf src/environments/environment.ts
 # RUN cp src/environments/environment_server.ts src/environments/environment.ts
-RUN sed -i "s/#PLATFORM_DATA/platform_var/g" src/environments/environment.ts
+RUN sed -i "s/#PLATFORM_DATA/platform_var/g" frontend/editedsrc/environments/environment.ts
 
 ARG frontend_port
 RUN echo ""ng serve --host 0.0.0.0 --port ${frontend_port}""
