@@ -15,12 +15,14 @@ env:
     APP_PORT: "/vumi/app_port"
     WWW_ROOT: "/vumi/www_root"
     FRONTEND_PORT: "/vumi/frontend_port"
+    DOCKER_USERNAME: "/vumi/docker-hub-username"
+    DOCKER_PASSWORD: "/vumi/docker-hub-password"
 
 phases:
   pre_build:
     commands:
-      # - echo Logging in to Docker Hub...
-      # - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+      - echo Logging in to Docker Hub...
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - echo $AWS_REGION $ECR_REPOSITORY_URL
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY_URL
