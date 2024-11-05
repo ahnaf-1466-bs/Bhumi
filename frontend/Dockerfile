@@ -13,7 +13,6 @@ RUN npm install
 
 COPY . .
 RUN cd src/environments
-RUN ls -R /src
 RUN ls -R src
 
 # RUN rm -rf src/environments/environment.ts
