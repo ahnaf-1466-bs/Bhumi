@@ -1,33 +1,16 @@
 version: "3.7"
 services:
   app:
-    env_file:
-      - .env
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - app_port=${APP_PORT}
+    image: 058264454514.dkr.ecr.ap-southeast-1.amazonaws.com/vumi/app
     
-    container_name: ${PROJECT_NAME}_moodle4
+    container_name: vumi_prod_moodle4
     network_mode: host
     volumes:
       - ./moodle400:/var/www/html
       - ./moodledata:/var/www/moodledata:rw
-      # - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     restart: always
   froentend:
-    env_file:
-      - .env
-    build:
-      context: frontend
-      dockerfile: frontent.Dockerfile
-      args:
-        - frontend_port=${FRONTEND_PORT}
-    container_name: ${PROJECT_NAME}_frontend
+    imaeg: 058264454514.dkr.ecr.ap-southeast-1.amazonaws.com/vumi/frontend
+    container_name: vumi_prod_frontend
     network_mode: host
-    # volumes:
-      # - /var/run/docker.sock:/var/run/docker.sock
-      # - ./frontend:/frontend
-      # - /frontend/node_modules
     restart: always
