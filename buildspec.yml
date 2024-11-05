@@ -1,0 +1,43 @@
+version: 0.2
+
+env:
+  parameter-store:
+    AWS_REGION: "/vumi/aws-region"
+    ECR_REPOSITORY_URL: "/vumi/ecr-repo-url"
+    PROJECT_NAME: "/vumi/project_name"
+    # SECRET_KEY: "/vumi/secret-key"
+    DB_TYPE: "/vumi/db_type"
+    DB_HOST: "/vumi/db_host"
+    DB_NAME: "/vumi/db_name"
+    DB_USER: "/vumi/db_user"
+    DB_PASS: "/vumi/db_pass"
+    DB_PORT: "/vumi/db_port"
+    APP_PORT: "/vumi/app_port"
+    WWW_ROOT: "/vumi/www_root"
+    FRONTEND_PORT: "/vumi/frontend_port"
+
+phases:
+  pre_build:
+    commands:
+      # - echo Logging in to Docker Hub...
+      # - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+      - echo Logging in to Amazon ECR...
+      - echo $AWS_REGION $ECR_REPOSITORY_URL
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY_URL
+
+  build:
+    commands:
+      - echo Building Docker image for app Service...
+      - docker build -t app .
+      - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:latest
+      - docker push $ECR_REPOSITORY_URL/vumi/app:latest
+
+      - echo Building Docker image for frontend Service...
+      - docker build -t frontend ./frontend
+      - docker tag frontend:latest $ECR_REPOSITORY_URL/vumi/frontend:latest
+      - docker push $ECR_REPOSITORY_URL/vumi/frontend:latest
+
+  post_build:
+    commands:
+      - echo Push to ecr successfull.
+
