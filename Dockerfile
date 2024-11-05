@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-ARG app_port = 8080
+ARG app_port = 8044
 
 
 RUN sed -si 's/Listen 80/Listen '$app_port'/' /etc/apache2/ports.conf
