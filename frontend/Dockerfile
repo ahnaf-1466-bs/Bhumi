@@ -12,6 +12,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
+RUN ls
 
 # RUN rm -rf src/environments/environment.ts
 # RUN cp src/environments/environment_server.ts src/environments/environment.ts
