@@ -29,10 +29,10 @@ phases:
 
   build:
     commands:
-      - echo Building Docker image for app Service...
-      - docker build -t app .
-      - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:latest
-      - docker push $ECR_REPOSITORY_URL/vumi/app:latest
+      # - echo Building Docker image for app Service...
+      # - docker build -t app .
+      # - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:latest
+      # - docker push $ECR_REPOSITORY_URL/vumi/app:latest
 
       - echo Building Docker image for frontend Service...
       - docker build -t frontend ./frontend
