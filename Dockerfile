@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-ARG app_port = 8044
+# ARG app_port = 8044
 
 
 RUN sed -si 's/Listen 80/Listen '$app_port'/' /etc/apache2/ports.conf
@@ -47,6 +47,6 @@ RUN chown -R root /var/www/moodledata
 RUN chmod 0777 /var/www/moodledata
 # COPY ./moodle311 /var/www/html
 WORKDIR /var/www/html
-EXPOSE $app_port
+EXPOSE 8044
 # RUN php admin/cli/install.php
 

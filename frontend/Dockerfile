@@ -13,8 +13,8 @@ COPY . .
 
 RUN sed -i "s/#PLATFORM_DATA/platform_var/g" src/environments/environment_server.ts
 
-ARG frontend_port = 4244
-RUN echo ""ng serve --host 0.0.0.0 --port ${frontend_port}""
-ENV PORT ${frontend_port}
+# ARG frontend_port = 4244
+RUN echo ""ng serve --host 0.0.0.0 --port 4244""
+ENV PORT 4244
 
-CMD ["sh","-c","ng serve --host 0.0.0.0 --port ${PORT}"]
+CMD ["sh","-c","ng serve --host 0.0.0.0 --port 4244"]
