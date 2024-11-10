@@ -15,9 +15,6 @@ RUN npm install
 COPY . .
 RUN sed -i "s/#PLATFORM_DATA/platform_var/g" src/environments/environment_server.ts
 
-# Build the Angular app in production mode
-ARG frontend_port
-ENV PORT ${frontend_port}
 RUN ng build --configuration production --output-path=dist
 
 # Step 2: Serve the app using Nginx
@@ -25,5 +22,5 @@ FROM nginx:alpine
 COPY --from=build /frontend/dist /usr/share/nginx/html
 
 # Expose the port
-EXPOSE ${PORT}
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
