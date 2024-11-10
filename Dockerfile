@@ -45,7 +45,7 @@ RUN mkdir /var/www/moodledata
 # RUN chown -R root /var/www/moodledata
 RUN chown -R root /var/www/moodledata
 RUN chmod 0777 /var/www/moodledata
-# COPY ./moodle311 /var/www/html
+COPY ./moodle400 /var/www/html
 WORKDIR /var/www/html
 EXPOSE $app_port
 # RUN php admin/cli/install.php

@@ -9,14 +9,13 @@ services:
       args:
         - app_port=${APP_PORT}
     
-    container_name: ${PROJECT_NAME}_moodle4
+    container_name: ${PROJECT_NAME}_moodle4_local
     ports:
       - "8044:8044"
     # network_mode: host
-    volumes:
-      - ./moodle400:/var/www/html
-      - ./moodledata:/var/www/moodledata:rw
-      # - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    # volumes:
+    #   - ./moodle400:/var/www/html
+    #   - ./moodledata:/var/www/moodledata:rw
     restart: always
   froentend:
     env_file:
@@ -26,12 +25,8 @@ services:
       dockerfile: Dockerfile
       args:
         - frontend_port=${FRONTEND_PORT}
-    container_name: ${PROJECT_NAME}_frontend
+    container_name: ${PROJECT_NAME}_frontend_local
     ports:
       - "4244:80"
     # network_mode: host
-    # volumes:
-      # - /var/run/docker.sock:/var/run/docker.sock
-      # - ./frontend:/frontend
-      # - /frontend/node_modules
     restart: always
