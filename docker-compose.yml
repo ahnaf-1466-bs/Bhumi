@@ -10,7 +10,9 @@ services:
         - app_port=${APP_PORT}
     
     container_name: ${PROJECT_NAME}_moodle4
-    network_mode: host
+    ports:
+      - "8044:8044"
+    # network_mode: host
     volumes:
       - ./moodle400:/var/www/html
       - ./moodledata:/var/www/moodledata:rw
@@ -25,7 +27,9 @@ services:
       args:
         - frontend_port=${FRONTEND_PORT}
     container_name: ${PROJECT_NAME}_frontend
-    network_mode: host
+    ports:
+      - "4244:80"
+    # network_mode: host
     # volumes:
       # - /var/run/docker.sock:/var/run/docker.sock
       # - ./frontend:/frontend
