@@ -39,12 +39,12 @@ RUN docker-php-ext-install opcache
 COPY ./php_conf/* /usr/local/etc/php/conf.d/
 
 # Copy the Moodle files into the container
-COPY ./moodle400 /var/www/html
+# COPY ./moodle400 /var/www/html
 
 # Set up the Moodle data directory
-RUN mkdir /var/www/moodledata
-RUN chown -R www-data:www-data /var/www/html /var/www/moodledata
-RUN chmod -R 0777 /var/www/moodledata
+# RUN mkdir /var/www/moodledata
+# RUN chown -R www-data:www-data /var/www/html /var/www/moodledata
+# RUN chmod -R 0777 /var/www/moodledata
 
 # Expose the port
 EXPOSE $app_port
