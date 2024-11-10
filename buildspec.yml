@@ -29,15 +29,15 @@ phases:
 
   build:
     commands:
-      - echo Building Docker image for app Service...
+      - echo Building Docker image for app Service on port $APP_PORT...
       - docker build --build-arg app_port=$APP_PORT -t app .
-      - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:latest
-      - docker push $ECR_REPOSITORY_URL/vumi/app:latest
+      - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:v1
+      - docker push $ECR_REPOSITORY_URL/vumi/app:v1
 
-      - echo Building Docker image for frontend Service...
+      - echo Building Docker image for frontend Service on port $FRONTEND_PORT...
       - docker build --build-arg app_port=$FRONTEND_PORT -t frontend ./frontend
-      - docker tag frontend:latest $ECR_REPOSITORY_URL/vumi/frontend:latest
-      - docker push $ECR_REPOSITORY_URL/vumi/frontend:latest
+      - docker tag frontend:latest $ECR_REPOSITORY_URL/vumi/frontend:v1
+      - docker push $ECR_REPOSITORY_URL/vumi/frontend:v1
 
   post_build:
     commands:
