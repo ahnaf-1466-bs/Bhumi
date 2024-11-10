@@ -3,18 +3,25 @@ FROM node:18.19.0
 RUN mkdir /frontend
 WORKDIR /frontend
 
+
+
 RUN npm install -g @angular/cli
 
-COPY package.json package-lock.json ./
-
-RUN npm install
+# RUN rm -rf src/environments/environment.ts
+# RUN cp src/environments/environment_server.ts src/environments/environment.ts
+# RUN sed -i "s/#PLATFORM_DATA/platform_var/g" src/environments/environment.ts
 
 COPY . .
 
 RUN sed -i "s/#PLATFORM_DATA/platform_var/g" src/environments/environment_server.ts
 
-# ARG frontend_port = 4244
-RUN echo ""ng serve --host 0.0.0.0 --port 4244""
-ENV PORT 4244
+COPY package.json package-lock.json ./
 
-CMD ["sh","-c","ng serve --host 0.0.0.0 --port 4244"]
+RUN npm install
+ARG frontend_port
+RUN echo ""ng serve --host 0.0.0.0 --port ${frontend_port}""
+# RUN port=$((frontend_port))
+# RUN echo ${port}
+ENV PORT ${frontend_port}
+
+CMD ["sh","-c","ng serve --host 0.0.0.0 --port ${PORT}"]

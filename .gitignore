@@ -2,5 +2,5 @@ db/data
 frontend/src/environments/environment.ts
 frontend/src/environments/environment.prod.ts
 moodledata
-.env
+# .env
 moodle400/config.php

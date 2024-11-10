@@ -1,18 +1,33 @@
 version: "3.7"
 services:
   app:
-    image: 058264454514.dkr.ecr.ap-southeast-1.amazonaws.com/vumi/app
-    ports: 
-      - "8044:8044"
-    container_name: vumi_prod_moodle4
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - app_port=${APP_PORT}
+    
+    container_name: ${PROJECT_NAME}_moodle4
     network_mode: host
     volumes:
       - ./moodle400:/var/www/html
       - ./moodledata:/var/www/moodledata:rw
+      # - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     restart: always
   froentend:
-    image: 058264454514.dkr.ecr.ap-southeast-1.amazonaws.com/vumi/frontend
-    container_name: vumi_prod_frontend
-    ports: "4244:4244"
+    env_file:
+      - .env
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      args:
+        - frontend_port=${FRONTEND_PORT}
+    container_name: ${PROJECT_NAME}_frontend
     network_mode: host
+    # volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      # - ./frontend:/frontend
+      # - /frontend/node_modules
     restart: always
