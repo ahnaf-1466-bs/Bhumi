@@ -45,7 +45,7 @@ phases:
     commands:
       - echo "Starting SSM automation execution..."
       - aws ssm start-automation-execution \
-      --document-name $SSM_AUTOMATION_DOCUMENT_NAME \
-      --document-version "\$DEFAULT" \
-      --parameters '{"AutomationAssumeRole":[$SSM_AUTOMATION_ROLE_ARN],"ASGName":[$ASG_NAME]}' \
-      --region $AWS_REGION
+        --document-name $SSM_AUTOMATION_DOCUMENT_NAME \
+        --document-version "\$DEFAULT" \
+        --parameters {"AutomationAssumeRole":["'"$SSM_AUTOMATION_ROLE_ARN"'"],"ASGName":["'"$ASG_NAME"'"]} \
+        --region $AWS_REGION
