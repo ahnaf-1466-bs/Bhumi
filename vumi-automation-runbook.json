@@ -1,0 +1,54 @@
+{
+    "schemaVersion": "0.3",
+    "description": "Lists instance IDs in a specified Auto Scaling Group (ASG) and creates a file on them.",
+    "assumeRole": "{{ AutomationAssumeRole }}",
+    "parameters": {
+      "AutomationAssumeRole": {
+        "type": "String",
+        "description": "(Optional) The ARN of the role that allows Automation to perform actions on your behalf."
+      },
+      "ASGName": {
+        "type": "String",
+        "description": "The name of the Auto Scaling Group."
+      }
+    },
+    "mainSteps": [
+      {
+        "name": "DescribeAutoScalingGroup",
+        "action": "aws:executeAwsApi",
+        "nextStep": "SendCommand",
+        "isEnd": false,
+        "inputs": {
+          "Service": "autoscaling",
+          "Api": "DescribeAutoScalingGroups",
+          "AutoScalingGroupNames": [
+            "{{ ASGName }}"
+          ]
+        },
+        "outputs": [
+          {
+            "Name": "InstanceIds",
+            "Selector": "$.AutoScalingGroups[0].Instances..InstanceId",
+            "Type": "StringList"
+          }
+        ]
+      },
+      {
+        "name": "SendCommand",
+        "action": "aws:executeAwsApi",
+        "isEnd": true,
+        "inputs": {
+          "Service": "ssm",
+          "Api": "SendCommand",
+          "InstanceIds": "{{ DescribeAutoScalingGroup.InstanceIds }}",
+          "TimeoutSeconds": 600,
+          "DocumentName": "AWS-RunShellScript",
+          "Parameters": {
+            "commands": [
+              "cd /home/ubuntu && ./vumi_cleanup_relaunch.sh"
+            ]
+          }
+        }
+      }
+    ]
+  }
