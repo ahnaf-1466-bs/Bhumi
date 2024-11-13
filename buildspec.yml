@@ -45,8 +45,4 @@ phases:
     commands:
       - echo "Starting SSM automation execution..."
       - echo $SSM_AUTOMATION_DOCUMENT_NAME
-      - aws ssm start-automation-execution \
-          --document-name "$SSM_AUTOMATION_DOCUMENT_NAME" \
-          --document-version "\$DEFAULT" \
-          --region $AWS_REGION \
-          --parameters "{\"AutomationAssumeRole\":[\"$SSM_AUTOMATION_ROLE_ARN\"],\"ASGName\":[\"$ASG_NAME\"]}"
+      - aws ssm start-automation-execution --document-name "vumi-ar" --document-version "\$DEFAULT" --parameters '{"AutomationAssumeRole":["arn:aws:iam::058264454514:role/vumi-automation-doc-roles"],"ASGName":["terraform-20241111121146002700000005"]}' --region ap-southeast-1
