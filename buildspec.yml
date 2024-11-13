@@ -32,17 +32,16 @@ phases:
   build:
     commands:
       - echo Building Docker image for app Service on port $APP_PORT...
-      - docker build --build-arg app_port=$APP_PORT -t app .
-      - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:v1
-      - docker push $ECR_REPOSITORY_URL/vumi/app:v1
+      # - docker build --build-arg app_port=$APP_PORT -t app .
+      # - docker tag app:latest $ECR_REPOSITORY_URL/vumi/app:v1
+      # - docker push $ECR_REPOSITORY_URL/vumi/app:v1
 
       - echo Building Docker image for frontend Service on port $FRONTEND_PORT...
-      - docker build --build-arg app_port=$FRONTEND_PORT -t frontend ./frontend
-      - docker tag frontend:latest $ECR_REPOSITORY_URL/vumi/frontend:v1
-      - docker push $ECR_REPOSITORY_URL/vumi/frontend:v1
+      # - docker build --build-arg app_port=$FRONTEND_PORT -t frontend ./frontend
+      # - docker tag frontend:latest $ECR_REPOSITORY_URL/vumi/frontend:v1
+      # - docker push $ECR_REPOSITORY_URL/vumi/frontend:v1
 
   post_build:
     commands:
       - echo "Starting SSM automation execution..."
-      - echo $SSM_AUTOMATION_DOCUMENT_NAME
-      - aws ssm start-automation-execution --document-name "vumi-ar" --document-version "\$DEFAULT" --parameters '{"AutomationAssumeRole":["arn:aws:iam::058264454514:role/vumi-automation-doc-roles"],"ASGName":["terraform-20241111121146002700000005"]}' --region ap-southeast-1
+      - aws ssm start-automation-execution --document-name $SSM_AUTOMATION_DOCUMENT_NAME --document-version "\$DEFAULT" --parameters '{"AutomationAssumeRole":["arn:aws:iam::058264454514:role/vumi-automation-doc-roles"],"ASGName":["terraform-20241111121146002700000005"]}' --region ap-southeast-1
