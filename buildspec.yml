@@ -44,6 +44,7 @@ phases:
   post_build:
     commands:
       - echo "Starting SSM automation execution..."
+      - echo $SSM_AUTOMATION_DOCUMENT_NAME
       - aws ssm start-automation-execution \
           --document-name "$SSM_AUTOMATION_DOCUMENT_NAME" \
           --document-version "\$DEFAULT" \
