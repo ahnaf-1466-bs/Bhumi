@@ -5,7 +5,6 @@ env:
     AWS_REGION: "/vumi/aws-region"
     ECR_REPOSITORY_URL: "/vumi/ecr-repo-url"
     PROJECT_NAME: "/vumi/project_name"
-    # SECRET_KEY: "/vumi/secret-key"
     DB_TYPE: "/vumi/db_type"
     DB_HOST: "/vumi/db_host"
     DB_NAME: "/vumi/db_name"
@@ -17,6 +16,9 @@ env:
     FRONTEND_PORT: "/vumi/frontend_port"
     DOCKER_USERNAME: "/vumi/docker-hub-username"
     DOCKER_PASSWORD: "/vumi/docker-hub-password"
+    SSM_AUTOMATION_DOCUMENT_NAME: "/vumi/automation-document-name"
+    SSM_AUTOMATION_ROLE_ARN: "/vumi/automation-role-arn"
+    ASG_NAME: "/vumi/asg-name"
 
 phases:
   pre_build:
@@ -41,9 +43,9 @@ phases:
 
   post_build:
     commands:
-      - echo "Pushing Docker image to ECR..."
-      # - docker push $ECR_REPOSITORY_URL/$IMAGE_NAME:latest
-      # - echo "Triggering SSM Automation for deployment..."
-      # - aws ssm start-automation-execution --document-name "vumi-automation-runbook" \
-      #   --parameters '{"ASGName":["your-asg-name"],"ImageUri":["'"$ECR_REPOSITORY_URL/$IMAGE_NAME:latest"'"]}'
-
+      - echo "Starting SSM automation execution..."
+      - aws ssm start-automation-execution \
+          --document-name "$SSM_AUTOMATION_DOCUMENT_NAME" \
+          --document-version "\$DEFAULT" \
+          --region $AWS_REGION \
+          --parameters "{\"AutomationAssumeRole\":[\"$SSM_AUTOMATION_ROLE_ARN\"],\"ASGName\":[\"$ASG_NAME\"]}"
